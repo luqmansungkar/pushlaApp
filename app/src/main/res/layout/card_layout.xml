@@ -1,0 +1,33 @@
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    card_view:cardCornerRadius="2dp"
+    android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/gambar"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/savemaster"
+            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/judul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#SaveMaster"
+            android:padding="10dp"
+            android:background="@color/background_material_dark"
+            android:textColor="@color/abc_primary_text_disable_only_material_dark"
+            android:textSize="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
