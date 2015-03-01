@@ -1,6 +1,8 @@
 package org.pushla.tes.tespushla;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -37,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new GetProyek().execute();
+        new GetProyek(this).execute();
         rv = (RecyclerView) findViewById(R.id.proyek_list);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -46,6 +49,9 @@ public class MainActivity extends ActionBarActivity {
 
         //pa = new ProyekAdapter(judul);
         //rv.setAdapter(pa);
+
+        //sementara menyimpan data operatornya di sini
+
     }
 
 
@@ -72,9 +78,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private class GetProyek extends AsyncTask<Void, Void, Void>{
+        private Activity activity;
 
-        public GetProyek() {
+        public GetProyek(Activity activity) {
             super();
+            this.activity = activity;
         }
 
         @Override
@@ -82,19 +90,42 @@ public class MainActivity extends ActionBarActivity {
             ServiceHandler sh = new ServiceHandler();
 
             String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-
             Log.d("Response: ","> "+jsonStr);
-
-            if (jsonStr != null){
+            if(jsonStr == null)
+            {
+                judul = ResourceManager.getListGambar(activity);
+                for(String s : judul)
+                {
+                    Bitmap localImage = ResourceManager.getGambar(s, activity);
+                    if(localImage != null)
+                    {
+                        gambar.add(localImage);
+                    }
+                }
+            }
+            else if (jsonStr != null){
                 try{
                     proyek = new JSONArray(jsonStr);
+                    String listJudul = "";
                     for (int i=0;i<proyek.length();i++){
                         JSONObject p = proyek.getJSONObject(i);
                         Log.d("Judul: "," > "+p.getString("judul"));
-                        judul.add(p.getString("judul"));
-                        gambar.add(getBitmap(p.getString("linkGambarHeader")));
+                        judul.add(p.getString("judul").trim());
+                        listJudul =  listJudul + p.getString("judul").trim() + ",";
+                        //check localImage file first
+                        Bitmap localImage = ResourceManager.getGambar(p.getString("judul").trim(), activity);
+                        if(localImage != null)
+                        {
+                            gambar.add(localImage);
+                        }
+                        else
+                        {
+                            Bitmap newImage = getBitmap(p.getString("linkGambarHeader"));
+                            gambar.add(newImage);
+                            ResourceManager.saveGambar(p.getString("judul").trim(), newImage, activity, false);
+                        }
                     }
-
+                    ResourceManager.setListGambar(activity, listJudul);
                 }catch (Exception e){
                     Log.d("gagal: "," > "+e.getMessage());
                 }
