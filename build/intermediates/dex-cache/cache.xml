@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-57df3a14067e77a6ac4ebf8a0a364afd6f60dd28.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\classes-6b4d08a9beb09542117406aafe49853d22e7668f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\classes-ed44992f7defe45eeea8054f03c9866acc1c00fc.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\classes-1771873c4062bcd8b246c2fc6966a361910fa743.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jar="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\classes-e85fa5f2c56095db68856a1f16c4621e09473534.jar" />
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-b522f95f8d43f0eee2acbb86ffb6e064e06b2bb8.jar" />
     </item>
     <item
-        jar="C:\devTools\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-2a62ecbb5e83530e477de2fa2eee6289da82641d.jar" />
+    </item>
+    <item
+        jar="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-1ab2bfdff9a7cb20a899753e58f9735136cbfb05.jar" />
+    </item>
+    <item
+        jar="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-a986e426159b7bd05db558836242a0ad795f3b42.jar" />
+    </item>
+    <item
+        jar="C:\Users\Laila L\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\TesPushla\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-47157c22c576a103b9242d87d74c24271db4155e.jar" />
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-b561dc97ad3d4e0ed38e6aa7f69e3b3f2425b204.jar" />
+    </item>
+    <item
+        jar="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="D:\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-7f6a744a16715bbbe0138faafb468b3851d4071b.jar" />
     </item>
 
 </items>
