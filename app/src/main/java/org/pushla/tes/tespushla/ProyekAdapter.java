@@ -1,5 +1,6 @@
 package org.pushla.tes.tespushla;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
  * Created by Luqman on 28/02/2015.
  */
 public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekViewHolder> {
-
     private ArrayList<String> judul;
     private ArrayList<Bitmap> gambar;
 
@@ -51,6 +51,14 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
             super(v);
             pNama = (TextView) v.findViewById(R.id.judul);
             pGambar = (ImageView) v.findViewById(R.id.gambar);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Donate.class);
+                    intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
