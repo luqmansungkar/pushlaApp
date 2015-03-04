@@ -92,7 +92,7 @@ public class Operator {
     {
         try
         {
-            SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             String operatorName = settings.getString(STORED_OPERATOR_NAME, "");
             if(operatorName.equalsIgnoreCase("Telkomsel"))
             {

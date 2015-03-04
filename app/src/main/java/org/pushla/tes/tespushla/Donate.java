@@ -82,7 +82,7 @@ public class Donate extends ActionBarActivity {
         public void onClick(View v) {
             try {
                 String nomorTujuan = Operator.getDestinationNumber(parent);
-                int operatorCode = Operator.getOperatorFromName(Operator.readOperatorName(parent));
+                int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
                 String nominal = "5000";
                 String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
                 String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
