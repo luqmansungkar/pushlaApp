@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="btn_push">150dip</dimen>
-    <dimen name="btn_amount">80dip</dimen>
+    <dimen name="btn_amount">70dip</dimen>
 
     <dimen name="margin_btn">5dip</dimen>
 </resources>
