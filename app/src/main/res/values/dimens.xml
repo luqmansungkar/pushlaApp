@@ -3,6 +3,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!--Default dimension for card laout-->
+    <dimen name="box_donation">100dip</dimen>
+    <dimen name="bd_marginTop">10dp</dimen>
+    <!--box progress-->
+    <dimen name="progress_height">10dp</dimen>
+
+    <!--font-->
+    <dimen name="txt_title">40sp</dimen>
+    <dimen name="txt_subtitle">20sp</dimen>
+    <dimen name="txt_size_bold">20sp</dimen>
+    <dimen name="txt_size_normal">14sp</dimen>
+
     <dimen name="btn_push">150dip</dimen>
     <dimen name="btn_amount">70dip</dimen>
 
