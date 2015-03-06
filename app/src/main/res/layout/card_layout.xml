@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="fill_parent"
-    android:layout_height="380dp"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="330dp"
+    android:layout_marginBottom="10dp"
     android:clickable="true">
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -14,7 +14,8 @@
             android:id="@+id/gambar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/savemaster"
+            android:layout_margin="0dp"
+            android:padding="0dp"
             android:layout_centerInParent="true"/>
 
         <ImageView
@@ -42,7 +43,6 @@
                     android:id="@+id/from"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="Rp 200.000"
                     android:textSize="@dimen/txt_size_bold"
                     android:textStyle="bold"/>
@@ -50,7 +50,6 @@
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text=" dari 4.000.000"
                     android:textSize="@dimen/txt_size_normal"/>
             </LinearLayout>
@@ -70,7 +69,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/progress_height"
-                    android:background="@color/white"/>
+                    android:background="@color/prog_bar"/>
             </LinearLayout>
 
             <LinearLayout
@@ -81,14 +80,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="30%"
                     android:textSize="@dimen/txt_size_bold"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text=" terdanai"
                     android:textSize="@dimen/txt_size_normal"/>
 
@@ -100,7 +97,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
                         android:text="30"
                         android:textSize="@dimen/txt_size_bold"
                         android:textStyle="bold"
@@ -108,7 +104,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
                         android:text=" hari lagi"
                         android:textSize="@dimen/txt_size_normal"
                         />
@@ -120,26 +115,30 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:gravity="center"
+            android:layout_marginTop="50dp"
             >
             <TextView
                 android:id="@+id/judul"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="#SaveMaster"
 
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_title"
+                android:textStyle="bold"
                 />
 
             <TextView
                 android:id="@+id/subjudul"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Sekolah Gratis Master Indonesia"
+                android:gravity="center"
 
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_subtitle"
+
                 />
         </LinearLayout>
 

@@ -2,6 +2,7 @@ package org.pushla.tes.tespushla;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,9 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
     public void onBindViewHolder(ProyekViewHolder holder, int position) {
         holder.pNama.setText(judul.get(position));
         if (gambar.get(position) != null) {
-            holder.pGambar.setImageBitmap(gambar.get(position));
+//            holder.pGambar.setImageBitmap(gambar.get(position));
+            BitmapDrawable ob = new BitmapDrawable(gambar.get(position));
+            holder.pGambar.setBackground(ob);
         }
     }
 
