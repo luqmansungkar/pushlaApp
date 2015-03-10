@@ -41,6 +41,7 @@ public class SplashScreen extends ActionBarActivity {
         judul = new ArrayList<>();
         gambar = new ArrayList<>();
 
+        Operator.init();
         String operator = Operator.readOperatorName(this);
         Operator.storeRegistrationData(this, operator);
 

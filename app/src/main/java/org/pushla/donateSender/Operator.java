@@ -134,7 +134,7 @@ public class Operator {
         int operator = Operator.getDeviceOperator(context);
         if(operator == Operator.INDOSAT)
         {
-            //result = "085725783863";
+//            result = "085725783863";
             result = "085729685018";
         }
         else if(operator == Operator.TELKOMSEL)

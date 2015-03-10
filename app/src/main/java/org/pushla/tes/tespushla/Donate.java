@@ -34,6 +34,7 @@ public class Donate extends ActionBarActivity {
         System.out.println("gambar = " + gambar);
         //ganti background sesuai proyek
         RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
+        if(gambar != null)
         rLayout.setBackground(new BitmapDrawable(getResources(),gambar));
 
         donateButton = (Button) findViewById(R.id.button_push);
@@ -83,7 +84,7 @@ public class Donate extends ActionBarActivity {
             try {
                 String nomorTujuan = Operator.getDestinationNumber(parent);
                 int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-                String nominal = "5000";
+                String nominal = "1000";
                 String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
                 String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
                 smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
