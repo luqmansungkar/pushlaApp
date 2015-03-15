@@ -44,6 +44,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/button_6"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="0.85"
@@ -56,6 +57,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"/>
                 <ImageButton
+                    android:id="@+id/button_10"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="0.85"
@@ -67,6 +69,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"/>
                 <ImageButton
+                    android:id="@+id/button_15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.85"
@@ -78,6 +81,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"/>
                 <ImageButton
+                    android:id="@+id/button_20"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.85"
@@ -160,39 +164,6 @@
                     android:textSize="11pt"
                     android:textStyle="italic" />
             </RelativeLayout>
-
-=======
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:gravity="center">
-            <Button
-                android:id="@+id/btn_six"
-                android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"
-
-                android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/button_6"
-            />
-            <Button
-                android:id="@+id/btn_ten"
-                android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"
-
-                android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/button_10"
-                />
-            <Button
-                android:id="@+id/btn_fifteen"
-                android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"
-
-                android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/button_15"
-                />
-            <Button
-                android:id="@+id/btn_twenty"
-                android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"/>
 
         </LinearLayout>
         <LinearLayout

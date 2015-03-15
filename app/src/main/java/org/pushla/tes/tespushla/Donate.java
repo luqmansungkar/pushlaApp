@@ -34,11 +34,12 @@ public class Donate extends ActionBarActivity{
 
     private Drawable donateOff, donateOn;
 
-    private ArrayList<Button> listButtonNominal;
+    private ArrayList<ImageButton> listButtonNominal;
     private ArrayList<Drawable> listButtonOff, listButtonOn;
 
     private HashMap<Integer, Integer> mapId;
 
+    private boolean buttonPushActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class Donate extends ActionBarActivity{
         System.out.println("gambar = " + gambar);
         //ganti background sesuai proyek
 //        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
-        ImageView img = (ImageView) findViewById(R.id.gambar);
+        ImageView img = (ImageView) findViewById(R.id.img_donate);
         if(gambar != null)
             img.setImageDrawable(new BitmapDrawable(getResources(), gambar));
 //        rLayout.setBackground(new BitmapDrawable(getResources(),gambar));
@@ -64,21 +65,10 @@ public class Donate extends ActionBarActivity{
         listButtonOn = new ArrayList<>();
         mapId = new HashMap<>();
 
-        listButtonNominal.add((Button)findViewById(R.id.btn_six));
-        listButtonNominal.add((Button)findViewById(R.id.btn_ten));
-        listButtonNominal.add((Button)findViewById(R.id.btn_fifteen));
-        listButtonNominal.add((Button)findViewById(R.id.btn_twenty));
-
-        for(Button b : listButtonNominal)
-        {
-            b.setOnClickListener(new NominalButtonListener());
-        }
-
-        mapId.put(R.id.btn_six, 0);
-        mapId.put(R.id.btn_ten, 1);
-        mapId.put(R.id.btn_fifteen, 2);
-        mapId.put(R.id.btn_twenty, 3);
-
+        listButtonNominal.add((ImageButton)findViewById(R.id.button_6));
+        listButtonNominal.add((ImageButton)findViewById(R.id.button_10));
+        listButtonNominal.add((ImageButton)findViewById(R.id.button_15));
+        listButtonNominal.add((ImageButton)findViewById(R.id.button_20));
 
         listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6)));
         listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10)));
@@ -92,6 +82,18 @@ public class Donate extends ActionBarActivity{
 
         donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_idle));
         donateOn = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_push_on));
+
+        for(int ii=0; ii<listButtonNominal.size(); ii++)
+        {
+            ImageButton b = listButtonNominal.get(ii);
+            System.out.println("Nambahin Listener!");
+            b.setOnClickListener(new NominalButtonListener());
+        }
+
+        mapId.put(R.id.button_6, 0);
+        mapId.put(R.id.button_10, 1);
+        mapId.put(R.id.button_15, 2);
+        mapId.put(R.id.button_20, 3);
 
 
     }
@@ -136,6 +138,7 @@ public class Donate extends ActionBarActivity{
 
         @Override
         public void onClick(View v) {
+            if(!buttonPushActive) return;
             try {
                 String nomorTujuan = Operator.getDestinationNumber(parent);
                 int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
@@ -156,16 +159,21 @@ public class Donate extends ActionBarActivity{
 
     class NominalButtonListener implements View.OnClickListener
     {
-
         @Override
         public void onClick(View v) {
+            System.out.println("Klik nominal button");
             if(mapId.containsKey(v.getId()))
             {
                 donateButton.setImageDrawable(donateOn);
-                for(Button b : listButtonNominal)
+                for(int ii=0; ii<listButtonNominal.size(); ii++)
                 {
-                    b.setBackground(listButtonOff.get(mapId.get(b.getId())));
+                    ImageButton b = listButtonNominal.get(ii);
+                    b.setImageDrawable(listButtonOff.get(ii));
                 }
+                int temp = mapId.get(v.getId());
+                listButtonNominal.get(temp).setImageDrawable(listButtonOn.get(temp));
+                donateButton.setImageDrawable(donateOn);
+                buttonPushActive = true;
             }
         }
     }
