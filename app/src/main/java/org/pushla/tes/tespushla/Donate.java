@@ -2,6 +2,7 @@ package org.pushla.tes.tespushla;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import org.pushla.donateSender.Operator;
 import org.pushla.util.ReportSender;
 
+import java.util.ArrayList;
+
 
 public class Donate extends ActionBarActivity {
     private Bitmap gambar;
@@ -23,6 +26,9 @@ public class Donate extends ActionBarActivity {
     public static final String EXTRA_JUDUL = "judul";
 
     private Button donateButton;
+
+    private ArrayList<Button> listButtonNominal;
+    private ArrayList<Drawable> listButtonOff, listButtonOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,10 @@ public class Donate extends ActionBarActivity {
 
         donateButton = (Button) findViewById(R.id.button_push);
         donateButton.setOnClickListener(new SendPulsaAction(this));
+
+        listButtonNominal = new ArrayList<>();
+        listButtonOff = new ArrayList<>();
+        listButtonOn = new ArrayList<>();
     }
 
 

@@ -9,18 +9,18 @@
         <dex dex="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/pre-dexed/debug/classes-12faaece55fb0970329df0a093aaa577f013e6f6.jar" />
     </item>
     <item
-        jar="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/pre-dexed/debug/classes-c7e41443b9dd1a4b76c556877a453566664c8157.jar" />
-    </item>
-    <item
         jar="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/pre-dexed/debug/classes-1f789ecb7d743733c559440956a317e637ff81c3.jar" />
+    </item>
+    <item
+        jar="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/home/anjar/Documents/Pushla Project/client/pushlaApp/app/build/intermediates/pre-dexed/debug/classes-c7e41443b9dd1a4b76c556877a453566664c8157.jar" />
     </item>
     <item
         jar="/mnt/7fb39667-8b3a-460e-b4ed-84678ebfa667/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
