@@ -47,7 +47,8 @@ public class MainActivity extends ActionBarActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
 
-        pa = new ProyekAdapter(SplashScreen.judul, SplashScreen.gambar);
+        //pa = new ProyekAdapter(SplashScreen.judul, SplashScreen.gambar);
+        pa = new ProyekAdapter(SplashScreen.listProyek);
         rv.setAdapter(pa);
 
         //pa = new ProyekAdapter(judul);

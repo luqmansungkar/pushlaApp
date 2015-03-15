@@ -54,7 +54,7 @@
                 android:layout_height="@dimen/btn_amount"
 
                 android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/one"
+                android:background="@drawable/button_6"
             />
             <Button
                 android:id="@+id/btn_five"
@@ -62,7 +62,7 @@
                 android:layout_height="@dimen/btn_amount"
 
                 android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/five"
+                android:background="@drawable/button_10"
                 />
             <Button
                 android:id="@+id/btn_ten"
@@ -70,7 +70,7 @@
                 android:layout_height="@dimen/btn_amount"
 
                 android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/one"
+                android:background="@drawable/button_15"
                 />
             <Button
                 android:id="@+id/btn_two"
@@ -78,7 +78,7 @@
                 android:layout_height="@dimen/btn_amount"
 
                 android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/ten"
+                android:background="@drawable/button_20"
                 />
         </LinearLayout>
         <View android:layout_width="fill_parent"

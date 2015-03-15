@@ -1,5 +1,6 @@
 package org.pushla.donateSender;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
@@ -146,6 +147,25 @@ public class Operator {
             result = "087837960462";
         }
         return result;
+    }
+
+    public static int getTotalDonasi(int harga, Context context)
+    {
+        int operator = Operator.getDeviceOperator(context);
+        if(operator == Operator.XL)
+        {
+            return harga;
+        }
+        else if(operator == Operator.TELKOMSEL)
+        {
+            if(harga <=9000) return harga-1000;
+            else return harga-1500;
+        }
+        else if(operator == Operator.INDOSAT)
+        {
+            return harga - 600;
+        }
+        return -1;
     }
 }
 

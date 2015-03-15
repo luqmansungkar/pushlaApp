@@ -17,16 +17,27 @@ import java.util.ArrayList;
  * Created by Luqman on 28/02/2015.
  */
 public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekViewHolder> {
-    private ArrayList<String> judul;
-    private ArrayList<Bitmap> gambar;
+//    private ArrayList<String> judul;
+//    private ArrayList<Bitmap> gambar;
+    private ArrayList<Proyek> listProyek;
 
-    public ProyekAdapter(ArrayList<String> judul, ArrayList<Bitmap> gambar){
-        this.judul = judul;
-        this.gambar = gambar;
+//    public ProyekAdapter(ArrayList<String> judul, ArrayList<Bitmap> gambar){
+//        this.judul = judul;
+//        this.gambar = gambar;
+//    }
+
+    ProyekAdapter(ArrayList<Proyek> listProyek)
+    {
+        this.listProyek = listProyek;
     }
+
+    private int width = 0;
 
     @Override
     public ProyekViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        width = parent.getWidth();
+
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
 
         return new ProyekViewHolder(itemView);
@@ -34,28 +45,49 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
 
     @Override
     public void onBindViewHolder(ProyekViewHolder holder, int position) {
-        holder.pNama.setText(judul.get(position));
-        if (gambar.get(position) != null) {
-//            holder.pGambar.setImageBitmap(gambar.get(position));
-            BitmapDrawable ob = new BitmapDrawable(gambar.get(position));
-            holder.pGambar.setBackground(ob);
+//        holder.pNama.setText(judul.get(position));
+//        if (gambar.get(position) != null) {
+////            holder.pGambar.setImageBitmap(gambar.get(position));
+//            BitmapDrawable ob = new BitmapDrawable(gambar.get(position));
+//            holder.pGambar.setBackground(ob);
+//        }
+        holder.pNama.setText(listProyek.get(position).getNamaProyek());
+        if(listProyek.get(position).getGambar()!=null)
+        {
+            BitmapDrawable obj = new BitmapDrawable(listProyek.get(position).getGambar());
+            holder.pGambar.setBackground(obj);
         }
+        holder.sisaWaktu.setText("" + listProyek.get(position).getSisaWaktu());
+        holder.persentase.setText(""+listProyek.get(position).getPersentase() + "%");
+        holder.terkumpul.setText("Rp " + getNominal(listProyek.get(position).getTerkumpul()));
+        holder.target.setText(" dari Rp " + getNominal(listProyek.get(position).getTarget()));
+        holder.pAuthor.setText("oleh " + listProyek.get(position).getAuthor());
+        holder.barPersentase.setWidth(holder.barPersentase.getMaxWidth() * listProyek.get(position).getPersentase()/100);
+        ViewGroup.LayoutParams layout = holder.barPersentase.getLayoutParams();
+        layout.width = listProyek.get(position).getPersentase() * width/100;
+        holder.barPersentase.setLayoutParams(layout);
     }
 
     @Override
     public int getItemCount() {
-        return judul.size();
+        return listProyek.size();
     }
 
     public static class ProyekViewHolder extends RecyclerView.ViewHolder {
-        protected TextView pNama;
+        protected TextView pNama, pAuthor, terkumpul, target, persentase, sisaWaktu, barPersentase;
         protected ImageView pGambar;
+        private LinearLayout progressContainer;
 
         public ProyekViewHolder(View v){
             super(v);
             pNama = (TextView) v.findViewById(R.id.judul);
             pGambar = (ImageView) v.findViewById(R.id.gambar);
-
+            pAuthor = (TextView) v.findViewById(R.id.subjudul);
+            terkumpul = (TextView) v.findViewById(R.id.from);
+            target = (TextView) v.findViewById(R.id.total);
+            persentase = (TextView) v.findViewById(R.id.percentage);
+            sisaWaktu = (TextView) v.findViewById(R.id.sisaWaktu);
+            barPersentase = (TextView) v.findViewById(R.id.barPersentase);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -64,6 +96,23 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
                     v.getContext().startActivity(intent);
                 }
             });
+
+            progressContainer = (LinearLayout) v.findViewById(R.id.progressContainer);
+        }
+    }
+
+    public String getNominal(int harga)
+    {
+        return getNominalHelper(1, harga);
+    }
+
+    private String getNominalHelper(int counter, int harga)
+    {
+        if(harga < 10) return ""+harga;
+        else
+        {
+            if(counter%3==0) return ""+ getNominalHelper(counter+1, harga/10) + "." + (harga%10);
+            else return ""+ getNominalHelper(counter+1, harga/10) + (harga%10);
         }
     }
 }

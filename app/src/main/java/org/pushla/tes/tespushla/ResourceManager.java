@@ -18,7 +18,7 @@ public class ResourceManager {
     private static final String KEY_LIST_GAMBAR = "list gambar";
     public static void saveGambar(String namaFile, Bitmap gambar, Activity activity, boolean delete)
     {
-        if(isSaved(namaFile, activity)) return;
+        if(isSaved(namaFile, activity) || gambar == null) return;
         try {
             //Write file
             FileOutputStream stream = activity.openFileOutput(namaFile, Context.MODE_PRIVATE);

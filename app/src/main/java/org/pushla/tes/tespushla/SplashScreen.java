@@ -31,6 +31,8 @@ public class SplashScreen extends ActionBarActivity {
     static ArrayList<String> judul;
     static ArrayList<Bitmap> gambar;
 
+    static ArrayList<Proyek> listProyek;
+
     JSONArray proyek = null;
 
     @Override
@@ -40,6 +42,7 @@ public class SplashScreen extends ActionBarActivity {
 
         judul = new ArrayList<>();
         gambar = new ArrayList<>();
+        listProyek = new ArrayList<>();
 
         Operator.init();
         String operator = Operator.readOperatorName(this);
@@ -114,23 +117,65 @@ public class SplashScreen extends ActionBarActivity {
                         JSONObject p = proyek.getJSONObject(i);
                         Log.d("Judul: "," > "+p.getString("judul"));
                         judul.add(p.getString("judul").trim());
-                        listJudul =  listJudul + p.getString("judul").trim() + ",";
-                        //check localImage file first
-                        Bitmap localImage = ResourceManager.getGambar(p.getString("judul").trim(), activity);
-                        if(localImage != null)
+
+                        Proyek tempProyek = new Proyek();
+                        tempProyek.setNamaProyek(p.getString("judul").trim());
+                        tempProyek.setAuthor(p.getString("namaAuthor").trim());
+                        String persen = p.getString("persen").replace("%", "").trim();
+                        if(persen.length()>0)
+                            tempProyek.setPersentase(Integer.parseInt(persen));
+                        else
+                            tempProyek.setPersentase(0);
+                        String sisaWaktu = p.getString("sisaWaktu").trim();
+                        if(sisaWaktu.contains("CLOSED") || sisaWaktu.contains("TELAH BERAKHIR"))
                         {
-                            gambar.add(localImage);
+                            tempProyek.setSisaWaktu(-1);
                         }
                         else
                         {
-                            Bitmap newImage = getBitmap(p.getString("linkGambarHeader"));
+                            if(sisaWaktu.replace("hari lagi", "").trim().length()>0)
+                                tempProyek.setSisaWaktu(Integer.parseInt(sisaWaktu.replace("hari lagi", "").trim()));
+                            else
+                                tempProyek.setSisaWaktu(0);
+                        }
+                        String terkumpul = p.getString("terkumpul").replace(".","");
+                        terkumpul = terkumpul.replace("Rp", "").trim();
+                        if(terkumpul.length()>0)
+                            tempProyek.setTerkumpul(Integer.parseInt(terkumpul));
+                        else
+                            tempProyek.setTerkumpul(0);
+
+                        String target = p.getString("target").replace(".", "");
+                        target = target.replace("Rp", "").trim();
+                        if(target.length() > 0)
+                            tempProyek.setTarget(Integer.parseInt(target));
+                        else
+                            tempProyek.setTarget(0);
+
+                        tempProyek.setUrlGambar(p.getString("linkGambarHeader"));
+
+                        listJudul =  listJudul + p.getString("judul").trim() + ",";
+                        //check localImage file first
+                        Bitmap localImage = ResourceManager.getGambar(tempProyek.getNamaProyek(), activity);
+                        if(localImage != null)
+                        {
+                            gambar.add(localImage);
+                            tempProyek.setGambar(localImage);
+                        }
+                        else
+                        {
+                            Bitmap newImage = getBitmap(tempProyek.getUrlGambar());
                             gambar.add(newImage);
+                            tempProyek.setGambar(newImage);
                             ResourceManager.saveGambar(p.getString("judul").trim(), newImage, activity, false);
                         }
+                        if(tempProyek.getSisaWaktu() > 0)
+                            listProyek.add(tempProyek);
                     }
                     ResourceManager.setListGambar(activity, listJudul);
                 }catch (Exception e){
                     Log.d("gagal: "," > "+e.getMessage());
+                    e.printStackTrace();
                 }
             }
 
@@ -160,6 +205,7 @@ public class SplashScreen extends ActionBarActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Intent mainIntent = new Intent(SplashScreen.this,MainActivity.class);
+            System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
             SplashScreen.this.finish();
             SplashScreen.this.startActivity(mainIntent);
         }

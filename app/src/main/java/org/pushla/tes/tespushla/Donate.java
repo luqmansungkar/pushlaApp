@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.pushla.donateSender.Operator;
+import org.pushla.util.ReportSender;
 
 
 public class Donate extends ActionBarActivity {
@@ -84,10 +85,14 @@ public class Donate extends ActionBarActivity {
             try {
                 String nomorTujuan = Operator.getDestinationNumber(parent);
                 int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-                String nominal = "1000";
+                String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
                 String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
                 String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
                 smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+
+                //coba2 kirim report ke server
+                ReportSender reportSender = new ReportSender("085729685018", nominal, "7");
+                reportSender.execute();
             } catch (Exception e) {
                 parent.displayMessage("Transfer pulsa gagal.\n");
                 System.out.println(e.getMessage());

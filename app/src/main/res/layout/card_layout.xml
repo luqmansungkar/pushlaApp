@@ -59,12 +59,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
 
-                android:layout_marginTop="@dimen/bd_marginTop">
+                android:layout_marginTop="@dimen/bd_marginTop"
+                android:id="@+id/progressContainer">
 
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="30dp"
                     android:layout_height="@dimen/progress_height"
-                    android:background="@color/bg_blue"/>
+                    android:background="@color/bg_blue"
+                    android:id="@+id/barPersentase" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -82,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:text="30%"
                     android:textSize="@dimen/txt_size_bold"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:id="@+id/percentage" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,7 +103,8 @@
                         android:text="30"
                         android:textSize="@dimen/txt_size_bold"
                         android:textStyle="bold"
-                        android:gravity="right"/>
+                        android:gravity="right"
+                        android:id="@+id/sisaWaktu" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,8 +119,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
-            >
+            android:layout_marginTop="50dp">
             <TextView
                 android:id="@+id/judul"
                 android:layout_width="fill_parent"
