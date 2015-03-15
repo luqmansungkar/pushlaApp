@@ -1,6 +1,7 @@
 package org.pushla.tes.tespushla;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
@@ -27,6 +28,8 @@ public class Donate extends ActionBarActivity {
 
     private Button donateButton;
 
+    private Drawable donateOff, donateOn;
+
     private ArrayList<Button> listButtonNominal;
     private ArrayList<Drawable> listButtonOff, listButtonOn;
 
@@ -50,6 +53,24 @@ public class Donate extends ActionBarActivity {
         listButtonNominal = new ArrayList<>();
         listButtonOff = new ArrayList<>();
         listButtonOn = new ArrayList<>();
+
+        listButtonNominal.add((Button)findViewById(R.id.btn_six));
+        listButtonNominal.add((Button)findViewById(R.id.btn_ten));
+        listButtonNominal.add((Button)findViewById(R.id.btn_fifteen));
+        listButtonNominal.add((Button)findViewById(R.id.btn_twenty));
+
+
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_15)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20)));
+
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_15_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20_on)));
+
+        donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20_on));
     }
 
 
