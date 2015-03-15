@@ -1,5 +1,6 @@
 package org.pushla.tes.tespushla;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -18,20 +21,23 @@ import org.pushla.donateSender.Operator;
 import org.pushla.util.ReportSender;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class Donate extends ActionBarActivity implements View.OnClickListener {
+public class Donate extends ActionBarActivity{
     private Bitmap gambar;
     private String judul;
 
     public static final String EXTRA_JUDUL = "judul";
 
-    private Button donateButton;
+    private ImageButton donateButton;
 
     private Drawable donateOff, donateOn;
 
     private ArrayList<Button> listButtonNominal;
     private ArrayList<Drawable> listButtonOff, listButtonOn;
+
+    private HashMap<Integer, Integer> mapId;
 
 
     @Override
@@ -45,20 +51,33 @@ public class Donate extends ActionBarActivity implements View.OnClickListener {
         System.out.println("gambar = " + gambar);
         //ganti background sesuai proyek
 //        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
+        ImageView img = (ImageView) findViewById(R.id.gambar);
         if(gambar != null)
+            img.setImageDrawable(new BitmapDrawable(getResources(), gambar));
 //        rLayout.setBackground(new BitmapDrawable(getResources(),gambar));
 
-//        donateButton = (Button) findViewById(R.id.button_push);
-//        donateButton.setOnClickListener(new SendPulsaAction(this));
+        donateButton = (ImageButton) findViewById(R.id.donateButton);
+        donateButton.setOnClickListener(new SendPulsaAction(this));
 
         listButtonNominal = new ArrayList<>();
         listButtonOff = new ArrayList<>();
         listButtonOn = new ArrayList<>();
+        mapId = new HashMap<>();
 
         listButtonNominal.add((Button)findViewById(R.id.btn_six));
         listButtonNominal.add((Button)findViewById(R.id.btn_ten));
         listButtonNominal.add((Button)findViewById(R.id.btn_fifteen));
         listButtonNominal.add((Button)findViewById(R.id.btn_twenty));
+
+        for(Button b : listButtonNominal)
+        {
+            b.setOnClickListener(new NominalButtonListener());
+        }
+
+        mapId.put(R.id.btn_six, 0);
+        mapId.put(R.id.btn_ten, 1);
+        mapId.put(R.id.btn_fifteen, 2);
+        mapId.put(R.id.btn_twenty, 3);
 
 
         listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6)));
@@ -106,11 +125,6 @@ public class Donate extends ActionBarActivity implements View.OnClickListener {
                 Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-    }
-
     class SendPulsaAction implements View.OnClickListener {
         private SmsManager smsManager;
         private Donate parent;
@@ -136,6 +150,22 @@ public class Donate extends ActionBarActivity implements View.OnClickListener {
             } catch (Exception e) {
                 parent.displayMessage("Transfer pulsa gagal.\n");
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    class NominalButtonListener implements View.OnClickListener
+    {
+
+        @Override
+        public void onClick(View v) {
+            if(mapId.containsKey(v.getId()))
+            {
+                donateButton.setImageDrawable(donateOn);
+                for(Button b : listButtonNominal)
+                {
+                    b.setBackground(listButtonOff.get(mapId.get(b.getId())));
+                }
             }
         }
     }

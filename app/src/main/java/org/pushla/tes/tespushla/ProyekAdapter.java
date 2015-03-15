@@ -55,7 +55,7 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         if(listProyek.get(position).getGambar()!=null)
         {
             BitmapDrawable obj = new BitmapDrawable(listProyek.get(position).getGambar());
-            holder.pGambar.setBackground(obj);
+            holder.pGambar.setImageDrawable(obj);
         }
         holder.sisaWaktu.setText("" + listProyek.get(position).getSisaWaktu());
         holder.persentase.setText(""+listProyek.get(position).getPersentase() + "%");

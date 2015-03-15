@@ -211,7 +211,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/button_idle" />
+                android:src="@drawable/button_idle"
+                android:id="@+id/donateButton" />
             <Space
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
