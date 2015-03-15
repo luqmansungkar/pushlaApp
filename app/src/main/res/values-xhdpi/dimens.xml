@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Default dimension for card laout-->
+    <dimen name="box_donation">90dip</dimen>
+    <dimen name="bd_marginTop">10dp</dimen>
+    <!--box progress-->
+    <dimen name="progress_height">10dp</dimen>
+
+    <!--font-->
+    <dimen name="txt_title">20pt</dimen>
+    <dimen name="txt_subtitle">13pt</dimen>
+    <dimen name="txt_size_bold">6pt</dimen>
+    <dimen name="txt_size_normal">8pt</dimen>
+    <dimen name="txt_size_little">6pt</dimen>
+
+    <dimen name="btn_push">150dip</dimen>
+    <dimen name="btn_amount">70dip</dimen>
+
+    <dimen name="margin_btn">5dip</dimen>
+</resources>

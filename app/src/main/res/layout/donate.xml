@@ -101,7 +101,9 @@
                 android:background="#ffffff"
                 android:text="ANOTHER AMOUNT"
                 android:textColor="#6A6A6A"
-                android:textSize="7pt" />
+                android:textSize="@dimen/txt_size_bold"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
 
@@ -149,7 +151,7 @@
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff"
-                    android:textSize="18pt"
+                    android:textSize="@dimen/txt_title"
                     android:textStyle="bold" />
 
                 <TextView
@@ -161,7 +163,7 @@
                     android:text="oleh Ginanjar Ibnu Solikhin"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
-                    android:textSize="11pt"
+                    android:textSize="@dimen/txt_subtitle"
                     android:textStyle="italic" />
             </RelativeLayout>
 
