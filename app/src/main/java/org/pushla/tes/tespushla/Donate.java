@@ -40,12 +40,12 @@ public class Donate extends ActionBarActivity {
         this.gambar = ResourceManager.getGambar(judul, this);
         System.out.println("gambar = " + gambar);
         //ganti background sesuai proyek
-        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
+//        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
         if(gambar != null)
-        rLayout.setBackground(new BitmapDrawable(getResources(),gambar));
+//        rLayout.setBackground(new BitmapDrawable(getResources(),gambar));
 
-        donateButton = (Button) findViewById(R.id.button_push);
-        donateButton.setOnClickListener(new SendPulsaAction(this));
+//        donateButton = (Button) findViewById(R.id.button_push);
+//        donateButton.setOnClickListener(new SendPulsaAction(this));
 
         listButtonNominal = new ArrayList<>();
         listButtonOff = new ArrayList<>();
