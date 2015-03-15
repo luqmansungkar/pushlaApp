@@ -40,7 +40,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f4ec12bb-11c5-4f32-b298-98a6667870cc" name="Default" comment="sync Main Activity to server">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TesPushla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -129,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Donate.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Donate.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="472" max-vertical-offset="1830">
-              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.92167103" vertical-offset="487" max-vertical-offset="1845">
+              <caret line="73" column="126" selection-start-line="73" selection-start-column="126" selection-end-line="73" selection-end-column="126" />
               <folding />
             </state>
           </provider>
@@ -146,7 +146,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="push2.png" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="push2.png" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/push2.png">
           <provider selected="true" editor-type-id="images">
             <state />
@@ -1742,14 +1742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="472" max-vertical-offset="1830">
-          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/push.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1758,6 +1750,14 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/push2.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.92167103" vertical-offset="487" max-vertical-offset="1845">
+          <caret line="73" column="126" selection-start-line="73" selection-start-column="126" selection-end-line="73" selection-end-column="126" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

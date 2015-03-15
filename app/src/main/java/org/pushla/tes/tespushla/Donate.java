@@ -20,7 +20,7 @@ import org.pushla.util.ReportSender;
 import java.util.ArrayList;
 
 
-public class Donate extends ActionBarActivity {
+public class Donate extends ActionBarActivity, View.OnClickListener {
     private Bitmap gambar;
     private String judul;
 
@@ -32,6 +32,7 @@ public class Donate extends ActionBarActivity {
 
     private ArrayList<Button> listButtonNominal;
     private ArrayList<Drawable> listButtonOff, listButtonOn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,10 @@ public class Donate extends ActionBarActivity {
         listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_15_on)));
         listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20_on)));
 
-        donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20_on));
+        donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_idle));
+        donateOn = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_push_on));
+
+
     }
 
 
@@ -100,6 +104,11 @@ public class Donate extends ActionBarActivity {
     {
         Toast.makeText(this, message,
                 Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
     }
 
     class SendPulsaAction implements View.OnClickListener {
