@@ -1,50 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.pushla.tes.tespushla.Donate">
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <View android:id="@+id/anchor"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="2dp"
-        android:layout_height="0dp"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:id="@+id/start_point"
-        android:layout_above="@id/anchor"
-        android:background="@drawable/master_donate"
-        android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/img_donate"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.3"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_default"
+            tools:ignore="ContentDescription" />
 
-    </RelativeLayout>
-
-
-    <Button
-        android:layout_width="@dimen/btn_push"
-        android:layout_height="@dimen/btn_push"
-        android:background="@drawable/push"
-        android:id="@+id/button_push"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-
-        android:background="#fff"
-        android:id="@+id/end_point"
-        android:layout_below="@id/anchor"
-        >
         <LinearLayout
             android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.7"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="3.4"/>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1.4">
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"/>
+
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.85"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/button_6"
+                    tools:ignore="ContentDescription" />
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.85"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/button_10" />
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.85"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/button_15" />
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.85"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/button_20" />
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="3.1"
+                android:background="#ffffff"
+                android:text="ANOTHER AMOUNT"
+                android:textColor="#6A6A6A"
+                android:textSize="7pt" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.3"
+            android:background="@color/img_overlay"/>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.7"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.21"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="#SaveMaster"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textSize="18pt"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textOrganizer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textTitle"
+                    android:layout_centerHorizontal="true"
+                    android:text="oleh Ginanjar Ibnu Solikhin"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="11pt"
+                    android:textStyle="italic" />
+            </RelativeLayout>
+
+=======
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:gravity="center">
@@ -75,36 +192,38 @@
             <Button
                 android:id="@+id/btn_twenty"
                 android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"
+                android:layout_height="@dimen/btn_amount"/>
 
-                android:layout_margin="@dimen/margin_btn"
-                android:background="@drawable/button_20"
-                />
         </LinearLayout>
-        <View android:layout_width="fill_parent"
-            android:layout_height="1dp"
-
-            android:layout_above="@+id/btn_another"
-            android:background="@color/grey"
-            />
-
-        <Button
-            android:id="@+id/btn_another"
-            android:layout_alignParentBottom="true"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.6"
+            android:orientation="horizontal">
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/button_idle" />
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
-            android:background="@color/white"
-            android:textColor="@color/grey"
-            android:text="Another amount"
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5"
             />
-    </RelativeLayout>
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="#10000000"
-        android:theme="@style/AppTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-</RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>
+
