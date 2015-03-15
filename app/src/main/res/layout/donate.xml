@@ -128,7 +128,6 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-<<<<<<< HEAD
             android:layout_height="fill_parent"
             android:layout_weight="1.21"
             android:orientation="vertical" >
@@ -193,8 +192,7 @@
             <Button
                 android:id="@+id/btn_twenty"
                 android:layout_width="@dimen/btn_amount"
-                android:layout_height="@dimen/btn_amount"
->>>>>>> 069b41ab5e692d239f865f55b5de5e674a959e11
+                android:layout_height="@dimen/btn_amount"/>
 
         </LinearLayout>
         <LinearLayout
