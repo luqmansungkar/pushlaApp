@@ -93,6 +93,7 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), Donate.class);
                     intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
+                    intent.putExtra(Donate.EXTRA_AUTHOR, pAuthor.getText().toString());
                     v.getContext().startActivity(intent);
                 }
             });

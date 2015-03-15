@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.pushla.donateSender.Operator;
@@ -26,9 +27,10 @@ import java.util.HashMap;
 
 public class Donate extends ActionBarActivity{
     private Bitmap gambar;
-    private String judul;
+    private String judul, author;
 
     public static final String EXTRA_JUDUL = "judul";
+    public static final String EXTRA_AUTHOR = "author";
 
     private ImageButton donateButton;
 
@@ -39,6 +41,8 @@ public class Donate extends ActionBarActivity{
 
     private HashMap<Integer, Integer> mapId;
 
+    private TextView txtJudul, txtAuthor;
+
     private boolean buttonPushActive = false;
 
     @Override
@@ -47,6 +51,13 @@ public class Donate extends ActionBarActivity{
         setContentView(R.layout.donate);
 
         this.judul = getIntent().getStringExtra(EXTRA_JUDUL).trim();
+        this.author = getIntent().getStringExtra(EXTRA_AUTHOR).trim();
+
+        this.txtJudul = (TextView)findViewById(R.id.textTitle);
+        this.txtAuthor = (TextView)findViewById(R.id.textOrganizer);
+
+        txtJudul.setText(judul);
+        txtAuthor.setText(author);
         System.out.println("judul = <" + judul + ">");
         this.gambar = ResourceManager.getGambar(judul, this);
         System.out.println("gambar = " + gambar);
