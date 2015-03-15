@@ -136,7 +136,9 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/box_donation">
 
         <TextView
             android:id="@+id/textTitle"
@@ -152,7 +154,6 @@
             android:textSize="@dimen/txt_title"
             android:textStyle="bold"
 
-            android:layout_marginTop="109dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal" />
@@ -172,7 +173,7 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/txt_subtitle"
             android:textStyle="italic"
-            
+
             android:gravity="center_horizontal" />
 
     </RelativeLayout>
