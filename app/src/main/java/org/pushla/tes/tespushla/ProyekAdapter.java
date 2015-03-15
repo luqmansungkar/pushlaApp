@@ -80,9 +80,9 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
 
         public ProyekViewHolder(View v){
             super(v);
-            pNama = (TextView) v.findViewById(R.id.judul);
+            pNama = (TextView) v.findViewById(R.id.textTitle);
             pGambar = (ImageView) v.findViewById(R.id.gambar);
-            pAuthor = (TextView) v.findViewById(R.id.subjudul);
+            pAuthor = (TextView) v.findViewById(R.id.textOrganizer);
             terkumpul = (TextView) v.findViewById(R.id.from);
             target = (TextView) v.findViewById(R.id.total);
             persentase = (TextView) v.findViewById(R.id.percentage);

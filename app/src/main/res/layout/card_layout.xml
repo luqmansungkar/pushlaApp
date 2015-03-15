@@ -3,31 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="fill_parent"
-    android:layout_height="330dp"
+    android:layout_height="360dp"
     android:layout_marginBottom="10dp"
     android:clickable="true">
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        >
+        android:orientation="vertical">
+
         <ImageView
             android:id="@+id/gambar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:layout_margin="0dp"
-            android:padding="0dp"
-            android:layout_centerInParent="true"/>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.297"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false"
+            android:src="@drawable/image_default" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/img_overlay"
-            android:layout_centerInParent="true"/>
+
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/box_donation"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:background="@color/don_overlay"
             android:layout_alignParentBottom="true"
 
@@ -35,11 +33,13 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:orientation="vertical"
+            android:layout_weight="1"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="0dp">
                 <TextView
                     android:id="@+id/from"
                     android:layout_width="wrap_content"
@@ -56,18 +56,18 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/progressContainer"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
 
-                android:layout_marginTop="@dimen/bd_marginTop"
-                android:id="@+id/progressContainer">
+                android:layout_marginTop="6dp">
 
                 <TextView
-                    android:layout_width="30dp"
+                    android:id="@+id/barPersentase"
+                    android:layout_width="140dp"
                     android:layout_height="@dimen/progress_height"
-                    android:background="@color/bg_blue"
-                    android:id="@+id/barPersentase" />
+                    android:background="@color/bg_blue"/>
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -79,14 +79,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="@dimen/bd_marginTop">
+                android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/percentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="30%"
                     android:textSize="@dimen/txt_size_bold"
-                    android:textStyle="bold"
-                    android:id="@+id/percentage" />
+                    android:textStyle="bold"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,13 +99,13 @@
                     android:gravity="right"
                     >
                     <TextView
+                        android:id="@+id/sisaWaktu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="30"
                         android:textSize="@dimen/txt_size_bold"
                         android:textStyle="bold"
-                        android:gravity="right"
-                        android:id="@+id/sisaWaktu" />
+                        android:gravity="right"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,35 +116,54 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp">
-            <TextView
-                android:id="@+id/judul"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="#SaveMaster"
+            android:layout_weight="0.297"
+            android:background="@color/img_overlay"/>
 
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_title"
-                android:textStyle="bold"
-                />
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/subjudul"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Sekolah Gratis Master Indonesia"
-                android:gravity="center"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_subtitle"
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#SaveMaster"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/txt_title"
+            android:textStyle="bold"
+            android:layout_marginTop="109dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-                />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textOrganizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTitle"
+            android:layout_centerHorizontal="true"
+            android:text="oleh Ginanjar Ibnu Solikhin"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/txt_subtitle"
+            android:textStyle="italic" />
 
     </RelativeLayout>
+
 </android.support.v7.widget.CardView>
