@@ -140,26 +140,33 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                >
                 <TextView
                     android:id="@+id/textTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+
+                    android:gravity="center_horizontal"
                     android:text="#SaveMaster"
-                    android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+
                     android:textColor="#ffffff"
                     android:textSize="@dimen/txt_title"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textOrganizer"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textTitle"
-                    android:layout_centerHorizontal="true"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+
+                    android:gravity="center_horizontal"
                     android:text="oleh Ginanjar Ibnu Solikhin"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
