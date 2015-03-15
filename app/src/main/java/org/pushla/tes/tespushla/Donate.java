@@ -20,7 +20,7 @@ import org.pushla.util.ReportSender;
 import java.util.ArrayList;
 
 
-public class Donate extends ActionBarActivity, View.OnClickListener {
+public class Donate extends ActionBarActivity implements View.OnClickListener {
     private Bitmap gambar;
     private String judul;
 
