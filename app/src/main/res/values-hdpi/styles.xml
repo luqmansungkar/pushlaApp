@@ -9,7 +9,6 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
-
     <!--styling color for arrow-->
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>

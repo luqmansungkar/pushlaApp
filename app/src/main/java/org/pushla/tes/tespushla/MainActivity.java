@@ -1,18 +1,27 @@
 package org.pushla.tes.tespushla;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,36 +35,101 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    // inisiasi toolbar
+    private Toolbar toolbar;
+
+    // navigation drawer
+    private DrawerLayout drawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle drawerToggle;
+
+    // slide menu items
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
+
+//    private ArrayList<NavDrawerItem> navDrawerItems;
+//    private NavDrawerListAdapter adapter;
+
     public RecyclerView rv;
     public ProyekAdapter pa;
 
     private static String url = "http://pushla.org/server/project/getallproyek";
     private ProgressDialog pDialog;
 
-//    JSONArray proyek = null;
-//    ArrayList<String> judul = new ArrayList<String>();
-//    ArrayList<Bitmap> gambar = new ArrayList<Bitmap>();
+    public MainActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        new GetProyek(this).execute();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        initMenu();
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        initDrawer();
+
         rv = (RecyclerView) findViewById(R.id.proyek_list);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
 
-        //pa = new ProyekAdapter(SplashScreen.judul, SplashScreen.gambar);
         pa = new ProyekAdapter(SplashScreen.listProyek);
         rv.setAdapter(pa);
 
-        //pa = new ProyekAdapter(judul);
-        //rv.setAdapter(pa);
+    }
+
+
+    private void initMenu(){
+        // load slide menu items
+//        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+        // nav drawer icons from resources
+//        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+
+        mDrawerList = (ListView) findViewById(R.id.slider_menu);
+//        navDrawerItems = new ArrayList<NavDrawerItem>();
 
     }
 
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            displayView(position);
+        }
+    }
+
+    private void displayView(int position) {
+        Fragment fragment = null;
+        boolean not_fragment = false;
+
+//        switch (position) {
+//            case 0: // Masuk
+//                not_fragment = true;
+//                break;
+//            case 1: // Ulasan
+//                fragment = new UlasanFragment();
+//                break;
+//            case 2: // Cari Ulasan
+//                fragment = new CariUlasanFragment();
+//                break;
+//            case 3: // Ulasan Favorit
+//                fragment = new UlasanFavoritFragment();
+//                break;
+//            case 4: // Bantuan
+//                startActivity(new Intent(MainActivity.this, Help.class));
+//                mDrawerList.setItemChecked(prev_position, true);
+//                mDrawerList.setSelection(prev_position);
+//                drawerLayout.closeDrawer(mDrawerList);
+//                return;
+//        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,12 +138,57 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * init navigation drawer thing
+     */
+    private void initDrawer() {
+        //setup navigation drawer
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.txt_open, R.string.txt_close) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+                // when drawer closed
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                // when drawer open
+            }
+        };
+
+        // setDrawerlisterner
+        drawerLayout.setDrawerListener(drawerToggle);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -79,94 +198,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private class GetProyek extends AsyncTask<Void, Void, Void>{
-//        private Activity activity;
-//
-//        public GetProyek(Activity activity) {
-//            super();
-//            this.activity = activity;
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            ServiceHandler sh = new ServiceHandler();
-//
-//            String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-//            Log.d("Response: ","> "+jsonStr);
-//            if(jsonStr == null)
-//            {
-//                judul = ResourceManager.getListGambar(activity);
-//                for(String s : judul)
-//                {
-//                    Bitmap localImage = ResourceManager.getGambar(s, activity);
-//                    if(localImage != null)
-//                    {
-//                        gambar.add(localImage);
-//                    }
-//                }
-//            }
-//            else if (jsonStr != null){
-//                try{
-//                    proyek = new JSONArray(jsonStr);
-//                    String listJudul = "";
-//                    for (int i=0;i<proyek.length();i++){
-//                        JSONObject p = proyek.getJSONObject(i);
-//                        Log.d("Judul: "," > "+p.getString("judul"));
-//                        judul.add(p.getString("judul").trim());
-//                        listJudul =  listJudul + p.getString("judul").trim() + ",";
-//                        //check localImage file first
-//                        Bitmap localImage = ResourceManager.getGambar(p.getString("judul").trim(), activity);
-//                        if(localImage != null)
-//                        {
-//                            gambar.add(localImage);
-//                        }
-//                        else
-//                        {
-//                            Bitmap newImage = getBitmap(p.getString("linkGambarHeader"));
-//                            gambar.add(newImage);
-//                            ResourceManager.saveGambar(p.getString("judul").trim(), newImage, activity, false);
-//                        }
-//                    }
-//                    ResourceManager.setListGambar(activity, listJudul);
-//                }catch (Exception e){
-//                    Log.d("gagal: "," > "+e.getMessage());
-//                }
-//            }
-//
-//            return null;
-//        }
-//        public Bitmap getBitmap(String sumber){
-//            try{
-//                URL src = new URL(sumber);
-//                HttpURLConnection connection = (HttpURLConnection) src.openConnection();
-//                connection.setDoInput(true);
-//                connection.connect();
-//                InputStream input = connection.getInputStream();
-//                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-//                Log.e("Bitmap","returned");
-//                return myBitmap;
-//            }catch (Exception e){
-//                Log.d("gagal: "," > "+e.getMessage());
-//                return null;
-//            }
-//        }
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pDialog = new ProgressDialog(MainActivity.this);
-//            pDialog.setMessage("Mohon Tunggu");
-//            pDialog.setCancelable(false);
-//            pDialog.show();
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            pa = new ProyekAdapter(judul, gambar);
-//            rv.setAdapter(pa);
-//            if (pDialog.isShowing()){
-//                pDialog.dismiss();
-//            }
-//        }
-//    }
 }

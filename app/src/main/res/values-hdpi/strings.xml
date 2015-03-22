@@ -8,4 +8,17 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_qrcode_scanner">QRCodeScanner</string>
 
+    <string name="txt_open">open</string>
+    <string name="txt_close">close</string>
+
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Profil</item>
+        <item >Home</item>
+        <item >Riwayat</item>
+        <item >Bantuan</item>
+        <item >Logout</item>
+    </string-array>
+
 </resources>
