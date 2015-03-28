@@ -44,7 +44,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a87e3b79-bae8-4ec4-a8ac-4e8ff19cc137" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/donate_popup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/donate_popup.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/button_donate.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_exit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_riwayat.png" />
+      <change type="DELETED" beforePath="D:\DEV\ANDROID\Pushla\pushlaApp\app\src\main\res\drawable\button_push.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TesPushla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,15 +95,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="donate_popup.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="donate_popup.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate_popup.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18289086" vertical-offset="1519" max-vertical-offset="1955">
+            <state vertical-scroll-proportion="-2.2962964" vertical-offset="1519" max-vertical-offset="1955">
               <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="donate.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="8.876106" vertical-offset="0" max-vertical-offset="3111">
+              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+              <folding>
+                <element signature="e#4137#4155#0" expanded="true" />
+                <element signature="e#4833#4854#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1313,6 +1334,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values-hdpi/color.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/riwayat_donasi.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/donate_popup.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" />
       </list>
     </option>
   </component>
@@ -2308,17 +2330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62969923" vertical-offset="1433" max-vertical-offset="3672">
-          <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2362,9 +2373,23 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18289086" vertical-offset="1519" max-vertical-offset="1955">
+        <state vertical-scroll-proportion="-2.2962964" vertical-offset="1519" max-vertical-offset="1955">
           <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.876106" vertical-offset="0" max-vertical-offset="3111">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding>
+            <element signature="e#4137#4155#0" expanded="true" />
+            <element signature="e#4833#4854#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

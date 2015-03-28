@@ -29,81 +29,46 @@
             <Space
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="3.4"/>
-
+                android:layout_weight="1.5"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal"
-                android:layout_weight="1.4">
-                <Space
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
+                >
 
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <ImageButton
-                    android:id="@+id/button_6"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.85"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/button_6"
-                    tools:ignore="ContentDescription" />
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:text="DESKRIPSI PROYEK"
+                        android:textColor="#00B9E6"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
                 <Space
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
-                <ImageButton
-                    android:id="@+id/button_10"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.85"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/button_10" />
-                <Space
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
-                <ImageButton
-                    android:id="@+id/button_15"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.85"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/button_15" />
-                <Space
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
-                <ImageButton
-                    android:id="@+id/button_20"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.85"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/button_20" />
-                <Space
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="5"/>
             </LinearLayout>
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="3.1"
-                android:background="#ffffff"
-                android:text="ANOTHER AMOUNT"
-                android:textColor="#6A6A6A"
-                android:textSize="@dimen/txt_size_bold"
-                android:textStyle="bold"
-                />
+
+
+
+
 
         </LinearLayout>
 
@@ -178,7 +143,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6"
+            android:layout_weight="1.5"
             android:orientation="horizontal">
             <Space
                 android:layout_width="fill_parent"
@@ -188,10 +153,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/button_idle"
+                android:src="@drawable/button_donate"
                 android:id="@+id/donateButton" />
             <Space
                 android:layout_width="fill_parent"
@@ -205,6 +170,8 @@
             android:layout_weight="1.5"
             />
     </LinearLayout>
+
+
 
 </FrameLayout>
 
