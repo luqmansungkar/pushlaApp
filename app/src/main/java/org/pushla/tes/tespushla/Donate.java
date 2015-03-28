@@ -1,5 +1,7 @@
 package org.pushla.tes.tespushla;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +47,7 @@ public class Donate extends ActionBarActivity{
     private TextView txtJudul, txtAuthor;
 
     private boolean buttonPushActive = false;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,16 +155,23 @@ public class Donate extends ActionBarActivity{
         public void onClick(View v) {
             if(!buttonPushActive) return;
             try {
-                String nomorTujuan = Operator.getDestinationNumber(parent);
+                /*String nomorTujuan = Operator.getDestinationNumber(parent);
                 int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
                 String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
                 String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
                 String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
-                smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+                smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);*/
 
+                /*String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
                 //coba2 kirim report ke server
                 ReportSender reportSender = new ReportSender("085729685018", nominal, "7");
-                reportSender.execute();
+                reportSender.execute();*/
+
+                final Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.donate_popup);
+                //dialog.setTitle("Pilih jumlah donasi");
+                dialog.show();
             } catch (Exception e) {
                 parent.displayMessage("Transfer pulsa gagal.\n");
                 System.out.println(e.getMessage());
