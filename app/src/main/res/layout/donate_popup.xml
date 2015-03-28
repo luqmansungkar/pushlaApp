@@ -30,7 +30,7 @@
         <Space
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="0.95"/>
 
         <ImageButton
             android:id="@+id/button_6"
@@ -79,7 +79,7 @@
         <Space
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="0.95"/>
     </LinearLayout>
 
     <LinearLayout
@@ -91,7 +91,7 @@
         <Space
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.7"/>
         <Button
             android:layout_weight="1"
             android:layout_width="fill_parent"
