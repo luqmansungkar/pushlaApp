@@ -53,9 +53,8 @@
                         android:layout_height="fill_parent"
                         android:text="DESKRIPSI PROYEK"
                         android:textColor="#00B9E6"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_weight="1"/>
+                        android:textSize="@dimen/txt_size_normal2"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -64,12 +63,6 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="5"/>
             </LinearLayout>
-
-
-
-
-
-
         </LinearLayout>
 
     </LinearLayout>
@@ -109,7 +102,7 @@
                 android:gravity="center_vertical"
                 >
                 <TextView
-                    android:id="@+id/textTitle"
+                    android:id="@+id/textTitle2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingRight="15dp"
@@ -120,14 +113,13 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
 
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/txt_title"
+                    android:textSize="@dimen/txt_title2"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textOrganizer"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textTitle"
                     android:paddingRight="15dp"
                     android:paddingLeft="15dp"
 
@@ -135,8 +127,11 @@
                     android:text="oleh Ginanjar Ibnu Solikhin"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/txt_subtitle"
-                    android:textStyle="italic" />
+                    android:textSize="@dimen/txt_subtitle2"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/textTitle2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
             </RelativeLayout>
 
         </LinearLayout>
