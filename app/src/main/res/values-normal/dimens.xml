@@ -29,5 +29,5 @@
     <dimen name="marginRight">15dp</dimen>
 
     <dimen name="paddingTop">10dp</dimen>
-    <dimen name="paddingBottom">15dp</dimen>
+    <dimen name="paddingBottom">0dp</dimen>
 </resources>
