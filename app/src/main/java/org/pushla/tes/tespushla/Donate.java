@@ -80,37 +80,33 @@ public class Donate extends ActionBarActivity{
         listButtonOn = new ArrayList<>();
         mapId = new HashMap<>();
 
-        listButtonNominal.add((ImageButton)findViewById(R.id.button_6));
-        listButtonNominal.add((ImageButton)findViewById(R.id.button_10));
-        listButtonNominal.add((ImageButton)findViewById(R.id.button_15));
-        listButtonNominal.add((ImageButton)findViewById(R.id.button_20));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_2500)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_5000)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_7500)));
+        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10000)));
 
-        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6)));
-        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10)));
-        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_15)));
-        listButtonOff.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20)));
-
-        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_6_on)));
-        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10_on)));
-        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_15_on)));
-        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_20_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_2500_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_5000_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_7500_on)));
+        listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10000_on)));
 
         donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_idle));
-        donateOn = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_push_on));
+        donateOn = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_donate));
 
-        for(int ii=0; ii<listButtonNominal.size(); ii++)
-        {
-            ImageButton b = listButtonNominal.get(ii);
-            System.out.println("Nambahin Listener!");
-            b.setOnClickListener(new NominalButtonListener());
-        }
+//        for(int ii=0; ii<listButtonNominal.size(); ii++)
+//        {
+//            ImageButton b = listButtonNominal.get(ii);
+////            System.out.println("Nambahin Listener!");
+//            b.setOnClickListener(new NominalButtonListener());
+//        }
 
         mapId.put(R.id.button_6, 0);
         mapId.put(R.id.button_10, 1);
         mapId.put(R.id.button_15, 2);
         mapId.put(R.id.button_20, 3);
 
-
+        donateButton.setImageDrawable(donateOn);
+        buttonPushActive = true;
     }
 
 
@@ -172,6 +168,18 @@ public class Donate extends ActionBarActivity{
                 dialog.setContentView(R.layout.donate_popup);
                 //dialog.setTitle("Pilih jumlah donasi");
                 dialog.show();
+
+                listButtonNominal.clear();
+                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_6));
+                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_10));
+                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_15));
+                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_20));
+                for(int ii=0; ii<listButtonNominal.size(); ii++)
+                {
+                    ImageButton b = listButtonNominal.get(ii);
+//            System.out.println("Nambahin Listener!");
+                    b.setOnClickListener(new NominalButtonListener());
+                }
             } catch (Exception e) {
                 parent.displayMessage("Transfer pulsa gagal.\n");
                 System.out.println(e.getMessage());
@@ -186,6 +194,7 @@ public class Donate extends ActionBarActivity{
             System.out.println("Klik nominal button");
             if(mapId.containsKey(v.getId()))
             {
+                System.out.println("Key => " + mapId.get(v.getId()));
                 donateButton.setImageDrawable(donateOn);
                 for(int ii=0; ii<listButtonNominal.size(); ii++)
                 {
@@ -194,8 +203,8 @@ public class Donate extends ActionBarActivity{
                 }
                 int temp = mapId.get(v.getId());
                 listButtonNominal.get(temp).setImageDrawable(listButtonOn.get(temp));
-                donateButton.setImageDrawable(donateOn);
-                buttonPushActive = true;
+//                donateButton.setImageDrawable(donateOn);
+//                buttonPushActive = true;
             }
         }
     }
