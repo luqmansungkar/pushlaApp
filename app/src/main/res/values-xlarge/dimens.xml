@@ -11,23 +11,25 @@
 
     <!--font-->
     <dimen name="txt_title">48sp</dimen>
-    <dimen name="txt_title2">48sp</dimen>
+    <dimen name="txt_title2">60sp</dimen>
     <dimen name="txt_subtitle">28sp</dimen>
-    <dimen name="txt_subtitle2">28sp</dimen>
+    <dimen name="txt_subtitle2">32sp</dimen>
     <dimen name="txt_size_bold">28sp</dimen>
-    <dimen name="txt_size_normal">28sp</dimen>
-    <dimen name="txt_size_normal2">28sp</dimen>
-    <dimen name="txt_size_little">22sp</dimen>
-    <dimen name="txt_size_little2">22sp</dimen>
+    <dimen name="txt_size_normal">22sp</dimen>
+    <dimen name="txt_size_normal2">32sp</dimen>
+    <dimen name="txt_size_little">18sp</dimen>
+    <dimen name="txt_size_little2">24sp</dimen>
 
     <dimen name="btn_push">150dip</dimen>
     <dimen name="btn_amount">70dip</dimen>
 
     <dimen name="marginBottom">20dp</dimen>
-    <dimen name="marginLeft">30dp</dimen>
-    <dimen name="marginTop">20dp</dimen>
+    <dimen name="marginLeft">60dp</dimen>
+    <dimen name="marginTop">30dp</dimen>
     <dimen name="marginRight">15dp</dimen>
 
-    <dimen name="paddingTop">10dp</dimen>
-    <dimen name="paddingBottom">15dp</dimen>
+    <dimen name="paddingTop">50dp</dimen>
+    <dimen name="paddingBottom">0dp</dimen>
+
+    <dimen name="cardHeight">400dp</dimen>
 </resources>

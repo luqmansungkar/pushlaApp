@@ -30,4 +30,6 @@
 
     <dimen name="paddingTop">40dp</dimen>
     <dimen name="paddingBottom">15dp</dimen>
+
+    <dimen name="cardHeight">360dp</dimen>
 </resources>

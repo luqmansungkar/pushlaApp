@@ -10,8 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginLeft="@dimen/marginBottom"
-        android:layout_marginStart="@dimen/marginLeft"
+        android:layout_marginLeft="@dimen/marginLeft"
 
         android:text="PILIH NOMINAL DONASI"
 
