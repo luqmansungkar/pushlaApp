@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.pushla.model.Donation;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class ResourceManager {
     private static final String PREFS = "pref";
     private static final String KEY_LIST_GAMBAR = "list gambar";
+    private static Donation currentDonation;
     public static void saveGambar(String namaFile, Bitmap gambar, Activity activity, boolean delete)
     {
         if(isSaved(namaFile, activity) || gambar == null) return;
@@ -90,5 +93,26 @@ public class ResourceManager {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(KEY_LIST_GAMBAR, listGambar);
         editor.commit();
+    }
+
+    public static String getEmail()
+    {
+        return "ginanjar.ibnu@gmail.com";
+    }
+
+    public static void setCurrentDonation(String nominal, String id) {
+        if(currentDonation != null)
+        {
+            currentDonation.setNominal(nominal);
+            currentDonation.setId(id);
+        }
+        else
+        {
+            currentDonation = new Donation(nominal, id);
+        }
+    }
+
+    public static Donation getCurrentDonation() {
+        return currentDonation;
     }
 }

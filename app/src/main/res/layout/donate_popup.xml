@@ -107,6 +107,6 @@
             android:text="DONATE"
             android:background="#ffffff"
             android:textColor="@color/bg_blue"
-            android:id="@+id/button_donate" />
+            android:id="@+id/button_donate_ok" />
     </LinearLayout>
 </LinearLayout>

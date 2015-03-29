@@ -2,7 +2,6 @@ package org.pushla.tes.tespushla;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -17,7 +16,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +46,12 @@ public class Donate extends ActionBarActivity{
 
     private boolean buttonPushActive = false;
     final Context context = this;
+
+    private Button button_cancel, button_donate_ok;
+
+    private Dialog dialog;
+
+    private boolean isLoadingDonation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,51 +142,55 @@ public class Donate extends ActionBarActivity{
                 Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(isLoadingDonation) return;
+        super.onBackPressed();
+    }
+
     class SendPulsaAction implements View.OnClickListener {
-        private SmsManager smsManager;
         private Donate parent;
 
         public SendPulsaAction(Donate parent) {
-            this.smsManager = SmsManager.getDefault();
             this.parent = parent;
         }
 
         @Override
         public void onClick(View v) {
-            if(!buttonPushActive) return;
-            try {
-                /*String nomorTujuan = Operator.getDestinationNumber(parent);
-                int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-                String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
-                String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
-                String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
-                smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);*/
+            if(v.getId() == donateButton.getId())
+            {
+                if(!buttonPushActive) return;
+                try {
+                    dialog = new Dialog(context);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.donate_popup);
+                    //dialog.setTitle("Pilih jumlah donasi");
+                    dialog.show();
 
-                /*String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
-                //coba2 kirim report ke server
-                ReportSender reportSender = new ReportSender("085729685018", nominal, "7");
-                reportSender.execute();*/
-
-                final Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.donate_popup);
-                //dialog.setTitle("Pilih jumlah donasi");
-                dialog.show();
-
-                listButtonNominal.clear();
-                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_6));
-                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_10));
-                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_15));
-                listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_20));
-                for(int ii=0; ii<listButtonNominal.size(); ii++)
-                {
-                    ImageButton b = listButtonNominal.get(ii);
+                    listButtonNominal.clear();
+                    listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_6));
+                    listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_10));
+                    listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_15));
+                    listButtonNominal.add((ImageButton)dialog.findViewById(R.id.button_20));
+                    for(int ii=0; ii<listButtonNominal.size(); ii++)
+                    {
+                        ImageButton b = listButtonNominal.get(ii);
 //            System.out.println("Nambahin Listener!");
-                    b.setOnClickListener(new NominalButtonListener());
+                        b.setOnClickListener(new NominalButtonListener());
+                    }
+
+//                    if(button_cancel == null) {
+                        button_cancel = (Button)dialog.findViewById(R.id.button_cancel);
+                        button_cancel.setOnClickListener(new PopUpDonationButton(parent));
+//                    }
+//                    if(button_donate_ok == null) {
+                        button_donate_ok = (Button) dialog.findViewById(R.id.button_donate_ok);
+                        button_donate_ok.setOnClickListener(new PopUpDonationButton(parent));
+//                    }
+                } catch (Exception e) {
+                    parent.displayMessage("Transfer pulsa gagal.\n");
+                    System.out.println(e.getMessage());
                 }
-            } catch (Exception e) {
-                parent.displayMessage("Transfer pulsa gagal.\n");
-                System.out.println(e.getMessage());
             }
         }
     }
@@ -205,6 +213,36 @@ public class Donate extends ActionBarActivity{
                 listButtonNominal.get(temp).setImageDrawable(listButtonOn.get(temp));
 //                donateButton.setImageDrawable(donateOn);
 //                buttonPushActive = true;
+            }
+        }
+    }
+
+    class PopUpDonationButton implements View.OnClickListener{
+        private SmsManager smsManager;
+        private Donate parent;
+
+        public PopUpDonationButton(Donate parent) {
+            this.smsManager = SmsManager.getDefault();
+            this.parent = parent;
+        }
+        @Override
+        public void onClick(View v) {
+            System.out.println("Pop Up Button Pressed");
+            if(v.getId() == button_cancel.getId())
+            {
+                dialog.cancel();
+            }
+            else if(v.getId() == button_donate_ok.getId())
+            {
+                dialog.dismiss();
+                String nomorTujuan = Operator.getDestinationNumber(parent);
+                int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
+                String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
+                String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
+                String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
+                smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+                parent.setContentView(R.layout.donation_loading);
+                isLoadingDonation = true;
             }
         }
     }

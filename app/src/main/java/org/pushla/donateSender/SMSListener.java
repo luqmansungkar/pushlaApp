@@ -1,5 +1,7 @@
 package org.pushla.donateSender;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.view.Window;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -17,6 +20,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.pushla.model.Donation;
+import org.pushla.tes.tespushla.R;
+import org.pushla.tes.tespushla.ResourceManager;
+import org.pushla.util.ReportSender;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +65,13 @@ public class SMSListener extends BroadcastReceiver {
 
     private void sendResponse(Context context, int sender, String body)
     {
+        System.out.println("body = " + body);
+        if(body.toLowerCase().contains("maaf"))
+        {
+            System.out.println("Harusnya gagal nih");
+            showFailedMessage(context);
+            return;
+        }
         SmsManager smsManager = SmsManager.getDefault();
         String response = "";
         //if sender is INDOSAT
@@ -111,6 +125,14 @@ public class SMSListener extends BroadcastReceiver {
         smsManager.sendTextMessage(""+sender, null, response, null, null);
         Toast.makeText(context, "Transfer berhasil :)",
                 Toast.LENGTH_LONG).show();
+        //coba2 kirim report ke server
+        sendResponse(ResourceManager.getCurrentDonation());
+    }
+
+    private void sendResponse(Donation d)
+    {
+        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(), d.getNominal(), d.getId());
+        reportSender.execute();
     }
 
     private int parseInt(String str)
@@ -125,5 +147,16 @@ public class SMSListener extends BroadcastReceiver {
         }
         return -1;
     }
+
+    private void showFailedMessage(Context context)
+    {
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.donation_failed);
+        //dialog.setTitle("Pilih jumlah donasi");
+        dialog.show();
+        ((Activity)context).setContentView(R.layout.donate);
+    }
+
 
 }

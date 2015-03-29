@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 
+import org.pushla.model.Donation;
+
 import java.util.ArrayList;
 
 /**

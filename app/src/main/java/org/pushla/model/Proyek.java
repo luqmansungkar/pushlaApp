@@ -1,4 +1,4 @@
-package org.pushla.tes.tespushla;
+package org.pushla.model;
 
 import android.graphics.Bitmap;
 

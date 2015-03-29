@@ -1,12 +1,10 @@
 package org.pushla.tes.tespushla;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +14,7 @@ import android.view.MenuItem;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.pushla.donateSender.Operator;
+import org.pushla.model.Proyek;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
