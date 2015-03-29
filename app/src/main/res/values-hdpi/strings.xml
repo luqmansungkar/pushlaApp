@@ -16,9 +16,18 @@
     <string-array name="nav_drawer_items">
         <item >Profil</item>
         <item >Home</item>
-        <item >Riwayat</item>
+        <item >Riwayat Donasi</item>
         <item >Bantuan</item>
         <item >Logout</item>
     </string-array>
+
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/icon_riwayat</item>
+        <item>@drawable/icon_riwayat</item>
+        <item>@drawable/icon_riwayat</item>
+        <item>@drawable/icon_riwayat</item>
+        <item>@drawable/icon_exit</item>
+    </array>
 
 </resources>

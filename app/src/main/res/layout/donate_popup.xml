@@ -17,7 +17,6 @@
 
         android:text="PILIH NOMINAL DONASI"
 
-        android:textSize="@dimen/txt_size_normal"
         android:layout_weight="1"
         android:textStyle="bold" />
 
@@ -91,7 +90,7 @@
         <Space
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.7"/>
+            android:layout_weight="1"/>
         <Button
             android:layout_weight="1"
             android:layout_width="fill_parent"

@@ -47,8 +47,8 @@ public class MainActivity extends ActionBarActivity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
 
-//    private ArrayList<NavDrawerItem> navDrawerItems;
-//    private NavDrawerListAdapter adapter;
+    private ArrayList<NavDrawerItem> navDrawerItems;
+    private NavDrawerListAdapter adapter;
 
     public RecyclerView rv;
     public ProyekAdapter pa;
@@ -72,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+        initMenu();
         initDrawer();
 
         rv = (RecyclerView) findViewById(R.id.proyek_list);
@@ -87,15 +88,28 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void initMenu(){
-        // load slide menu items
-//        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        //load slide menu items
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
         // nav drawer icons from resources
-//        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerList = (ListView) findViewById(R.id.slider_menu);
-//        navDrawerItems = new ArrayList<NavDrawerItem>();
+        navDrawerItems = new ArrayList<NavDrawerItem>();
 
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+
+        // Recycle the typed array
+        navMenuIcons.recycle();
+
+        adapter = new NavDrawerListAdapter(getApplicationContext(),
+                navDrawerItems);
+        mDrawerList.setAdapter(adapter);
+        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
     }
 
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
