@@ -1,7 +1,9 @@
 package org.pushla.tes.tespushla;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -33,6 +35,7 @@ public class SplashScreen extends ActionBarActivity {
     static ArrayList<Proyek> listProyek;
 
     JSONArray proyek = null;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,10 +206,20 @@ public class SplashScreen extends ActionBarActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent mainIntent = new Intent(SplashScreen.this,MainActivity.class);
-            System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-            SplashScreen.this.finish();
-            SplashScreen.this.startActivity(mainIntent);
+            boolean loggedIn = false;
+            sp = getSharedPreferences(SignIn.PREFS, Context.MODE_PRIVATE);
+            loggedIn = sp.getBoolean("loggedIn",false);
+            if (loggedIn){
+                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
+                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                SplashScreen.this.finish();
+                SplashScreen.this.startActivity(mainIntent);
+            }else {
+                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
+                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                SplashScreen.this.finish();
+                SplashScreen.this.startActivity(mainIntent);
+            }
         }
     }
 }

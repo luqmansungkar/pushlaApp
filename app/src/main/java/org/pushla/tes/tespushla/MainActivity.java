@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -22,6 +24,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.plus.Plus;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,7 +44,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ConnectionCallbacks, OnConnectionFailedListener {
 
     // inisiasi toolbar
     private Toolbar toolbar;
@@ -55,6 +66,8 @@ public class MainActivity extends ActionBarActivity {
 
     private static String url = "http://pushla.org/server/project/getallproyek";
     private ProgressDialog pDialog;
+    private GoogleApiClient mGoogleApiClient;
+    private SharedPreferences sp;
 
     public MainActivity() {
     }
@@ -84,6 +97,12 @@ public class MainActivity extends ActionBarActivity {
         pa = new ProyekAdapter(SplashScreen.listProyek);
         rv.setAdapter(pa);
 
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API)
+                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+
     }
 
 
@@ -112,6 +131,21 @@ public class MainActivity extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -123,7 +157,7 @@ public class MainActivity extends ActionBarActivity {
         Fragment fragment = null;
         boolean not_fragment = false;
 
-//        switch (position) {
+        switch (position) {
 //            case 0: // Masuk
 //                not_fragment = true;
 //                break;
@@ -136,13 +170,28 @@ public class MainActivity extends ActionBarActivity {
 //            case 3: // Ulasan Favorit
 //                fragment = new UlasanFavoritFragment();
 //                break;
-//            case 4: // Bantuan
-//                startActivity(new Intent(MainActivity.this, Help.class));
-//                mDrawerList.setItemChecked(prev_position, true);
-//                mDrawerList.setSelection(prev_position);
-//                drawerLayout.closeDrawer(mDrawerList);
-//                return;
-//        }
+            case 4: // Bantuan
+                if (mGoogleApiClient.isConnected()){
+                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+                    mGoogleApiClient.disconnect();
+                    mGoogleApiClient.connect();
+                    Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
+                            .setResultCallback(new ResultCallback<Status>() {
+                                @Override
+                                public void onResult(Status status) {
+                                    mGoogleApiClient.connect();
+                                }
+                            });
+                }
+                sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
+                sp.edit().clear().commit();
+                Toast.makeText(this, "Logging Out...", Toast.LENGTH_SHORT).show();
+                Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
+                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                MainActivity.this.finish();
+                MainActivity.this.startActivity(mainIntent);
+                break;
+        }
     }
 
     @Override
