@@ -4,4 +4,6 @@
 /.idea/libraries
 .DS_Store
 /build
-
+pushlaApp.iml
+/app/app.iml
+app/app.iml
