@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -27,12 +28,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.plus.People;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,6 +73,11 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private ProgressDialog pDialog;
     private GoogleApiClient mGoogleApiClient;
     private SharedPreferences sp;
+    private boolean mIntentInProgress;
+    private boolean mSignInClicked;
+    private ConnectionResult mConnectionResult;
+    private static final int RC_SIGN_IN = 0;
+
 
     public MainActivity() {
     }
@@ -131,21 +141,81 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
     }
 
+    private void resolveSignInError(){
+        Log.d("debug: ","resolve sign in error");
+        if (mConnectionResult.hasResolution()){
+            try {
+                mIntentInProgress = true;
+                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+
+            }catch (IntentSender.SendIntentException e){
+                mIntentInProgress = false;
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+    protected void onStart(){
+        super.onStart();
+        Log.d("debug: ","on Start");
+        mGoogleApiClient.connect();
+        signInWithGplus();
+    }
+
+    protected void onStop(){
+        super.onStop();
+        Log.d("debug: ","on Stop");
+        if (mGoogleApiClient.isConnected()){
+            mGoogleApiClient.disconnect();
+        }
+    }
     @Override
     public void onConnected(Bundle bundle) {
-
+        Log.d("debug: ","on Connected");
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        mSignInClicked = false;
+        Log.d("debug: ","on Connection Suspended");
+        mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d("debug: ","on Connection Failed");
+        if (!connectionResult.hasResolution()){
+            GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+            return;
+        }
 
+        if (!mIntentInProgress){
+            mConnectionResult = connectionResult;
+            if (mSignInClicked){
+                resolveSignInError();
+            }
+        }
     }
+    private void signInWithGplus() {
+        if (!mGoogleApiClient.isConnecting()) {
+            mSignInClicked = true;
+            resolveSignInError();
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode,
+                                    Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            if (responseCode != RESULT_OK) {
+                mSignInClicked = false;
+            }
 
+            mIntentInProgress = false;
+
+            if (!mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
+            }
+        }
+    }
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -172,24 +242,30 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 //                break;
             case 4: // Bantuan
                 if (mGoogleApiClient.isConnected()){
+                    pDialog = new ProgressDialog(MainActivity.this);
+                    pDialog.setMessage("Logging out..");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    mGoogleApiClient.disconnect();
-                    mGoogleApiClient.connect();
                     Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
                             .setResultCallback(new ResultCallback<Status>() {
                                 @Override
                                 public void onResult(Status status) {
                                     mGoogleApiClient.connect();
+                                    sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
+                                    sp.edit().clear().commit();
+                                    //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
+                                    Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
+                                    System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                                    MainActivity.this.finish();
+                                    pDialog.dismiss();
+                                    MainActivity.this.startActivity(mainIntent);
                                 }
                             });
+                }else{
+                    Log.d("debug: ","konek : "+mGoogleApiClient.isConnected());
+                    Toast.makeText(this,"Tidak bisa Log Out, internet bermasalah..",Toast.LENGTH_SHORT).show();
                 }
-                sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
-                sp.edit().clear().commit();
-                Toast.makeText(this, "Logging Out...", Toast.LENGTH_SHORT).show();
-                Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
-                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                MainActivity.this.finish();
-                MainActivity.this.startActivity(mainIntent);
                 break;
         }
     }

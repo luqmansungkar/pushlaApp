@@ -97,7 +97,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     protected void onStart(){
         super.onStart();
         Log.d("debug: ","on Start");
-        //mGoogleApiClient.connect();
+        mGoogleApiClient.connect();
     }
 
     protected void onStop(){
@@ -105,6 +105,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         Log.d("debug: ","on Stop");
         if (mGoogleApiClient.isConnected()){
             mGoogleApiClient.disconnect();
+            mSignInClicked = false;
         }
     }
 
@@ -158,7 +159,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     }
 
     private void signInWithGplus(){
-        mGoogleApiClient.connect();
+        //mGoogleApiClient.connect();
         Log.d("debug: ","Sign in with g plus");
         if (!mGoogleApiClient.isConnecting()){
             mSignInClicked = true;
