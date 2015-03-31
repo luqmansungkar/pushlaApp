@@ -46,13 +46,15 @@
                     android:layout_height="wrap_content"
                     android:text="Rp 200.000"
                     android:textSize="@dimen/txt_size_normal"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/cool_black"/>
                 <TextView
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" dari 4.000.000"
-                    android:textSize="@dimen/txt_size_little"/>
+                    android:textSize="@dimen/txt_size_little"
+                    android:textColor="@color/cool_black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -86,12 +88,14 @@
                     android:layout_height="wrap_content"
                     android:text="30%"
                     android:textSize="@dimen/txt_size_normal"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/cool_black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" terdanai"
-                    android:textSize="@dimen/txt_size_little"/>
+                    android:textSize="@dimen/txt_size_little"
+                    android:textColor="@color/cool_black"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -105,12 +109,14 @@
                         android:text="30"
                         android:textSize="@dimen/txt_size_normal"
                         android:textStyle="bold"
-                        android:gravity="right"/>
+                        android:gravity="right"
+                        android:textColor="@color/cool_black"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" hari lagi"
                         android:textSize="@dimen/txt_size_little"
+                        android:textColor="@color/cool_black"
                         />
                 </LinearLayout>
             </LinearLayout>

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
-    android:layout_height="120dp"
+    android:layout_height="80dp"
     android:background="@color/white"
 
     android:padding="20dp"
     >
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="9"
-        android:scaleType="center" />
+        android:layout_width="25dp"
+        android:layout_height="26dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/txt"
@@ -21,7 +20,7 @@
         android:layout_weight="2"
 
         android:text="Riwayat Donasi"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="@dimen/txt_size_little2"
+        android:textColor="@color/cool_black"
         android:gravity="center_vertical" />
 </LinearLayout>

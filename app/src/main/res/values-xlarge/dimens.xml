@@ -19,6 +19,7 @@
     <dimen name="txt_size_normal2">32sp</dimen>
     <dimen name="txt_size_little">18sp</dimen>
     <dimen name="txt_size_little2">24sp</dimen>
+    <dimen name="txt_size_little3">20sp</dimen>
 
     <dimen name="btn_push">150dip</dimen>
     <dimen name="btn_amount">70dip</dimen>

@@ -18,7 +18,8 @@
     <dimen name="txt_size_normal">17sp</dimen>
     <dimen name="txt_size_normal2">17sp</dimen>
     <dimen name="txt_size_little">15sp</dimen>
-    <dimen name="txt_size_little2">15sp</dimen>
+    <dimen name="txt_size_little2">14sp</dimen>
+    <dimen name="txt_size_little3">12sp</dimen>
 
     <dimen name="btn_push">150dip</dimen>
     <dimen name="btn_amount">70dip</dimen>
@@ -26,10 +27,14 @@
     <dimen name="marginBottom">20dp</dimen>
     <dimen name="marginLeft">30dp</dimen>
     <dimen name="marginTop">20dp</dimen>
+    <dimen name="marginTopHero">220dp</dimen>
+    <dimen name="marginTopDeskripsi">90dp</dimen>
     <dimen name="marginRight">15dp</dimen>
 
     <dimen name="paddingTop">10dp</dimen>
     <dimen name="paddingBottom">0dp</dimen>
 
     <dimen name="cardHeight">360dp</dimen>
+    <dimen name="heroHeight">300dp</dimen>
+    <dimen name="heroButtonHeight">160dp</dimen>
 </resources>
