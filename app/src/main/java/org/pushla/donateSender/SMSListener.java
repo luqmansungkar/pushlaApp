@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.pushla.model.Donation;
+import org.pushla.tes.tespushla.MainActivity;
 import org.pushla.tes.tespushla.R;
 import org.pushla.tes.tespushla.ResourceManager;
 import org.pushla.util.ReportSender;
@@ -36,6 +39,7 @@ public class SMSListener extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        showFailedMessage(context);
         // TODO Auto-generated method stub
         System.out.println("Menerima pesan");
         if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
@@ -150,12 +154,13 @@ public class SMSListener extends BroadcastReceiver {
 
     private void showFailedMessage(Context context)
     {
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.donation_failed);
-        //dialog.setTitle("Pilih jumlah donasi");
-        dialog.show();
-        ((Activity)context).setContentView(R.layout.donate);
+//        Dialog dialog = new Dialog(context);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.donation_failed);
+//        //dialog.setTitle("Pilih jumlah donasi");
+//        dialog.show();
+        System.out.println();
+        ((MainActivity)context).setContentView(R.layout.donation_failed);
     }
 
 

@@ -62,17 +62,21 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <receiver android:name="org.pushla.donateSender.SMSListener" >
+        <!--<receiver android:name="org.pushla.donateSender.SMSListener" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <receiver android:name="org.pushla.tes.tespushla.Donate$Listener" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".Register"
-            android:label="@string/title_activity_register"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+        <!--<activity-->
+            <!--android:name=".Register"-->
+            <!--android:label="@string/title_activity_register"-->
+            <!--android:windowSoftInputMode="adjustResize|stateHidden" >-->
+        <!--</activity>-->
 
         <meta-data
             android:name="com.google.android.gms.version"
