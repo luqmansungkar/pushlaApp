@@ -6,16 +6,33 @@
     android:background="#ffffff"
     >
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_weight="2.7">
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"/>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/customer_service"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
     <Space
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="4"/>
+        android:layout_weight="3.8"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginBottom="@dimen/marginTop">
         <LinearLayout
@@ -36,12 +53,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="4"/>
-            </LinearLayout>
+        </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="@color/cool_black"/>
+
 
         <TextView
             android:layout_width="fill_parent"
@@ -65,7 +79,7 @@
     <Space
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="4"/>
+        android:layout_weight="3.8"/>
 
 
 

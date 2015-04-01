@@ -89,13 +89,13 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-
+        sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
         initMenu();
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
-        initMenu();
+
         initDrawer();
 
         rv = (RecyclerView) findViewById(R.id.proyek_list);
@@ -126,11 +126,11 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         mDrawerList = (ListView) findViewById(R.id.slider_menu);
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new NavDrawerItem(sp.getString("nama","Pushla"), navMenuIcons.getResourceId(0, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -273,7 +273,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

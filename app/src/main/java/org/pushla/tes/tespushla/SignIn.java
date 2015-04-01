@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.pushla.donateSender.Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         setContentView(R.layout.signin);
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-        btnRevoke = (Button) findViewById(R.id.revoke);
+
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +68,6 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
             }
         });
 
-        btnRevoke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                revoke();
-            }
-        });
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -200,7 +195,6 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     }
 
     private class addUser extends AsyncTask<Void, Void, Void> {
-
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
@@ -223,7 +217,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
             nameValuePairs.add(new BasicNameValuePair("email",email));
             nameValuePairs.add(new BasicNameValuePair("username",usernme));
             nameValuePairs.add(new BasicNameValuePair("nama",nama));
-            nameValuePairs.add(new BasicNameValuePair("operator","T"));
+            nameValuePairs.add(new BasicNameValuePair("operator", Operator.readOperatorName(SignIn.this)));
 
             String response = sh.makeServiceCall(url, ServiceHandler.POST, nameValuePairs);
 

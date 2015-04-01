@@ -20,6 +20,8 @@
     <dimen name="txt_size_little">14sp</dimen>
     <dimen name="txt_size_little2">14sp</dimen>
     <dimen name="txt_size_little3">12sp</dimen>
+    <dimen name="txt_login">50sp</dimen>
+    <dimen name="txt_login2">20sp</dimen>
 
     <dimen name="btn_push">150dip</dimen>
     <dimen name="btn_amount">70dip</dimen>

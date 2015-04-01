@@ -94,7 +94,6 @@ public class Donate extends ActionBarActivity{
         listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_7500_on)));
         listButtonOn.add(new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_10000_on)));
 
-        donateOff = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_idle));
         donateOn = new BitmapDrawable(getResources(),BitmapFactory.decodeResource(getResources(), R.drawable.button_donate));
 
 //        for(int ii=0; ii<listButtonNominal.size(); ii++)

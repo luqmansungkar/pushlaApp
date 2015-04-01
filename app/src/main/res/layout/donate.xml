@@ -41,7 +41,7 @@
                 android:layout_weight="5"/>
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/cool_black"
                 android:layout_weight="1"/>
             <Space
@@ -60,6 +60,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="5"/>
                 <LinearLayout
+                    android:baselineAligned="false"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="horizontal"
@@ -84,7 +85,7 @@
                             android:layout_below="@+id/jumlahPendukung"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little3"
-                            android:textStyle="bold"/>
+                            />
                         </RelativeLayout>
 
                     <RelativeLayout
@@ -108,7 +109,7 @@
                             android:layout_below="@+id/from"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little3"
-                            android:textStyle="bold"/>
+                            />
                         </RelativeLayout>
 
                     <RelativeLayout
@@ -131,7 +132,7 @@
                             android:layout_below="@+id/sisaWaktu"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little3"
-                            android:textStyle="bold"/>
+                            />
                         </RelativeLayout>
                 </LinearLayout>
                 <Space
@@ -162,7 +163,7 @@
 
                         <View
                             android:layout_width="fill_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="1dp"
                             android:background="@color/cool_black"/>
 
                         <TextView
@@ -204,7 +205,7 @@
 
             <Space
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1.7"/>
 
         </LinearLayout>
