@@ -42,7 +42,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
-                android:background="#c0c0c0"
+                android:background="@color/cool_black"
                 android:layout_weight="1"/>
             <Space
                 android:layout_width="fill_parent"
@@ -52,10 +52,9 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/marginTopDeskripsi"
+                android:layout_height="@dimen/tinggiKeterangan"
                 android:orientation="horizontal"
-                android:layout_marginBottom="-15dp"
-                android:paddingTop="15dp">
+                >
                 <Space
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -68,7 +67,8 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical">
                         <TextView
                             android:id="@+id/jumlahPendukung"
                             android:layout_width="wrap_content"
@@ -90,12 +90,13 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="0.7"
+                        android:gravity="center_vertical">
                         <TextView
                             android:id="@+id/from"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="100"
+                            android:text="Rp 200.000"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little2"
                             android:textStyle="bold"/>
@@ -103,7 +104,7 @@
                             android:id="@+id/total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="pendukung"
+                            android:text="dari Rp 800.000"
                             android:layout_below="@+id/from"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little3"
@@ -113,19 +114,20 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
                         <TextView
                             android:id="@+id/sisaWaktu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="100"
+                            android:text="8"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little2"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="pendukung"
+                            android:text="hari lagi"
                             android:layout_below="@+id/sisaWaktu"
                             android:textColor="@color/cool_black"
                             android:textSize="@dimen/txt_size_little3"
@@ -161,7 +163,7 @@
                         <View
                             android:layout_width="fill_parent"
                             android:layout_height="2dp"
-                            android:background="#c0c0c0"/>
+                            android:background="@color/cool_black"/>
 
                         <TextView
                             android:layout_width="fill_parent"

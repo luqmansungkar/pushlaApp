@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/heroButtonHeight"
+    android:background="#ffffff"
+    >
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="4"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/marginTop">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1.25">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Donasi gagal"
+                android:textSize="@dimen/txt_size_normal2"
+                android:textColor="@color/cool_black"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                />
+
+            </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/cool_black"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Donasi Anda gagal terkirim sepenuhnya. Hal ini dapat terjadi karena sisa pulsa yang tidak mencukupi."
+            android:textSize="@dimen/txt_size_little2"
+            android:textColor="@color/cool_black"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="4"/>
+
+
+
+</LinearLayout>
