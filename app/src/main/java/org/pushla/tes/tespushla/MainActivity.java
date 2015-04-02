@@ -240,7 +240,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 //            case 3: // Ulasan Favorit
 //                fragment = new UlasanFavoritFragment();
 //                break;
-            case 4: // Bantuan
+            case 3: // Bantuan
                 if (mGoogleApiClient.isConnected()){
                     pDialog = new ProgressDialog(MainActivity.this);
                     pDialog.setMessage("Logging out..");
