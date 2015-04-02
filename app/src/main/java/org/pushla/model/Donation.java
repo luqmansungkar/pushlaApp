@@ -3,28 +3,39 @@ package org.pushla.model;
 /**
  * Created by Anjar_Ibnu on 29/03/2015.
  */
-public class Donation {
-    private String nominal, id;
+public class Donation extends Proyek{
+    private boolean xl;
+    private int nominal;
+    private int pendukung;
 
-    public Donation(String nominal, String id)
+    public Donation()
     {
-        this.nominal = nominal;
-        this.id = id;
+        super();
+        xl = true;
+        pendukung = -1;
     }
 
-    public String getId() {
-        return id;
+    public void setXl(boolean xl) {
+        this.xl = xl;
     }
 
-    public String getNominal() {
+    public int getNominal() {
         return nominal;
     }
 
-    public void setNominal(String nominal) {
+    public boolean isXl() {
+        return xl;
+    }
+
+    public void setNominal(int nominal) {
         this.nominal = nominal;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public int getPendukung() {
+        return pendukung;
+    }
+
+    public void setPendukung(int pendukung) {
+        this.pendukung = pendukung;
     }
 }

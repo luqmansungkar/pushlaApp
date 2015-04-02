@@ -2,6 +2,7 @@ package org.pushla.tes.tespushla;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -98,21 +99,22 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
         initDrawer();
 
-        rv = (RecyclerView) findViewById(R.id.proyek_list);
-        rv.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        rv.setLayoutManager(llm);
-
-        pa = new ProyekAdapter(SplashScreen.listProyek);
-        rv.setAdapter(pa);
+//        rv = (RecyclerView) findViewById(R.id.proyek_list);
+//        rv.setHasFixedSize(true);
+//        LinearLayoutManager llm = new LinearLayoutManager(this);
+//        llm.setOrientation(LinearLayoutManager.VERTICAL);
+//        rv.setLayoutManager(llm);
+//
+//        pa = new ProyekAdapter(SplashScreen.listProyek);
+//        rv.setAdapter(pa);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
-
+        //default display
+        displayView(1);
     }
 
 
@@ -231,12 +233,12 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 //            case 0: // Masuk
 //                not_fragment = true;
 //                break;
-//            case 1: // Ulasan
-//                fragment = new UlasanFragment();
-//                break;
-//            case 2: // Cari Ulasan
-//                fragment = new CariUlasanFragment();
-//                break;
+            case 1: // Home
+                fragment = new FragmentProyek();
+                break;
+            case 2: // Cari Ulasan
+                fragment = new FragmentRiwayat();
+                break;
 //            case 3: // Ulasan Favorit
 //                fragment = new UlasanFavoritFragment();
 //                break;
@@ -267,6 +269,15 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                     Toast.makeText(this,"Tidak bisa Log Out, internet bermasalah..",Toast.LENGTH_SHORT).show();
                 }
                 break;
+        }
+        if (fragment != null) {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            mDrawerList.setSelection(position);
+            drawerLayout.closeDrawer(mDrawerList);
         }
     }
 

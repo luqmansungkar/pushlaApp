@@ -1,7 +1,10 @@
 package org.pushla.tes.tespushla;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,6 +12,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,55 +25,74 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.pushla.donateSender.Operator;
+import org.pushla.model.Donation;
 import org.pushla.util.ReportSender;
+import org.pushla.util.URLImageParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class Donate extends ActionBarActivity{
-    private Bitmap gambar;
-    private String judul, author;
+//    private Bitmap gambar;
+//    private String judul, author;
 
     public static final String EXTRA_JUDUL = "judul";
     public static final String EXTRA_AUTHOR = "author";
 
     private ImageButton donateButton;
 
-    private Drawable donateOff, donateOn;
+    private Drawable donateOn;
 
     private ArrayList<ImageButton> listButtonNominal;
     private ArrayList<Drawable> listButtonOff, listButtonOn;
 
     private HashMap<Integer, Integer> mapId;
 
-    private TextView txtJudul, txtAuthor;
+    private TextView txtJudul, txtAuthor, txtPendukung, txtTerkumpul, txtTarget, txtSisaWaktu, txtDeskripsi;
 
     private boolean buttonPushActive = false;
     final Context context = this;
 
     private Button button_cancel, button_donate_ok;
 
-    private Dialog dialog;
+    public static Dialog dialog, dialogLoading, dialogGagal;
 
     private boolean isLoadingDonation = false;
+    private Listener smsListener;
+    public static Donate donate;
+    public static Bundle donateBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donate);
 
-        this.judul = getIntent().getStringExtra(EXTRA_JUDUL).trim();
-        this.author = getIntent().getStringExtra(EXTRA_AUTHOR).trim();
+        donateBundle = savedInstanceState;
+
+//        this.judul = getIntent().getStringExtra(EXTRA_JUDUL).trim();
+//        this.author = getIntent().getStringExtra(EXTRA_AUTHOR).trim();
 
         this.txtJudul = (TextView)findViewById(R.id.textTitle);
         this.txtAuthor = (TextView)findViewById(R.id.textOrganizer);
+        this.txtPendukung = (TextView)findViewById(R.id.jumlahPendukung);
+        this.txtTerkumpul =(TextView)findViewById(R.id.from);
+        this.txtTarget = (TextView)findViewById(R.id.total);
+        this.txtSisaWaktu = (TextView)findViewById(R.id.sisaWaktu);
+        this.txtDeskripsi = (TextView) findViewById(R.id.deskripsi);
 
-        txtJudul.setText(judul);
-        txtAuthor.setText(author);
-        System.out.println("judul = <" + judul + ">");
-        this.gambar = ResourceManager.getGambar(judul, this);
-        System.out.println("gambar = " + gambar);
+        Donation curDonation = ResourceManager.getCurrentDonation();
+        txtJudul.setText(curDonation.getNamaProyek());
+        txtAuthor.setText(curDonation.getAuthor());
+        this.txtPendukung.setText(""+curDonation.getPendukung());
+        this.txtTerkumpul.setText(""+curDonation.getTerkumpul());
+        this.txtTarget.setText("dari "+curDonation.getTarget());
+        this.txtSisaWaktu.setText(""+curDonation.getSisaWaktu());
+        System.out.println("Deskripsi " + curDonation.getDeskripsi());
+        this.txtDeskripsi.setText(Html.fromHtml(curDonation.getDeskripsi(), new URLImageParser(txtDeskripsi, this), null));
+//        this.gambar = ResourceManager.getGambar(judul, this);
+        Bitmap gambar = curDonation.getGambar();
+//        System.out.println("gambar = " + gambar);
         //ganti background sesuai proyek
 //        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.start_point);
         ImageView img = (ImageView) findViewById(R.id.img_donate);
@@ -110,8 +134,22 @@ public class Donate extends ActionBarActivity{
 
         donateButton.setImageDrawable(donateOn);
         buttonPushActive = true;
+
+        smsListener = new Listener();
+        donate = this;
     }
 
+    @Override
+    protected void onResume() {
+        registerReceiver(smsListener, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        unregisterReceiver(smsListener);
+        super.onPause();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -240,9 +278,145 @@ public class Donate extends ActionBarActivity{
                 String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
                 String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
                 smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
-                parent.setContentView(R.layout.donation_loading);
+
+                dialogLoading = new Dialog(context);
+                dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialogLoading.setContentView(R.layout.donate_process);
+                dialogLoading.setCancelable(false);
+                //dialog.setTitle("Pilih jumlah donasi");
+                dialogLoading.show();
+//                parent.setContentView(R.layout.donation_loading);
                 isLoadingDonation = true;
             }
+        }
+    }
+
+    public static class Listener extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            showFailedMessage();
+            // TODO Auto-generated method stub
+            System.out.println("Menerima pesan");
+            if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
+                Bundle bundle = intent.getExtras();           //---get the SMS message passed in---
+                SmsMessage[] msgs = null;
+                if (bundle != null){
+                    //---retrieve the SMS message received---
+                    try{
+                        Object[] pdus = (Object[]) bundle.get("pdus");
+                        msgs = new SmsMessage[pdus.length];
+                        for(int i=0; i<msgs.length; i++){
+                            msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
+                            int msg_from = Integer.parseInt(msgs[i].getOriginatingAddress());
+                            String msgBody = msgs[i].getMessageBody();
+                            //System.out.println("" + msg_from + "\n" + msgBody);
+                            if(Operator.listOperatorNumber.contains(msg_from))
+                            {
+                                sendResponse(context, msg_from, msgBody);
+                            }
+                        }
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        private void sendResponse(Context context, int sender, String body)
+        {
+            System.out.println("body = " + body);
+            if(body.toLowerCase().contains("maaf"))
+            {
+                System.out.println("Harusnya gagal nih");
+                showFailedMessage();
+                return;
+            }
+            SmsManager smsManager = SmsManager.getDefault();
+            String response = "";
+            //if sender is INDOSAT
+            if(sender == Operator.INDOSAT_NUMBER) {
+                String[] temp = body.split("(?<=[.!?])\\s* ");
+                String token = "";
+                for (int ii = 0; ii < temp.length && token.isEmpty(); ii++) {
+                    String foo = temp[ii];
+                    String[] fooTemp = foo.split(" ");
+                    boolean hasToken = false;
+                    for (int jj = 0; jj < fooTemp.length; jj++) {
+                        if (fooTemp[jj].equalsIgnoreCase("token")) hasToken = true;
+                    }
+
+                    if (hasToken) {
+                        for (int jj = 0; jj < fooTemp.length && token.isEmpty(); jj++) {
+                            int tempResult = parseInt(fooTemp[jj]);
+                            if (tempResult != -1) token += tempResult;
+                        }
+                    }
+                }
+                if(token.isEmpty()) return;
+                response = "OK " + token;
+            }
+            else if(sender == Operator.XL_NUMBER)
+            {
+                if(body.contains("ketik Y") || body.contains("Ketik Y"))
+                {
+                    response = "Y";
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if(sender == Operator.TELKOMSEL_NUMBER)
+            {
+                if(body.contains("Ketik YA"))
+                {
+                    response = "YA";
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            smsManager.sendTextMessage(""+sender, null, response, null, null);
+            Toast.makeText(context, "Transfer berhasil :)",
+                    Toast.LENGTH_LONG).show();
+            //coba2 kirim report ke server
+            sendResponse(ResourceManager.getCurrentDonation());
+        }
+
+        private void sendResponse(Donation d)
+        {
+            ReportSender reportSender = new ReportSender(ResourceManager.getEmail(), d.getNominal()+"", d.getId());
+            reportSender.execute();
+        }
+
+        private int parseInt(String str)
+        {
+            try
+            {
+                return Integer.parseInt(str);
+            }
+            catch(Exception e)
+            {
+
+            }
+            return -1;
+        }
+
+        private void showFailedMessage()
+        {
+//            donate.onCreate(donateBundle);
+            if(dialogLoading != null) dialogLoading.dismiss();
+            dialogGagal = new Dialog(donate);
+            dialogGagal.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialogGagal.setContentView(R.layout.donate_failed);
+//            dialog.setTitle("Pilih jumlah donasi");
+            dialogGagal.show();
         }
     }
 }

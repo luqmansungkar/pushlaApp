@@ -171,6 +171,11 @@ public class SplashScreen extends ActionBarActivity {
                             tempProyek.setGambar(newImage);
                             ResourceManager.saveGambar(p.getString("judul").trim(), newImage, activity, false);
                         }
+                        String id = p.getString("id");
+                        tempProyek.setId(id);
+
+                        String deskripsi = p.getString("long_desc");
+                        tempProyek.setDeskripsi(deskripsi);
                         if(tempProyek.getSisaWaktu() > 0)
                             listProyek.add(tempProyek);
                     }
@@ -215,7 +220,8 @@ public class SplashScreen extends ActionBarActivity {
                 SplashScreen.this.finish();
                 SplashScreen.this.startActivity(mainIntent);
             }else {
-                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
+//                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
+                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
                 System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
                 SplashScreen.this.finish();
                 SplashScreen.this.startActivity(mainIntent);

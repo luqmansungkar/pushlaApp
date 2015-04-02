@@ -131,7 +131,7 @@ public class SMSListener extends BroadcastReceiver {
 
     private void sendResponse(Donation d)
     {
-        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(), d.getNominal(), d.getId());
+        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(), ""+d.getNominal(), d.getId());
         reportSender.execute();
     }
 

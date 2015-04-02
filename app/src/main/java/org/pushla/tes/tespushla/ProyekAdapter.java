@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekViewHolder> {
 //    private ArrayList<String> judul;
 //    private ArrayList<Bitmap> gambar;
-    private ArrayList<Proyek> listProyek;
+    public static ArrayList<Proyek> listProyek;
 
 //    public ProyekAdapter(ArrayList<String> judul, ArrayList<Bitmap> gambar){
 //        this.judul = judul;
@@ -81,6 +81,7 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
 
         public ProyekViewHolder(View v){
             super(v);
+//            System.out.println("Posisi scroll bar = " + v.getVerticalScrollbarPosition());
             pNama = (TextView) v.findViewById(R.id.textTitle);
             pGambar = (ImageView) v.findViewById(R.id.gambar);
             pAuthor = (TextView) v.findViewById(R.id.textOrganizer);
@@ -93,8 +94,11 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), Donate.class);
-                    intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
-                    intent.putExtra(Donate.EXTRA_AUTHOR, pAuthor.getText().toString());
+//                    intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
+//                    intent.putExtra(Donate.EXTRA_AUTHOR, pAuthor.getText().toString());
+                    Proyek temp = listProyek.get(v.getVerticalScrollbarPosition());
+                    ResourceManager.setCurrentDonation(temp.getId(), temp.getTarget(),temp.getSisaWaktu(),
+                            temp.getNamaProyek(), temp.getDeskripsi(), temp.getGambar());
                     v.getContext().startActivity(intent);
                 }
             });

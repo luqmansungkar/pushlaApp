@@ -100,16 +100,15 @@ public class ResourceManager {
         return "ginanjar.ibnu@gmail.com";
     }
 
-    public static void setCurrentDonation(String nominal, String id) {
-        if(currentDonation != null)
-        {
-            currentDonation.setNominal(nominal);
-            currentDonation.setId(id);
-        }
-        else
-        {
-            currentDonation = new Donation(nominal, id);
-        }
+    public static void setCurrentDonation(String id, int target, int sisaWaktu,
+                                          String judul, String deskripsi, Bitmap gambar) {
+        if(currentDonation == null) currentDonation = new Donation();
+        currentDonation.setId(id);
+        currentDonation.setDeskripsi(deskripsi);
+        currentDonation.setNamaProyek(judul);
+        currentDonation.setTarget(target);
+        currentDonation.setSisaWaktu(sisaWaktu);
+        currentDonation.setGambar(gambar);
     }
 
     public static Donation getCurrentDonation() {
