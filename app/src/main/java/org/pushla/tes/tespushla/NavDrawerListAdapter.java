@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +54,11 @@ public class NavDrawerListAdapter extends BaseAdapter {
         imgIcon.setBackgroundResource(navDrawerItems.get(position).getIcon());
 
 
-        // TO-DO: Buat Profil
-//        if (position == 0) {
+        //TO-DO: Buat Profil
+        if (position == 0) {
+            txt.setTypeface(null, Typeface.BOLD);
 //            imgIcon.getLayoutParams().height = 250;
-//        }
+        }
 
         return convertView;
     }
