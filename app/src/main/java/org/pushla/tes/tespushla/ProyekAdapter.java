@@ -46,13 +46,14 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
     }
 
     @Override
-    public void onBindViewHolder(ProyekViewHolder holder, int position) {
+    public void onBindViewHolder(ProyekViewHolder holder, final int position) {
 //        holder.pNama.setText(judul.get(position));
 //        if (gambar.get(position) != null) {
 ////            holder.pGambar.setImageBitmap(gambar.get(position));
 //            BitmapDrawable ob = new BitmapDrawable(gambar.get(position));
 //            holder.pGambar.setBackground(ob);
 //        }
+
         holder.pNama.setText(listProyek.get(position).getNamaProyek());
         if(listProyek.get(position).getGambar()!=null)
         {
@@ -68,6 +69,18 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         ViewGroup.LayoutParams layout = holder.barPersentase.getLayoutParams();
         layout.width = listProyek.get(position).getPersentase() * width/100;
         holder.barPersentase.setLayoutParams(layout);
+
+        holder.currentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Donate.class);
+                Proyek temp = listProyek.get(position);
+                ResourceManager.setCurrentDonation(temp.getId(), temp.getTarget(),temp.getSisaWaktu(),
+                        temp.getNamaProyek(), temp.getDeskripsi(), temp.getGambar());
+                ResourceManager.getCurrentDonation().setAuthor(temp.getAuthor());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -79,10 +92,12 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         protected TextView pNama, pAuthor, terkumpul, target, persentase, sisaWaktu, barPersentase;
         protected ImageView pGambar;
         private LinearLayout progressContainer;
+        private View currentView;
 
         public ProyekViewHolder(View v){
             super(v);
 //            System.out.println("Posisi scroll bar = " + v.getVerticalScrollbarPosition());
+            currentView = v;
             pNama = (TextView) v.findViewById(R.id.textTitle);
             pGambar = (ImageView) v.findViewById(R.id.gambar);
             pAuthor = (TextView) v.findViewById(R.id.textOrganizer);
@@ -91,19 +106,19 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
             persentase = (TextView) v.findViewById(R.id.percentage);
             sisaWaktu = (TextView) v.findViewById(R.id.sisaWaktu);
             barPersentase = (TextView) v.findViewById(R.id.barPersentase);
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Donate.class);
-//                    intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
-//                    intent.putExtra(Donate.EXTRA_AUTHOR, pAuthor.getText().toString());
-                    Proyek temp = listProyek.get(v.getVerticalScrollbarPosition());
-                    ResourceManager.setCurrentDonation(temp.getId(), temp.getTarget(),temp.getSisaWaktu(),
-                            temp.getNamaProyek(), temp.getDeskripsi(), temp.getGambar());
-                    ResourceManager.getCurrentDonation().setAuthor(temp.getAuthor());
-                    v.getContext().startActivity(intent);
-                }
-            });
+//            v.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(v.getContext(), Donate.class);
+////                    intent.putExtra(Donate.EXTRA_JUDUL, pNama.getText().toString());
+////                    intent.putExtra(Donate.EXTRA_AUTHOR, pAuthor.getText().toString());
+//                    Proyek temp = listProyek.get(v);
+//                    ResourceManager.setCurrentDonation(temp.getId(), temp.getTarget(),temp.getSisaWaktu(),
+//                            temp.getNamaProyek(), temp.getDeskripsi(), temp.getGambar());
+//                    ResourceManager.getCurrentDonation().setAuthor(temp.getAuthor());
+//                    v.getContext().startActivity(intent);
+//                }
+//            });
 
             progressContainer = (LinearLayout) v.findViewById(R.id.progressContainer);
         }
