@@ -85,7 +85,7 @@ public class Donate extends ActionBarActivity{
 
         Donation curDonation = ResourceManager.getCurrentDonation();
         txtJudul.setText(curDonation.getNamaProyek());
-        txtAuthor.setText(curDonation.getAuthor());
+        txtAuthor.setText("oleh " + curDonation.getAuthor());
         this.txtPendukung.setText(""+curDonation.getPendukung());
         this.txtTerkumpul.setText(""+curDonation.getTerkumpul());
         this.txtTarget.setText("dari "+curDonation.getTarget());
