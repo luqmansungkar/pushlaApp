@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.pushla.model.Proyek;
+import org.pushla.util.Converter;
 
 import java.util.ArrayList;
 
@@ -60,8 +61,8 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         }
         holder.sisaWaktu.setText("" + listProyek.get(position).getSisaWaktu());
         holder.persentase.setText(""+listProyek.get(position).getPersentase() + "%");
-        holder.terkumpul.setText("Rp " + getNominal(listProyek.get(position).getTerkumpul()));
-        holder.target.setText(" dari Rp " + getNominal(listProyek.get(position).getTarget()));
+        holder.terkumpul.setText("Rp " + Converter.getNominal(listProyek.get(position).getTerkumpul()));
+        holder.target.setText(" dari Rp " + Converter.getNominal(listProyek.get(position).getTarget()));
         holder.pAuthor.setText("oleh " + listProyek.get(position).getAuthor());
         holder.barPersentase.setWidth(holder.barPersentase.getMaxWidth() * listProyek.get(position).getPersentase()/100);
         ViewGroup.LayoutParams layout = holder.barPersentase.getLayoutParams();
@@ -107,18 +108,5 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         }
     }
 
-    public String getNominal(int harga)
-    {
-        return getNominalHelper(1, harga);
-    }
 
-    private String getNominalHelper(int counter, int harga)
-    {
-        if(harga < 10) return ""+harga;
-        else
-        {
-            if(counter%3==0) return ""+ getNominalHelper(counter+1, harga/10) + "." + (harga%10);
-            else return ""+ getNominalHelper(counter+1, harga/10) + (harga%10);
-        }
-    }
 }

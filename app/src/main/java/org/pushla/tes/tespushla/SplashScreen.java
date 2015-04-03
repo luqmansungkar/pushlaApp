@@ -174,6 +174,8 @@ public class SplashScreen extends ActionBarActivity {
                         String id = p.getString("id");
                         tempProyek.setId(id);
 
+                        ResourceManager.addNamaProyek(id, tempProyek.getNamaProyek());
+
                         String deskripsi = p.getString("long_desc");
                         tempProyek.setDeskripsi(deskripsi);
                         if(tempProyek.getSisaWaktu() > 0)

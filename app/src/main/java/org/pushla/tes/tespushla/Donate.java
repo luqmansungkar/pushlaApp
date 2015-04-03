@@ -237,6 +237,7 @@ public class Donate extends ActionBarActivity{
         @Override
         public void onClick(View v) {
             System.out.println("Klik nominal button");
+            int nominal = 2500;
             if(mapId.containsKey(v.getId()))
             {
                 System.out.println("Key => " + mapId.get(v.getId()));
@@ -251,6 +252,55 @@ public class Donate extends ActionBarActivity{
 //                donateButton.setImageDrawable(donateOn);
 //                buttonPushActive = true;
             }
+
+            if(v.getId() == R.id.button_6)
+            {
+                if(ResourceManager.getCurrentDonation().isXl())
+                {
+                    nominal = 2500;
+                }
+                else
+                {
+                    nominal = 6000;
+                }
+                ResourceManager.setCurrentNominalDonation(nominal);
+            }
+            else if(v.getId() == R.id.button_10)
+            {
+                if(ResourceManager.getCurrentDonation().isXl())
+                {
+                    nominal = 5000;
+                }
+                else
+                {
+                    nominal = 10000;
+                }
+                ResourceManager.setCurrentNominalDonation(nominal);
+            }
+            else if(v.getId() == R.id.button_15)
+            {
+                if(ResourceManager.getCurrentDonation().isXl())
+                {
+                    nominal = 7500;
+                }
+                else
+                {
+                    nominal = 15000;
+                }
+                ResourceManager.setCurrentNominalDonation(nominal);
+            }
+            else if(v.getId() == R.id.button_20)
+            {
+                if(ResourceManager.getCurrentDonation().isXl())
+                {
+                    nominal = 1000;
+                }
+                else
+                {
+                    nominal = 20000;
+                }
+                ResourceManager.setCurrentNominalDonation(nominal);
+            }
         }
     }
 
@@ -261,6 +311,7 @@ public class Donate extends ActionBarActivity{
         public PopUpDonationButton(Donate parent) {
             this.smsManager = SmsManager.getDefault();
             this.parent = parent;
+            ResourceManager.setCurrentNominalDonation(2500);
         }
         @Override
         public void onClick(View v) {
@@ -272,12 +323,7 @@ public class Donate extends ActionBarActivity{
             else if(v.getId() == button_donate_ok.getId())
             {
                 dialog.dismiss();
-                String nomorTujuan = Operator.getDestinationNumber(parent);
-                int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-                String nominal = "" + Operator.getTotalDonasi(6000, parent.getApplicationContext());
-                String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan);
-                String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
-                smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+
 
                 dialogLoading = new Dialog(context);
                 dialogLoading.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -287,7 +333,19 @@ public class Donate extends ActionBarActivity{
                 dialogLoading.show();
 //                parent.setContentView(R.layout.donation_loading);
                 isLoadingDonation = true;
+
+                ArrayList<Integer> temp = ResourceManager.getCurrentDonation().getListNominal();
+                for(int ii = 0; ii<temp.size(); ii++)
+                {
+                    String nomorTujuan = Operator.getDestinationNumber(parent);
+                    int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
+                    String nominal = "" + Operator.getTotalDonasi(temp.get(ii), parent.getApplicationContext());
+                    String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan, nominal);
+                    String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
+                    smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+                }
             }
+
         }
     }
 

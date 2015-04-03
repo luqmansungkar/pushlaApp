@@ -11,6 +11,8 @@ import org.pushla.model.Donation;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by anjar on 01/03/15.
@@ -19,6 +21,7 @@ public class ResourceManager {
     private static final String PREFS = "pref";
     private static final String KEY_LIST_GAMBAR = "list gambar";
     private static Donation currentDonation;
+    private static Map<String, String> hashNamaProyek;
     public static void saveGambar(String namaFile, Bitmap gambar, Activity activity, boolean delete)
     {
         if(isSaved(namaFile, activity) || gambar == null) return;
@@ -97,7 +100,7 @@ public class ResourceManager {
 
     public static String getEmail()
     {
-        return "ginanjar.ibnu@gmail.com";
+        return "ginanjar.ibnu";
     }
 
     public static void setCurrentDonation(String id, int target, int sisaWaktu,
@@ -111,7 +114,23 @@ public class ResourceManager {
         currentDonation.setGambar(gambar);
     }
 
+    public static void setCurrentNominalDonation(int nominal)
+    {
+        currentDonation.setListNominal(nominal);
+    }
     public static Donation getCurrentDonation() {
         return currentDonation;
+    }
+
+    public static void addNamaProyek(String id, String nama)
+    {
+        if(hashNamaProyek == null) hashNamaProyek = new HashMap<>();
+        hashNamaProyek.put(id, nama);
+    }
+
+    public static String getNamaProyek(String id)
+    {
+        if(hashNamaProyek == null) return null;
+        return hashNamaProyek.get(id);
     }
 }

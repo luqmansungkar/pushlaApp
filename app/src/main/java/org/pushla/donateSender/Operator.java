@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 
 import org.pushla.model.Donation;
+import org.pushla.tes.tespushla.ResourceManager;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,10 @@ public class Operator {
 
     public static String getSMSContent(int operatorCode, String nomorTujuan, String nominal)
     {
+        if(ResourceManager.getCurrentDonation().isXl())
+        {
+            return "DD";
+        }
         String result = "";
         if(operatorCode == Operator.INDOSAT)
         {
@@ -56,8 +61,12 @@ public class Operator {
         return result;
     }
 
-    public static String getOperatorNumber(int operatorCode, String destNumber)
+    public static String getOperatorNumber(int operatorCode, String destNumber, String nominal)
     {
+        if(ResourceManager.getCurrentDonation().isXl())
+        {
+            return nominal;
+        }
         String result = "";
         if(operatorCode == Operator.INDOSAT)
         {
@@ -153,6 +162,10 @@ public class Operator {
 
     public static int getTotalDonasi(int harga, Context context)
     {
+        if(ResourceManager.getCurrentDonation().isXl())
+        {
+            return harga;
+        }
         int operator = Operator.getDeviceOperator(context);
         if(operator == Operator.XL)
         {

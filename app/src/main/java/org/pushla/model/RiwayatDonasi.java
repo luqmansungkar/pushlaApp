@@ -1,20 +1,23 @@
 package org.pushla.model;
 
+import org.pushla.tes.tespushla.ResourceManager;
+
 /**
  * Created by Anjar_Ibnu on 31/03/2015.
  */
 public class RiwayatDonasi {
-    private String judul, waktu, harga;
+    private String judul, waktu;
+    private int harga;
 
     public RiwayatDonasi(){}
-    public RiwayatDonasi(String judul, String waktu, String harga)
+    public RiwayatDonasi(String id, String waktu, int harga)
     {
         this.harga = harga;
-        this.judul = judul;
+        this.judul = ResourceManager.getNamaProyek(id);
         this.waktu = waktu;
     }
 
-    public String getHarga() {
+    public int getHarga() {
         return harga;
     }
 
@@ -26,7 +29,7 @@ public class RiwayatDonasi {
         return waktu;
     }
 
-    public void setHarga(String harga) {
+    public void setHarga(int harga) {
         this.harga = harga;
     }
 
