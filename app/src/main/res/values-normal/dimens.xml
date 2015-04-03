@@ -42,4 +42,5 @@
     <dimen name="heroHeight">300dp</dimen>
     <dimen name="heroButtonHeight">160dp</dimen>
     <dimen name="tinggiKeterangan">70dp</dimen>
+    <dimen name="width_cs">120dp</dimen>
 </resources>
