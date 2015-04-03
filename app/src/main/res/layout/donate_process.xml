@@ -2,57 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/heroButtonHeight"
+    android:layout_height="wrap_content"
     android:background="#ffffff"
     >
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="@dimen/width_cs"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_weight="2.7">
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="5"/>
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:src="@drawable/customer_service"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitEnd" />
     </LinearLayout>
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3.7"/>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginBottom="@dimen/marginTop">
+        android:layout_marginBottom="@dimen/marginTop"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1.7">
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="Mohon tunggu"
                 android:textSize="@dimen/txt_size_normal2"
                 android:textColor="@color/cool_black"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 />
             <ProgressBar
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="visible" />
         </LinearLayout>
 
@@ -76,7 +67,7 @@
                 android:id="@+id/wait_tengah"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Proses ini dapat berlangsung"
+                android:text="Proses ini dapat berlangsung hingga 10 (sepuluh) detik."
                 android:textSize="@dimen/txt_size_little2"
                 android:textColor="@color/cool_black"
                 android:layout_weight="1"
@@ -86,7 +77,7 @@
 
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="hingga 10 (sepuluh) detik."
+                android:text=""
                 android:textSize="@dimen/txt_size_little2"
                 android:textColor="@color/cool_black"
                 android:layout_weight="1"
@@ -94,11 +85,5 @@
                 />
         </RelativeLayout>
     </LinearLayout>
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3.7"/>
-
-
 
 </LinearLayout>
