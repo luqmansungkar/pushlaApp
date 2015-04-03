@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/heroButtonHeight"
     android:background="#ffffff"
-    android:layout_paddingTop="@dimen/marginTop"
-    android:layout_paddingBottom="@dimen/marginTop"
+    android:paddingTop="@dimen/marginTop"
+    android:paddingBottom="@dimen/marginTop"
     android:paddingLeft="@dimen/paddingLeft"
     android:paddingRight="@dimen/paddingRight"
     >
