@@ -6,3 +6,7 @@
 pushlaApp.iml
 /app/app.iml
 app/app.iml
+/.idea/
+local.properties
+/gradle/local.properties
+/gradle/gradle.iml
