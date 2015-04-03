@@ -29,7 +29,7 @@
                 android:ellipsize="marquee"
                 android:singleLine="true"
                 android:text="Description"
-                android:textSize="@dimen/txt_size_normal2"
+                android:textSize="@dimen/txt_size_little"
                 android:layout_weight="1"
                 android:textColor="#000000" />
 
@@ -42,7 +42,7 @@
                 android:layout_alignWithParentIfMissing="true"
                 android:gravity="center_vertical"
                 android:text="12 Maret 2015 15:00"
-                android:textSize="@dimen/txt_size_normal2"
+                android:textSize="@dimen/txt_size_little"
                 android:layout_marginTop="-10dp"
                 android:layout_weight="1"/>
 
@@ -63,7 +63,7 @@
                 android:layout_alignWithParentIfMissing="true"
                 android:gravity="center|right"
                 android:text="Rp 5000"
-                android:textSize="@dimen/txt_size_normal2"
+                android:textSize="@dimen/txt_size_little"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:paddingBottom="10dp" />

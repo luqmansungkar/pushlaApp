@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/heroButtonHeight"
     android:background="#ffffff"
+    android:layout_paddingTop="@dimen/marginTop"
+    android:layout_paddingBottom="@dimen/marginTop"
+    android:paddingLeft="@dimen/paddingLeft"
+    android:paddingRight="@dimen/paddingRight"
     >
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="4"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginBottom="@dimen/marginTop">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -49,12 +42,6 @@
             android:layout_weight="1"
             android:layout_marginTop="10dp"
             />
-
-    </LinearLayout>
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="4"/>
 
 
 
