@@ -18,19 +18,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8fa2d7e-1d02-4b42-b633-7295238239f9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/util/Converter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/Donation.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/Donation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/FragmentRiwayat.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/FragmentRiwayat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/donateSender/Operator.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/donateSender/Operator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ProyekAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ProyekAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ResourceManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ResourceManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatDonasi.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatDonasi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/SplashScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/SplashScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/riwayat_donasi.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/riwayat_donasi.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pushlaApp copy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,27 +100,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.83002836" vertical-offset="36605" max-vertical-offset="36958">
-              <caret line="2136" column="61" selection-start-line="2136" selection-start-column="61" selection-end-line="2136" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="37744" max-vertical-offset="38097">
+              <caret line="2208" column="12" selection-start-line="2208" selection-start-column="12" selection-end-line="2208" selection-end-column="12" />
               <folding>
-                <marker date="1428068093780" expanded="true" signature="146431:146494" placeholder="..." />
-                <marker date="1428068093780" expanded="true" signature="146431:146479" placeholder="..." />
-                <marker date="1428068093780" expanded="true" signature="146431:146466" placeholder="..." />
-                <marker date="1428068093780" expanded="true" signature="146431:146448" placeholder="..." />
+                <marker date="1428071435610" expanded="true" signature="148748:148811" placeholder="..." />
+                <marker date="1428071435610" expanded="true" signature="148748:148796" placeholder="..." />
+                <marker date="1428071435610" expanded="true" signature="148748:148783" placeholder="..." />
+                <marker date="1428071435610" expanded="true" signature="148748:148765" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiwayatDonasi.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatDonasi.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="629">
-              <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2818" max-vertical-offset="5236">
+              <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
+              <folding>
+                <element signature="e#8730#9693#0" expanded="true" />
+                <element signature="e#9662#9663#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="donate.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.4074073" vertical-offset="2921" max-vertical-offset="5083">
+              <caret line="182" column="32" selection-start-line="182" selection-start-column="32" selection-end-line="182" selection-end-column="32" />
+              <folding>
+                <element signature="e#1072#1099#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Donate.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8611898" vertical-offset="1464" max-vertical-offset="8262">
+              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,26 +164,6 @@
                 <element signature="e#3394#3395#0" expanded="true" />
                 <element signature="e#3432#3433#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SplashScreen.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/SplashScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="3672">
-              <caret line="116" column="14" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ServiceHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1621,7 +1622,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatDonasi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/util/Converter.java" />
@@ -1631,6 +1631,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/model/RiwayatAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/riwayat_donasi.xml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/donate.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java" />
       </list>
     </option>
   </component>
@@ -1654,7 +1657,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="AndroidView" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -1718,6 +1721,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pushlaApp copy" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1816,6 +1841,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="pushla" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pushlaApp copy" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2059,16 +2094,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.60714287" vertical-offset="3876" max-vertical-offset="8211">
-          <caret line="231" column="9" selection-start-line="231" selection-start-column="9" selection-end-line="231" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/ServiceHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
@@ -2152,13 +2177,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.83002836" vertical-offset="36605" max-vertical-offset="36958">
-          <caret line="2136" column="61" selection-start-line="2136" selection-start-column="61" selection-end-line="2136" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="37744" max-vertical-offset="38097">
+          <caret line="2208" column="12" selection-start-line="2208" selection-start-column="12" selection-end-line="2208" selection-end-column="12" />
           <folding>
-            <marker date="1428068093780" expanded="true" signature="146431:146494" placeholder="..." />
-            <marker date="1428068093780" expanded="true" signature="146431:146479" placeholder="..." />
-            <marker date="1428068093780" expanded="true" signature="146431:146466" placeholder="..." />
-            <marker date="1428068093780" expanded="true" signature="146431:146448" placeholder="..." />
+            <marker date="1428071435610" expanded="true" signature="148748:148811" placeholder="..." />
+            <marker date="1428071435610" expanded="true" signature="148748:148796" placeholder="..." />
+            <marker date="1428071435610" expanded="true" signature="148748:148783" placeholder="..." />
+            <marker date="1428071435610" expanded="true" signature="148748:148765" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar!/android/support/v7/app/ActionBarDrawerToggle.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3567073" vertical-offset="325" max-vertical-offset="2652">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2818" max-vertical-offset="5236">
+          <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
+          <folding>
+            <element signature="e#8730#9693#0" expanded="true" />
+            <element signature="e#9662#9663#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/donate.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.4074073" vertical-offset="2921" max-vertical-offset="5083">
+          <caret line="182" column="32" selection-start-line="182" selection-start-column="32" selection-end-line="182" selection-end-column="32" />
+          <folding>
+            <element signature="e#1072#1099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/pushla/tes/tespushla/Donate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8611898" vertical-offset="1464" max-vertical-offset="8262">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

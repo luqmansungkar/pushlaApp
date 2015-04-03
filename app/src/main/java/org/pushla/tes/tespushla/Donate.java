@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -49,7 +50,8 @@ public class Donate extends ActionBarActivity{
 
     private HashMap<Integer, Integer> mapId;
 
-    private TextView txtJudul, txtAuthor, txtPendukung, txtTerkumpul, txtTarget, txtSisaWaktu, txtDeskripsi;
+    private TextView txtJudul, txtAuthor, txtPendukung, txtTerkumpul, txtTarget, txtSisaWaktu;
+    private WebView txtDeskripsi;
 
     private boolean buttonPushActive = false;
     final Context context = this;
@@ -79,7 +81,7 @@ public class Donate extends ActionBarActivity{
         this.txtTerkumpul =(TextView)findViewById(R.id.from);
         this.txtTarget = (TextView)findViewById(R.id.total);
         this.txtSisaWaktu = (TextView)findViewById(R.id.sisaWaktu);
-        this.txtDeskripsi = (TextView) findViewById(R.id.deskripsi);
+        this.txtDeskripsi = (WebView) findViewById(R.id.deskripsi);
 
         Donation curDonation = ResourceManager.getCurrentDonation();
         txtJudul.setText(curDonation.getNamaProyek());
@@ -89,7 +91,8 @@ public class Donate extends ActionBarActivity{
         this.txtTarget.setText("dari "+curDonation.getTarget());
         this.txtSisaWaktu.setText(""+curDonation.getSisaWaktu());
         System.out.println("Deskripsi " + curDonation.getDeskripsi());
-        this.txtDeskripsi.setText(Html.fromHtml(curDonation.getDeskripsi(), new URLImageParser(txtDeskripsi, this), null));
+//        this.txtDeskripsi.setText(Html.fromHtml(curDonation.getDeskripsi(), new URLImageParser(txtDeskripsi, this), null));
+        this.txtDeskripsi.loadData(curDonation.getDeskripsi(), "text/html; charset=UTF-8", null);
 //        this.gambar = ResourceManager.getGambar(judul, this);
         Bitmap gambar = curDonation.getGambar();
 //        System.out.println("gambar = " + gambar);
