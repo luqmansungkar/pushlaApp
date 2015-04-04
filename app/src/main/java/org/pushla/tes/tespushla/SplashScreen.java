@@ -222,7 +222,7 @@ public class SplashScreen extends ActionBarActivity {
                 SplashScreen.this.finish();
                 SplashScreen.this.startActivity(mainIntent);
             }else {
-                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
 //                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
                 System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
                 SplashScreen.this.finish();
