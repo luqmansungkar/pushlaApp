@@ -133,7 +133,6 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -240,9 +239,6 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
             case 2: // Cari Ulasan
                 fragment = new FragmentRiwayat();
                 break;
-//            case 3: // Ulasan Favorit
-//                fragment = new UlasanFavoritFragment();
-//                break;
             case 3: // Bantuan
                 if (mGoogleApiClient.isConnected()){
                     pDialog = new ProgressDialog(MainActivity.this);
@@ -278,6 +274,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
+
             drawerLayout.closeDrawer(mDrawerList);
         }
     }
