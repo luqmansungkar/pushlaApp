@@ -21,6 +21,6 @@
 
         android:text="Riwayat Donasi"
         android:textSize="@dimen/txt_size_little2"
-        android:textColor="@color/cool_black"
+        android:textColor="#000000"
         android:gravity="center_vertical" />
 </LinearLayout>
