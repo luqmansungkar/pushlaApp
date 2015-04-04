@@ -1,9 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity"
     android:background="@color/bg_blue"
     >
@@ -11,64 +9,86 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:layout_weight="9"
-        android:layout_gravity="center_horizontal">
+        android:orientation="vertical">
+
         <Space
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="4"/>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/login_text"
+            android:layout_weight="2.5"
+            android:scaleType="fitStart"
+            android:paddingLeft="@dimen/paddingLeft"/>
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4"
+            android:background="#ffffff"/>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
-            <TextView
+            android:layout_weight="4"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/paddingLeft"
+            android:paddingRight="@dimen/paddingRight"
+            android:background="#ffffff">
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btn_sign_in"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Start"
-                android:textSize="@dimen/txt_login"
-                android:textColor="#ffffff"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Donate"
-                android:textSize="@dimen/txt_login"
-                android:textColor="#ffffff"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Today"
-                android:textSize="@dimen/txt_login"
-                android:textColor="#ffffff"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="with Pushla"
-                android:textSize="@dimen/txt_login2"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffff"/>
+                />
         </LinearLayout>
-        <Space
+        <View
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="4"/>
+            android:layout_weight="4"
+            android:background="#ffffff"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/btn_sign_in"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-    <Space
-        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="80"/>
+        android:orientation="vertical">
 
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.6"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.65"/>
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/oval"
+                android:layout_weight="1"/>
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.65"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"/>
+        </LinearLayout>
+
+</FrameLayout>
