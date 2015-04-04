@@ -5,6 +5,7 @@
     <color name="bg_blue">#00B9E6</color>
     <color name="bit_black">#666666</color>
     <color name="cool_black">#4a4a4a</color>
+    <color name="select">#EDEDED</color>
 
     <color name="img_overlay">#73636363</color>
     <color name="don_overlay">#ffffff</color>
