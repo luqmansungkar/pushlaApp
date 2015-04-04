@@ -49,7 +49,7 @@ public class FragmentRiwayat extends Fragment {
         ra = new RiwayatAdapter(listDonasi);
         rv.setAdapter(ra);
 
-        new GetRiwayatDonasi(ResourceManager.getEmail()).execute();
+        new GetRiwayatDonasi(ResourceManager.getEmail(rv.getContext())).execute();
 
         return rootView;
     }

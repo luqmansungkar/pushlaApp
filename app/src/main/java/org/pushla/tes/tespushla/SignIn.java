@@ -60,7 +60,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
 
-        //btnSignIn.setColorScheme(SignInButton.COLOR_LIGHT);
+        btnSignIn.setColorScheme(SignInButton.COLOR_LIGHT);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,16 +26,16 @@ public class Operator {
     public static final String STORED_OPERATOR_NAME = "OPERATOR_NAME";
     public static final String STORED_USER_NAME = "STORED_USER_NAME";
     public static final String STORED_PASSWORD = "STORED_PASSWORD";
-    public static ArrayList<Integer> listOperatorNumber;
+    public static ArrayList<String> listOperatorNumber;
 
     public static void init()
     {
         if(listOperatorNumber == null)
         {
             listOperatorNumber = new ArrayList<>();
-            listOperatorNumber.add(Operator.INDOSAT_NUMBER);
-            listOperatorNumber.add(Operator.XL_NUMBER);
-            listOperatorNumber.add(Operator.TELKOMSEL_NUMBER);
+            listOperatorNumber.add(""+Operator.INDOSAT_NUMBER);
+            listOperatorNumber.add(""+Operator.XL_NUMBER);
+            listOperatorNumber.add(""+Operator.TELKOMSEL_NUMBER);
         }
     }
 
@@ -93,7 +93,7 @@ public class Operator {
         {
             return Operator.INDOSAT;
         }
-        else if(operatorName.equalsIgnoreCase("XL"))
+        else if(operatorName.toLowerCase().contains("xl"))
         {
             return Operator.XL;
         }

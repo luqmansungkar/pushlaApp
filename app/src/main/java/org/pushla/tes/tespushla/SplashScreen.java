@@ -154,6 +154,16 @@ public class SplashScreen extends ActionBarActivity {
                         else
                             tempProyek.setTarget(0);
 
+                        String pendukung = p.getString("pendukung");
+                        try
+                        {
+                            tempProyek.setPendukung(Integer.parseInt(pendukung));
+                        }
+                        catch(NumberFormatException e)
+                        {
+                            tempProyek.setTerkumpul(-1);
+                        }
+
                         tempProyek.setUrlGambar(p.getString("linkGambarHeader"));
 
                         listJudul =  listJudul + p.getString("judul").trim() + ",";
@@ -222,9 +232,10 @@ public class SplashScreen extends ActionBarActivity {
                 SplashScreen.this.finish();
                 SplashScreen.this.startActivity(mainIntent);
             }else {
-                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
-//                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
-                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+//                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
+                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
+                System.out.println("Banyaknya" +
+                        " proyek = " + SplashScreen.listProyek.size());
                 SplashScreen.this.finish();
                 SplashScreen.this.startActivity(mainIntent);
             }

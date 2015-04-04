@@ -126,12 +126,12 @@ public class SMSListener extends BroadcastReceiver {
         Toast.makeText(context, "Transfer berhasil :)",
                 Toast.LENGTH_LONG).show();
         //coba2 kirim report ke server
-        sendResponse(ResourceManager.getCurrentDonation());
+        sendResponse(ResourceManager.getCurrentDonation(), context);
     }
 
-    private void sendResponse(Donation d)
+    private void sendResponse(Donation d, Context context)
     {
-        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(), ""+d.getNominal(), d.getId());
+        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), ""+d.getNominal(), d.getId());
         reportSender.execute();
     }
 

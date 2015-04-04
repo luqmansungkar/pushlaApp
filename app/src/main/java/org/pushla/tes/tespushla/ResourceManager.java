@@ -22,6 +22,7 @@ public class ResourceManager {
     private static final String KEY_LIST_GAMBAR = "list gambar";
     private static Donation currentDonation;
     private static Map<String, String> hashNamaProyek;
+    public static final String PREFS_LOGIN = "prefs";
     public static void saveGambar(String namaFile, Bitmap gambar, Activity activity, boolean delete)
     {
         if(isSaved(namaFile, activity) || gambar == null) return;
@@ -98,9 +99,11 @@ public class ResourceManager {
         editor.commit();
     }
 
-    public static String getEmail()
+    public static String getEmail(Context context)
     {
-        return "ginanjar.ibnu";
+//        return "ginanjar.ibnu";
+        SharedPreferences sp = context.getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
+        return sp.getString("email","-1");
     }
 
     public static void setCurrentDonation(String id, int target, int sisaWaktu,

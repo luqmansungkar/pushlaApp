@@ -16,6 +16,7 @@ public class Proyek {
     private Bitmap gambar;
     private String id;
     private String deskripsi;
+    private int pendukung;
     public Proyek()
     {
 
@@ -99,5 +100,13 @@ public class Proyek {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public void setPendukung(int pendukung) {
+        this.pendukung = pendukung;
+    }
+
+    public int getPendukung() {
+        return pendukung;
     }
 }
