@@ -76,7 +76,7 @@ public class FragmentRiwayat extends Fragment {
 
     public void setTotalDonasi(ArrayList listRiwayat)
     {
-        this.totalDonasi.setText(""+getTotalDonasi(listRiwayat));
+        this.totalDonasi.setText("Rp "+ Converter.getNominal(getTotalDonasi(listRiwayat)));
     }
 
     private int getTotalDonasi (ArrayList<RiwayatDonasi> r)
