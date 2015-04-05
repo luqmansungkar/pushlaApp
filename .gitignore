@@ -10,3 +10,4 @@ app/app.iml
 local.properties
 /gradle/local.properties
 /gradle/gradle.iml
+/build/intermediates/model_data.bin
