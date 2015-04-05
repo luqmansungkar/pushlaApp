@@ -1,6 +1,7 @@
 package org.pushla.tes.tespushla;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -26,52 +29,83 @@ import java.util.ArrayList;
 public class FragmentRiwayat extends Fragment {
     public RecyclerView rv;
     public RiwayatAdapter ra;
-    ArrayList<RiwayatDonasi> listDonasi = new ArrayList<>();
+    static ArrayList<RiwayatDonasi> listDonasi = null;
     private TextView totalDonasi;
+    FragmentManager fragmentManager = null;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.riwayat_donasi, container, false);
-        rv = (RecyclerView) rootView.findViewById(R.id.riwayat_list);
-        rv.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(container.getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        rv.setLayoutManager(llm);
-        totalDonasi = (TextView)rootView.findViewById(R.id.total_donasi);
+        if(fragmentManager == null)fragmentManager = getFragmentManager();
+        if(listDonasi == null)
+        {
+            final View rootView = inflater.inflate(R.layout.riwayat_loading, container, false);
+            new GetRiwayatDonasi(ResourceManager.getEmail(rootView.getContext())).execute();
+            return rootView;
+        }
+        else if(listDonasi.isEmpty())
+        {
+            final View rootView = inflater.inflate(R.layout.no_riwayat, container, false);
+            Button search_donation = (Button) rootView.findViewById(R.id.cari_proyek);
+            search_donation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cariProyek();
+                }
+            });
+            listDonasi = null;
+            return rootView;
+        }
+        else
+        {
+            final View rootView = inflater.inflate(R.layout.riwayat_donasi, container, false);
+            rv = (RecyclerView) rootView.findViewById(R.id.riwayat_list);
+            rv.setHasFixedSize(true);
+            LinearLayoutManager llm = new LinearLayoutManager(container.getContext());
+            llm.setOrientation(LinearLayoutManager.VERTICAL);
+            rv.setLayoutManager(llm);
+            totalDonasi = (TextView)rootView.findViewById(R.id.total_donasi);
 
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
-//        listDonasi.add(new RiwayatDonasi("Hihi", "Hihi", 10));
+            setTotalDonasi(listDonasi);
 
-        ra = new RiwayatAdapter(listDonasi);
-        rv.setAdapter(ra);
-
-        new GetRiwayatDonasi(ResourceManager.getEmail(rv.getContext())).execute();
-
-        return rootView;
+            ra = new RiwayatAdapter(listDonasi);
+            rv.setAdapter(ra);
+            listDonasi = null;
+            return rootView;
+        }
     }
 
-    public void setListRiwayat(ArrayList<RiwayatDonasi> riwayatBaru)
+    public void setTotalDonasi(ArrayList listRiwayat)
     {
-        ra = new RiwayatAdapter(riwayatBaru);
-        rv.setAdapter(ra);
+        this.totalDonasi.setText(""+getTotalDonasi(listRiwayat));
     }
 
-    public void setTotalDonasi(String total)
+    private int getTotalDonasi (ArrayList<RiwayatDonasi> r)
     {
-        this.totalDonasi.setText(total);
+        int totalDonasi = 0;
+        for(int ii=0; ii<r.size(); ii++)
+        {
+            totalDonasi += r.get(ii).getHarga();
+        }
+        return totalDonasi;
+    }
+
+    public void reload()
+    {
+        fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentRiwayat()).commit();
+    }
+
+    public void cariProyek()
+    {
+        fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
     }
 
     class GetRiwayatDonasi extends AsyncTask<Void, Void, Void>
     {
         String url = "";
-        ArrayList<RiwayatDonasi> listRiwayat = new ArrayList<>();
 
         public GetRiwayatDonasi(String email)
         {
+            listDonasi = new ArrayList<>();
             url = "http://pushla.org/server/transaksi/gettransaksi/CMUeRSv4TKDFbJhN8VcWRrcfuWYJNJ/" + email;
         }
 
@@ -90,7 +124,8 @@ public class FragmentRiwayat extends Fragment {
                         String waktu = cur.getString("datetime");
                         int harga = cur.getInt("nominal");
                         RiwayatDonasi rd = new RiwayatDonasi(id, waktu, harga);
-                        listRiwayat.add(rd);
+                        if(listDonasi == null ) listDonasi = new ArrayList<>();
+                        listDonasi.add(rd);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -102,18 +137,7 @@ public class FragmentRiwayat extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            setListRiwayat(listRiwayat);
-            setTotalDonasi(Converter.getNominal(getTotalDonasi(listRiwayat)));
-        }
-
-        private int getTotalDonasi (ArrayList<RiwayatDonasi> r)
-        {
-            int totalDonasi = 0;
-            for(int ii=0; ii<r.size(); ii++)
-            {
-                totalDonasi += r.get(ii).getHarga();
-            }
-            return totalDonasi;
+            reload();
         }
     }
 }
