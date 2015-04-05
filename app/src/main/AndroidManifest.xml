@@ -66,11 +66,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <!--<receiver android:name="org.pushla.donateSender.SMSListener" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
 
         <receiver android:name="org.pushla.tes.tespushla.Donate$Listener" >
             <intent-filter>
