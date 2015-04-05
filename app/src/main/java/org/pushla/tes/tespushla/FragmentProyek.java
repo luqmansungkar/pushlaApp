@@ -26,10 +26,12 @@ public class FragmentProyek extends Fragment {
     LayoutInflater inflater;
     ProgressBar pb;
     View rootView;
+    FragmentManager fragmentManager;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflater = inflater;
+        fragmentManager = getFragmentManager();
         if(SplashScreen.listProyek != null && !SplashScreen.listProyek.isEmpty())
         {
             final View rootView = inflater.inflate(R.layout.list_proyek, container, false);
@@ -70,7 +72,6 @@ public class FragmentProyek extends Fragment {
     public void reload()
     {
         pb.setVisibility(View.INVISIBLE);
-        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
     }
 }
