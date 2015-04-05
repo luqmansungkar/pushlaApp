@@ -124,9 +124,10 @@ public class SplashScreen extends ActionBarActivity {
                         tempProyek.setNamaProyek(p.getString("judul").trim());
                         tempProyek.setAuthor(p.getString("namaAuthor").trim());
                         String persen = p.getString("persen").replace("%", "").trim();
-                        if(persen.length()>0)
-                            tempProyek.setPersentase(Integer.parseInt(persen));
-                        else
+                        if(persen.length()>0) {
+                            float temp = Float.parseFloat(persen);
+                            tempProyek.setPersentase(Math.round(temp));
+                        }else
                             tempProyek.setPersentase(0);
                         String sisaWaktu = p.getString("sisaWaktu").trim();
                         if(sisaWaktu.contains("CLOSED") || sisaWaktu.contains("TELAH BERAKHIR"))
