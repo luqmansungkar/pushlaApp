@@ -67,7 +67,7 @@
                 android:id="@+id/wait_tengah"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Proses ini dapat berlangsung hingga 10 (sepuluh) detik."
+                android:text="Proses ini dapat berlangsung hingga 15 (lima belas) detik."
                 android:textSize="@dimen/txt_size_little2"
                 android:textColor="@color/cool_black"
                 android:layout_weight="1"

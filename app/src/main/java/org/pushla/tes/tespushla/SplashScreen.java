@@ -32,7 +32,7 @@ public class SplashScreen extends ActionBarActivity {
     static ArrayList<String> judul;
     static ArrayList<Bitmap> gambar;
 
-    static ArrayList<Proyek> listProyek;
+    public static ArrayList<Proyek> listProyek;
 
     JSONArray proyek = null;
     private SharedPreferences sp;
@@ -50,7 +50,7 @@ public class SplashScreen extends ActionBarActivity {
         String operator = Operator.readOperatorName(this);
         Operator.storeRegistrationData(this, operator);
 
-        new GetProyek(this).execute();
+        new SplashScreen.GetProyek(this).execute();
 //        new Handler().postDelayed(new Runnable(){
 //            @Override
 //            public void run() {
@@ -61,6 +61,7 @@ public class SplashScreen extends ActionBarActivity {
 //            }
 //        }, SPLASH_DISPLAY_LENGTH);
     }
+
 
 
     @Override
@@ -225,20 +226,20 @@ public class SplashScreen extends ActionBarActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             boolean loggedIn = false;
-            sp = getSharedPreferences(SignIn.PREFS, Context.MODE_PRIVATE);
+            sp = activity.getSharedPreferences(SignIn.PREFS, Context.MODE_PRIVATE);
             loggedIn = sp.getBoolean("loggedIn",false);
             if (loggedIn){
-                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent mainIntent = new Intent(activity, MainActivity.class);
                 System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                SplashScreen.this.finish();
-                SplashScreen.this.startActivity(mainIntent);
+                activity.finish();
+                activity.startActivity(mainIntent);
             }else {
-                Intent mainIntent = new Intent(SplashScreen.this, SignIn.class);
+                Intent mainIntent = new Intent(activity, SignIn.class);
 //                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
                 System.out.println("Banyaknya" +
                         " proyek = " + SplashScreen.listProyek.size());
-                SplashScreen.this.finish();
-                SplashScreen.this.startActivity(mainIntent);
+                activity.finish();
+                activity.startActivity(mainIntent);
             }
         }
     }

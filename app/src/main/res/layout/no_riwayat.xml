@@ -6,39 +6,29 @@
     android:paddingLeft="@dimen/paddingLeft"
     android:paddingRight="@dimen/paddingRight"
     android:layout_centerHorizontal="true">
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progress_bar_no_internet"
-        android:layout_gravity="center_horizontal"
-        android:indeterminate="false" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maaf"
+        android:text="Tidak ada riwayat"
         android:textSize="@dimen/txt_title2"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saat ini kamu tidak dapat terhubung ke Pushla. Coba cek koneksi internetmu."
+        android:text="Sepertinya kamu belum pernah berdonasi. Klik tombol di bawah untuk mencari proyek sosial."
         android:textSize="@dimen/txt_size_normal2"
         android:layout_gravity="center"
         android:gravity="center"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coba lagi"
+        android:text="Cari proyek"
         android:textColor="@color/cool_black"
         android:textSize="@dimen/txt_size_little2"
         android:layout_gravity="center_horizontal"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:id="@+id/try_again" />
+        android:paddingRight="30dp"/>
 
 </LinearLayout>

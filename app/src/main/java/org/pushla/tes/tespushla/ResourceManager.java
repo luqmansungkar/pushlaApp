@@ -23,7 +23,7 @@ public class ResourceManager {
     private static Donation currentDonation;
     private static Map<String, String> hashNamaProyek;
     public static final String PREFS_LOGIN = "prefs";
-    public static void saveGambar(String namaFile, Bitmap gambar, Activity activity, boolean delete)
+    public static void saveGambar(String namaFile, Bitmap gambar, Context activity, boolean delete)
     {
         if(isSaved(namaFile, activity) || gambar == null) return;
         try {
@@ -45,7 +45,7 @@ public class ResourceManager {
         }
     }
 
-    public static Bitmap getGambar(String namaFile, Activity activity)
+    public static Bitmap getGambar(String namaFile, Context activity)
     {
         System.out.println("Membaca gambar <" + namaFile + ">");
         if(!isSaved(namaFile, activity)) {
@@ -64,14 +64,14 @@ public class ResourceManager {
         return bmp;
     }
 
-    private static boolean isSaved(String namaFile, Activity activity)
+    private static boolean isSaved(String namaFile, Context activity)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         boolean saved = sharedPref.getBoolean(namaFile, false);
         return saved;
     }
 
-    private static void setSaved(String namaFile, Activity activity)
+    private static void setSaved(String namaFile, Context activity)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -79,7 +79,7 @@ public class ResourceManager {
         editor.commit();
     }
 
-    public static ArrayList<String> getListGambar(Activity activity)
+    public static ArrayList<String> getListGambar(Context activity)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         String listGambar = sharedPref.getString(KEY_LIST_GAMBAR, "");
@@ -91,7 +91,7 @@ public class ResourceManager {
         return hasil;
     }
 
-    public static void setListGambar(Activity activity, String listGambar)
+    public static void setListGambar(Context activity, String listGambar)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
