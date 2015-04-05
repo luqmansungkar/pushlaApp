@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Created by Luqman on 29/03/2015.
  */
-public class SignIn extends Activity implements ConnectionCallbacks, OnConnectionFailedListener{
+public class SignIn extends Activity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<People.LoadPeopleResult>{
 
     private static final int RC_SIGN_IN = 0;
     String nama,email,usernme;
@@ -125,10 +125,16 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     public void onConnected(Bundle bundle) {
         Log.d("debug: ","on Connected");
         mSignInClicked = false;
+        Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
         Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
 
-        getProfileInformation();
-        new addUser().execute();
+        if (mGoogleApiClient.isConnected()) {
+            Log.d("debug: ","on Connected masuk if");
+            getProfileInformation();
+            new addUser().execute();
+        }else{
+            Toast.makeText(SignIn.this,"Gagal sign in",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -179,6 +185,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     private void getProfileInformation(){
         try {
             if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null){
+            //if(true){
                 Person currentPerson = Plus.PeopleApi
                         .getCurrentPerson(mGoogleApiClient);
                 nama = currentPerson.getDisplayName();
@@ -192,6 +199,11 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onResult(People.LoadPeopleResult loadPeopleResult) {
+
     }
 
     private class addUser extends AsyncTask<Void, Void, Void> {
