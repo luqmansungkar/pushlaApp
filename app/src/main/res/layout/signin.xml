@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/login_text"
                 android:paddingLeft="@dimen/paddingLeft"
-                android:layout_gravity="center_verticalg"/>
+                android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
         <Space
