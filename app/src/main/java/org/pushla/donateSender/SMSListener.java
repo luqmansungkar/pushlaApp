@@ -21,6 +21,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.pushla.model.Donation;
+import org.pushla.tes.tespushla.Donate;
 import org.pushla.tes.tespushla.R;
 import org.pushla.tes.tespushla.ResourceManager;
 import org.pushla.util.ReportSender;
@@ -131,7 +132,8 @@ public class SMSListener extends BroadcastReceiver {
 
     private void sendResponse(Donation d, Context context)
     {
-        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), ""+d.getNominal(), d.getId());
+        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), ""+d.getNominal(), d.getId(),
+                context);
         reportSender.execute();
     }
 

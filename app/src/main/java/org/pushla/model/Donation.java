@@ -133,7 +133,7 @@ public class Donation extends Proyek{
     private void showFailedDialog(Donate donate)
     {
         if(isRunning)
-        donate.showFailedMessage();
+        donate.showFailedMessage(true);
     }
 
     public void stopTimer()

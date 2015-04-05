@@ -6,6 +6,15 @@
     android:paddingLeft="@dimen/paddingLeft"
     android:paddingRight="@dimen/paddingRight"
     android:layout_centerHorizontal="true">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_no_internet"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="false" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,6 +38,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"/>
+        android:paddingRight="30dp"
+        android:id="@+id/try_again" />
 
 </LinearLayout>

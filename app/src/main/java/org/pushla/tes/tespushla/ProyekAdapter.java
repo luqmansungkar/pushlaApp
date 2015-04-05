@@ -79,6 +79,7 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
                         temp.getNamaProyek(), temp.getDeskripsi(), temp.getGambar());
                 ResourceManager.getCurrentDonation().setAuthor(temp.getAuthor());
                 ResourceManager.getCurrentDonation().setPendukung(temp.getPendukung());
+                ResourceManager.getCurrentDonation().setTerkumpul(temp.getTerkumpul());
                 v.getContext().startActivity(intent);
             }
         });

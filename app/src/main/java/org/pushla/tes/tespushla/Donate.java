@@ -86,8 +86,8 @@ public class Donate extends ActionBarActivity{
         txtJudul.setText(curDonation.getNamaProyek());
         txtAuthor.setText("oleh " + curDonation.getAuthor());
         this.txtPendukung.setText(""+curDonation.getPendukung());
-        this.txtTerkumpul.setText(""+curDonation.getTerkumpul());
-        this.txtTarget.setText("dari "+curDonation.getTarget());
+        this.txtTerkumpul.setText("Rp " + Converter.getNominal(curDonation.getTerkumpul()));
+        this.txtTarget.setText("dari Rp "+Converter.getNominal(curDonation.getTarget()));
         this.txtSisaWaktu.setText(""+curDonation.getSisaWaktu());
         System.out.println("Deskripsi " + curDonation.getDeskripsi());
 //        this.txtDeskripsi.setText(Html.fromHtml(curDonation.getDeskripsi(), new URLImageParser(txtDeskripsi, this), null));
@@ -187,7 +187,7 @@ public class Donate extends ActionBarActivity{
 //        super.onBackPressed();
 //    }
 
-    public void showFailedMessage()
+    public void showFailedMessage(boolean isTimeOut)
     {
 //            donate.onCreate(donateBundle);
         ResourceManager.getCurrentDonation().stopTimer();
@@ -195,7 +195,14 @@ public class Donate extends ActionBarActivity{
         if(dialogLoading != null) dialogLoading.dismiss();
         dialogGagal = new Dialog(donate);
         dialogGagal.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogGagal.setContentView(R.layout.donate_failed);
+        if(isTimeOut)
+        {
+            dialogGagal.setContentView(R.layout.donate_time_out);
+        }
+        else
+        {
+            dialogGagal.setContentView(R.layout.donate_failed);
+        }
 //            dialog.setTitle("Pilih jumlah donasi");
         dialogGagal.show();
     }
@@ -359,7 +366,7 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-                ResourceManager.getCurrentDonation().startTimer(10000, donate);
+                ResourceManager.getCurrentDonation().startTimer(15000, donate);
 
 
                 dialogLoading = new Dialog(context);
@@ -426,7 +433,7 @@ public class Donate extends ActionBarActivity{
             if(body.toLowerCase().contains("maaf"))
             {
                 System.out.println("Harusnya gagal nih");
-                donate.showFailedMessage();
+                donate.showFailedMessage(false);
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
                 return;
             }
@@ -495,7 +502,8 @@ public class Donate extends ActionBarActivity{
 
         private void sendResponse(Donation d, Context context)
         {
-            ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), d.getNominal()+"", d.getId());
+            ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), d.getNominal()+"",
+                    d.getId(), donate);
             reportSender.execute();
         }
 
@@ -531,6 +539,8 @@ public class Donate extends ActionBarActivity{
             //coba2 kirim report ke server
             sendResponse(ResourceManager.getCurrentDonation(), donate);
             ResourceManager.getCurrentDonation().stopTimer();
+            if(dialogGagal != null && dialogGagal.isShowing()) dialogGagal.dismiss();
+            if(dialogLoading != null) dialogLoading.dismiss();
             donate.setContentView(R.layout.donate_success);
             TextView potongan = (TextView) donate.findViewById(R.id.potongan_pulsa);
             TextView namaProyek = (TextView) donate.findViewById(R.id.nama_proyek);
