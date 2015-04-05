@@ -34,7 +34,7 @@ public class RiwayatAdapter extends RecyclerView.Adapter<RiwayatAdapter.RiwayatV
         System.out.println("harga = " + holder.harga);
         System.out.println("list = " + listRiwayatDonasi);
         System.out.println("current = " + listRiwayatDonasi.get(position));
-        holder.harga.setText(Converter.getNominal(listRiwayatDonasi.get(position).getHarga()));
+        holder.harga.setText("Rp " + Converter.getNominal(listRiwayatDonasi.get(position).getHarga()));
         holder.judul.setText(listRiwayatDonasi.get(position).getJudul());
         holder.waktu.setText(listRiwayatDonasi.get(position).getWaktu());
     }

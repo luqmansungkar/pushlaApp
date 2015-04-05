@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -245,6 +246,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                     pDialog.setMessage("Logging out..");
                     pDialog.setCancelable(false);
                     pDialog.show();
+                    timerDelayRemoveDialog(10000,pDialog);
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                     Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
                             .setResultCallback(new ResultCallback<Status>() {
@@ -263,7 +265,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                             });
                 }else{
                     Log.d("debug: ","konek : "+mGoogleApiClient.isConnected());
-                    Toast.makeText(this,"Tidak bisa Log Out, internet bermasalah..",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Tidak bisa Log Out, periksa koneksi internet anda",Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -277,6 +279,14 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
             drawerLayout.closeDrawer(mDrawerList);
         }
+    }
+    public void timerDelayRemoveDialog(long time, final ProgressDialog d){
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                d.dismiss();
+                Toast.makeText(MainActivity.this,"Tidak bisa Log Out, periksa koneksi internet anda",Toast.LENGTH_SHORT).show();
+            }
+        }, time);
     }
 
     @Override
