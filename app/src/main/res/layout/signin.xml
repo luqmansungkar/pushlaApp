@@ -6,19 +6,12 @@
     android:background="@color/bg_blue"
     >
 
-    <LinearLayout
+
+    <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:src="@drawable/login_background"
-            android:scaleType="centerCrop" />
-
-
-    </LinearLayout>
+        android:src="@drawable/login_background"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="fill_parent"
