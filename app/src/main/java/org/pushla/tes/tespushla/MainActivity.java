@@ -69,10 +69,6 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
-    public RecyclerView rv;
-    public ProyekAdapter pa;
-
-    private static String url = "http://pushla.org/server/project/getallproyek";
     private ProgressDialog pDialog;
     private GoogleApiClient mGoogleApiClient;
     private SharedPreferences sp;
@@ -89,34 +85,31 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
         initMenu();
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-
         initDrawer();
-
-//        rv = (RecyclerView) findViewById(R.id.proyek_list);
-//        rv.setHasFixedSize(true);
-//        LinearLayoutManager llm = new LinearLayoutManager(this);
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        rv.setLayoutManager(llm);
-//
-//        pa = new ProyekAdapter(SplashScreen.listProyek);
-//        rv.setAdapter(pa);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            setTitle(navMenuTitles[1]);
+        }
+
         //default display
         displayView(1);
+    }
+
+    private void setTitle(String newTitle)
+    {
+        if(toolbar != null)
+        toolbar.setTitle(newTitle);
     }
 
 
@@ -222,6 +215,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            if(position ==0) return;
             displayView(position);
         }
     }
@@ -236,9 +230,11 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 //                break;
             case 1: // Home
                 fragment = new FragmentProyek();
+                setTitle(navMenuTitles[1]);
                 break;
             case 2: // Cari Ulasan
                 fragment = new FragmentRiwayat();
+                setTitle(navMenuTitles[2]);
                 break;
             case 3: // Bantuan
                 if (mGoogleApiClient.isConnected()){
@@ -279,6 +275,15 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
             drawerLayout.closeDrawer(mDrawerList);
         }
+    }
+
+    public void changeMenuToListProyek()
+    {
+        mDrawerList.setItemChecked(1, true);
+        mDrawerList.setSelection(1);
+
+        drawerLayout.closeDrawer(mDrawerList);
+        setTitle(navMenuTitles[1]);
     }
     public void timerDelayRemoveDialog(long time, final ProgressDialog d){
         new Handler().postDelayed(new Runnable() {
