@@ -2,8 +2,10 @@ package org.pushla.tes.tespushla;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,16 +29,43 @@ import java.util.ArrayList;
  * Created by Anjar_Ibnu on 31/03/2015.
  */
 public class FragmentRiwayat extends Fragment {
+    static boolean isConnected = true;
     public RecyclerView rv;
     public RiwayatAdapter ra;
     static ArrayList<RiwayatDonasi> listDonasi = null;
     private TextView totalDonasi;
     FragmentManager fragmentManager = null;
+    MainActivity main;
+    Context context;
+
+//
+//    public void setMain(MainActivity main) {
+//        this.main = main;
+//    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        context = getActivity().getApplicationContext();
+        main = (MainActivity)getActivity();
+        System.out.println("is connected = " + isConnected);
+        System.out.println("list riwayat = " + listDonasi);
         if(fragmentManager == null)fragmentManager = getFragmentManager();
-        if(listDonasi == null)
+        if(!isConnected)
+        {
+            final View rootView = inflater.inflate(R.layout.no_internet, container, false);
+            Button tryAgain = (Button) rootView.findViewById(R.id.try_again);
+            tryAgain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    refreshList();
+                }
+            });
+            listDonasi = null;
+            isConnected = true;
+            return rootView;
+        }
+        else if(listDonasi == null)
         {
             final View rootView = inflater.inflate(R.layout.riwayat_loading, container, false);
             new GetRiwayatDonasi(ResourceManager.getEmail(rootView.getContext())).execute();
@@ -53,6 +82,7 @@ public class FragmentRiwayat extends Fragment {
                 }
             });
             listDonasi = null;
+            isConnected = true;
             return rootView;
         }
         else
@@ -94,9 +124,15 @@ public class FragmentRiwayat extends Fragment {
         fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentRiwayat()).commit();
     }
 
+    private void refreshList()
+    {
+        new GetRiwayatDonasi(ResourceManager.getEmail(context)).execute();
+    }
+
     public void cariProyek()
     {
         fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
+        main.changeMenuToListProyek();
     }
 
     class GetRiwayatDonasi extends AsyncTask<Void, Void, Void>
@@ -113,7 +149,12 @@ public class FragmentRiwayat extends Fragment {
         protected Void doInBackground(Void... params) {
             ServiceHandler sh = new ServiceHandler();
             String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-            if(jsonStr != null)
+            System.out.println("json = (" + jsonStr + ")");
+            if(jsonStr == null)
+            {
+                isConnected = false;
+            }
+            else if(!jsonStr.isEmpty())
             {
                 try {
                     JSONArray temp = new JSONArray(jsonStr);
@@ -137,7 +178,12 @@ public class FragmentRiwayat extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            reload();
+            if(listDonasi == null) listDonasi = new ArrayList<>();
+            new Handler().post(new Runnable() {
+                public void run() {
+                    reload();
+                }
+            });
         }
     }
 }

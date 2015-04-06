@@ -131,6 +131,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         if (mGoogleApiClient.isConnected()) {
             Log.d("debug: ","on Connected masuk if");
             getProfileInformation();
+            System.out.println("Connected nih bro :)");
             new addUser().execute();
         }else{
             Toast.makeText(SignIn.this,"Gagal sign in",Toast.LENGTH_SHORT).show();

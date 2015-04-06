@@ -265,6 +265,7 @@ public class Donate extends ActionBarActivity{
 
         private boolean isValidDonation(Context context)
         {
+            System.out.println("Kartu Judin = " + Operator.readOperatorName(context));
             if(ResourceManager.getCurrentDonation().isXl()
                     && (!Operator.readOperatorName(context).toLowerCase().contains("xl")))
             {

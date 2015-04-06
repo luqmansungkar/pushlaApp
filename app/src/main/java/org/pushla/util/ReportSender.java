@@ -84,16 +84,14 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         //TODO : panggil kalo udah donasi dengan sukses
-        new GetProyek(context, null).execute();
+        new GetProyek(context).execute();
     }
 
     public static class GetProyek extends AsyncTask<Void, Void, Void> {
         Context context;
-        FragmentProyek fp;
-        public GetProyek(Context context, FragmentProyek fp) {
+        public GetProyek(Context context) {
             super();
             this.context = context;
-            this.fp = fp;
         }
 
         @Override
@@ -229,7 +227,6 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             System.out.println("udah kelar nih eksekusinya");
-            if(fp!=null) fp.reload();
         }
     }
 }
