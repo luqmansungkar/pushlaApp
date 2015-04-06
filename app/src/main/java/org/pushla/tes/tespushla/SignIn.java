@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.pushla.donateSender.Operator;
 
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
 
     private Button btnRevoke;
 
-    private ProgressDialog pDialog;
+    private ProgressDialog pDialog, qDialog;
     private SharedPreferences sp;
     public static final String PREFS = "prefs";
 
@@ -68,6 +70,9 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
             }
         });
 
+        qDialog = new ProgressDialog(SignIn.this);
+        qDialog.setMessage("Connecting...");
+        qDialog.setCancelable(false);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -115,6 +120,8 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
             mIntentInProgress = false;
 
             if (!mGoogleApiClient.isConnecting()){
+
+                qDialog.show();
                 mGoogleApiClient.connect();
                 Log.d("debug: ","Sesuatu 2");
             }
@@ -124,6 +131,9 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     @Override
     public void onConnected(Bundle bundle) {
         Log.d("debug: ","on Connected");
+        if (qDialog.isShowing()){
+            qDialog.dismiss();
+        }
         mSignInClicked = false;
         Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
         Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
@@ -146,8 +156,12 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d("debug: ","on Connection Failed");
+        if (qDialog.isShowing()){
+            qDialog.dismiss();
+        }
         if (!connectionResult.hasResolution()){
-            GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+            //GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+            Toast.makeText(SignIn.this,"Koneksi gagal, periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -207,6 +221,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     }
 
     private class addUser extends AsyncTask<Void, Void, Void> {
+        String response = "";
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
@@ -231,7 +246,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
             nameValuePairs.add(new BasicNameValuePair("nama",nama));
             nameValuePairs.add(new BasicNameValuePair("operator", Operator.readOperatorName(SignIn.this)));
 
-            String response = sh.makeServiceCall(url, ServiceHandler.POST, nameValuePairs);
+            response = sh.makeServiceCall(url, ServiceHandler.POST, nameValuePairs);
 
             Log.d("Response: ", "> " + response);
 
@@ -242,18 +257,36 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             // Dismiss the progress dialog
-            if (pDialog.isShowing()) {
-                pDialog.dismiss();
-                sp = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("nama",nama);
-                editor.putString("email",email);
-                editor.putBoolean("loggedIn",true);
-                editor.commit();
-                Intent mainIntent = new Intent(SignIn.this,MainActivity.class);
-                System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                SignIn.this.finish();
-                SignIn.this.startActivity(mainIntent);
+            JSONObject hasil;
+            String status = "";
+            try {
+                hasil = new JSONObject(response);
+                status = hasil.getString("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("add user: ","> "+status);
+
+            if (status.equalsIgnoreCase("sukses")){
+                if (pDialog.isShowing()) {
+                    pDialog.dismiss();
+                    sp = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("nama",nama);
+                    editor.putString("email",email);
+                    editor.putBoolean("loggedIn",true);
+                    editor.commit();
+                    Intent mainIntent = new Intent(SignIn.this,MainActivity.class);
+                    System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                    SignIn.this.finish();
+                    SignIn.this.startActivity(mainIntent);
+                }
+            }else{
+                if (pDialog.isShowing()) {
+                    pDialog.dismiss();
+                    Log.d("response: ", "> nama: "+nama+", email: "+email+", username: "+usernme+", operator: "+Operator.readOperatorName(SignIn.this));
+                    Toast.makeText(SignIn.this,"Gagal mendaftarkan user, periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
