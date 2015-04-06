@@ -65,6 +65,7 @@ public class SplashScreen extends ActionBarActivity {
                 boolean loggedIn = false;
                 sp = activity.getSharedPreferences(SignIn.PREFS, Context.MODE_PRIVATE);
                 loggedIn = sp.getBoolean("loggedIn",false);
+                Log.d("debug: ","logged in: "+loggedIn);
                 if (loggedIn){
                     Intent mainIntent = new Intent(activity, MainActivity.class);
 //                    System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
