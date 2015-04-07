@@ -265,9 +265,9 @@ public class Donate extends ActionBarActivity{
 
         private boolean isValidDonation(Context context)
         {
-            System.out.println("Kartu Judin = " + Operator.readOperatorName(context));
             if(ResourceManager.getCurrentDonation().isXl()
-                    && (!Operator.readOperatorName(context).toLowerCase().contains("xl")))
+                    && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
+                            Operator.readOperatorName(context).toLowerCase().contains("axis")))
             {
                 return false;
             }
@@ -367,7 +367,7 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-                ResourceManager.getCurrentDonation().startTimer(15000, donate);
+                ResourceManager.getCurrentDonation().startTimer(30000, donate);
 
 
                 dialogLoading = new Dialog(context);
