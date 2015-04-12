@@ -128,18 +128,18 @@
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-0d7b40d3f004b5878f24f3f938a804a3d9cfbf5d.jar" />
     </item>
     <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-01ba15a1e95c3e00a23ed4934aec3ebc3a10a614.jar" />
-    </item>
-    <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-ff1fc0ce3b1ef3392c1aa9b7dbad6dbdcdfea91b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-01ba15a1e95c3e00a23ed4934aec3ebc3a10a614.jar" />
     </item>
     <item
         jar="C:\Users\Luqman\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.1.0\908e18674f895e3e1fa8f4a954b8c637a23d2801\core-3.1.0.jar"

@@ -2,7 +2,9 @@ package org.pushla.tes.tespushla;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +67,13 @@ public class ProyekAdapter extends RecyclerView.Adapter<ProyekAdapter.ProyekView
         holder.terkumpul.setText("Rp " + Converter.getNominal(listProyek.get(position).getTerkumpul()));
         holder.target.setText(" dari Rp " + Converter.getNominal(listProyek.get(position).getTarget()));
         holder.pAuthor.setText("oleh " + listProyek.get(position).getAuthor());
-        holder.barPersentase.setWidth(holder.barPersentase.getMaxWidth() * listProyek.get(position).getPersentase()/100);
+        Log.d("version: ","> "+ Build.VERSION.SDK_INT);
+        int sdkVersion = Build.VERSION.SDK_INT;
+        if (sdkVersion >= 16){
+            holder.barPersentase.setWidth(holder.barPersentase.getMaxWidth() * listProyek.get(position).getPersentase()/100);
+        }else{
+            holder.barPersentase.setWidth(holder.barPersentase.getWidth() * listProyek.get(position).getPersentase()/100);
+        }
         ViewGroup.LayoutParams layout = holder.barPersentase.getLayoutParams();
         layout.width = listProyek.get(position).getPersentase() * width/100;
         holder.barPersentase.setLayoutParams(layout);
