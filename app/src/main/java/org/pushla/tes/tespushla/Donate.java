@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -367,7 +368,7 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-                ResourceManager.getCurrentDonation().startTimer(30000, donate);
+                ResourceManager.getCurrentDonation().startTimer(15000, donate);
 
 
                 dialogLoading = new Dialog(context);
@@ -379,16 +380,23 @@ public class Donate extends ActionBarActivity{
 //                parent.setContentView(R.layout.donation_loading);
                 isLoadingDonation = true;
 
-                ArrayList<Integer> temp = ResourceManager.getCurrentDonation().getListNominal();
-                for(int ii = 0; ii<temp.size(); ii++)
+//                ArrayList<Integer> temp = ResourceManager.getCurrentDonation().getListNominal();
+//                for(int ii = 0; ii<temp.size(); ii++)
+//                {
+//                    String nomorTujuan = Operator.getDestinationNumber(parent);
+//                    int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
+//                    String nominal = "" + Operator.getTotalDonasi(temp.get(ii), parent.getApplicationContext());
+//                    String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan, nominal);
+//                    String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
+//                    smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+//                }
+                int totalDonasi = ResourceManager.getCurrentDonation().getNominal();
+                if(totalDonasi%1000 != 0)
                 {
-                    String nomorTujuan = Operator.getDestinationNumber(parent);
-                    int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-                    String nominal = "" + Operator.getTotalDonasi(temp.get(ii), parent.getApplicationContext());
-                    String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan, nominal);
-                    String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
-                    smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
+                    totalDonasi = ((totalDonasi/1000)+1) * 1000;
                 }
+                String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
+                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
             }
 
         }
@@ -571,7 +579,7 @@ public class Donate extends ActionBarActivity{
             listXL.add("5000");
             listXL.add("250006");
             listXL.add("500006");
-            listXL.add("+6285729685018");
+            listXL.add("BAGI-PULSA");
             if(Operator.listOperatorNumber.contains(from)
                     || listXL.contains(from))
             {
