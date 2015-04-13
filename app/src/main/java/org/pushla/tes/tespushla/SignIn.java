@@ -136,7 +136,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         }
         mSignInClicked = false;
         Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
-        Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
 
         if (mGoogleApiClient.isConnected()) {
             Log.d("debug: ","on Connected masuk if");
@@ -185,16 +185,21 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
 
     private void resolveSignInError(){
         Log.d("debug: ","resolve sign in error");
-        if (mConnectionResult.hasResolution()){
-            try {
-                mIntentInProgress = true;
-                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+        if(mConnectionResult != null){
+            if (mConnectionResult.hasResolution()){
+                try {
+                    mIntentInProgress = true;
+                    mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
 
-            }catch (IntentSender.SendIntentException e){
-                mIntentInProgress = false;
-                mGoogleApiClient.connect();
+                }catch (IntentSender.SendIntentException e){
+                    mIntentInProgress = false;
+                    mGoogleApiClient.connect();
+                }
             }
+        }else{
+            Toast.makeText(this,"Koneksi bermasalah", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void getProfileInformation(){
@@ -209,7 +214,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
                 usernme = split[0];
 
             }else{
-                Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             e.printStackTrace();
