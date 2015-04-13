@@ -2,6 +2,27 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-f676686c4c2af51177ae2328237bc1f9c280e4be.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-9f8909bf82e82add656e90e64625b675e7bcb844.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-b0ee1da29448b168bafb8ba8a9101c83ee0b5bea.jar" />
+    </item>
+    <item
         jar="C:\devTools\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -23,11 +44,25 @@
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-9abc5b43d6e2ce37b4986962cb3977f602409419.jar" />
     </item>
     <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-f377bfa6610cf356c49cd30b8636698ad5b0ec2a.jar" />
+    </item>
+    <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="c976518693e89ad44fbfccfc654941eaec198d08">
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-0837b307c6e1bbb57795aeb1502aa7dd1faf896e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-26d70da2f6730d991feef2a6c2adbe703762ccf2.jar" />
     </item>
     <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\classes.jar"
@@ -42,76 +77,6 @@
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-cb6dd1ec162ab89467ce051e5fcad0b16ce0c646.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-bdb98f2eca5bf2ab491f56617c433589bf7b20ad.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-e81a4918eb7d877e8cab039e20870793139417b1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-3f468ff3dff8356d4a0d4b1b3dc7842804fba647.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-bd274aef2dda30c6c61800a64d62720817c146c2.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-9dc3b872bb5f68fa6b1ab9016a01af4a39759743.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-7f54d25e74014b8e3b65da5120c91b073220b34a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-18a220674a4adb8ae0dd0779053e1b98184490db.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-f676686c4c2af51177ae2328237bc1f9c280e4be.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="055783146ba9654a725442563be78cad303aad1f">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-b0ee1da29448b168bafb8ba8a9101c83ee0b5bea.jar" />
-    </item>
-    <item
-        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-f377bfa6610cf356c49cd30b8636698ad5b0ec2a.jar" />
     </item>
     <item
         jar="C:\Users\Luqman\.gradle\caches\modules-2\files-2.1\com.google.zxing\android-integration\3.1.0\52707c1c0801b4e1c0ca9bdbabd2dae20d8564d7\android-integration-3.1.0.jar"
@@ -170,11 +135,39 @@
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-ab819ec8617b7f365baef731aa151988c818cd4b.jar" />
     </item>
     <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-bdb98f2eca5bf2ab491f56617c433589bf7b20ad.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-e81a4918eb7d877e8cab039e20870793139417b1.jar" />
+    </item>
+    <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\internal_impl-22.0.0-8cc6fe401e09c9ebd271f24f1a8d729a56c98568.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-3f468ff3dff8356d4a0d4b1b3dc7842804fba647.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-bd274aef2dda30c6c61800a64d62720817c146c2.jar" />
     </item>
     <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\classes.jar"
@@ -184,11 +177,32 @@
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-19ef19322ff3c5f35770160edb4351de19020269.jar" />
     </item>
     <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-9dc3b872bb5f68fa6b1ab9016a01af4a39759743.jar" />
+    </item>
+    <item
         jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
         <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-1785fbd7a2b69ca9f804b9d9fb8d2f98f5635869.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-7f54d25e74014b8e3b65da5120c91b073220b34a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
+        <dex dex="C:\Users\Luqman\AndroidStudioProjects\pushlaApp\app\build\intermediates\pre-dexed\release\classes-18a220674a4adb8ae0dd0779053e1b98184490db.jar" />
     </item>
 
 </items>

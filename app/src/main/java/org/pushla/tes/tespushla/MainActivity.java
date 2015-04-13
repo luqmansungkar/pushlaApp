@@ -30,6 +30,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -84,6 +86,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
@@ -237,32 +240,47 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                 setTitle(navMenuTitles[2]);
                 break;
             case 3: // Bantuan
-                if (mGoogleApiClient.isConnected()){
-                    pDialog = new ProgressDialog(MainActivity.this);
-                    pDialog.setMessage("Logging out..");
-                    pDialog.setCancelable(false);
-                    pDialog.show();
-                    timerDelayRemoveDialog(10000,pDialog);
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
-                            .setResultCallback(new ResultCallback<Status>() {
-                                @Override
-                                public void onResult(Status status) {
-                                    mGoogleApiClient.connect();
-                                    sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
-                                    sp.edit().clear().commit();
-                                    //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
-                                    Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
-                                    System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                                    MainActivity.this.finish();
-                                    pDialog.dismiss();
-                                    MainActivity.this.startActivity(mainIntent);
-                                }
-                            });
-                }else{
-                    Log.d("debug: ","konek : "+mGoogleApiClient.isConnected());
-                    Toast.makeText(this,"Tidak bisa Log Out, periksa koneksi internet anda",Toast.LENGTH_SHORT).show();
+                sp = getSharedPreferences(SignIn.PREFS,Context.MODE_PRIVATE);
+                int via = sp.getInt("via",0);
+                pDialog = new ProgressDialog(MainActivity.this);
+                pDialog.setMessage("Logging out..");
+                pDialog.setCancelable(false);
+                pDialog.show();
+                timerDelayRemoveDialog(10000,pDialog);
+                Log.d("debug: ","> via: "+via);
+                if(via == 2){
+                    LoginManager.getInstance().logOut();
+                    sp.edit().clear().commit();
+                    //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
+                    Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
+                    System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                    MainActivity.this.finish();
+                    pDialog.dismiss();
+                    MainActivity.this.startActivity(mainIntent);
+                }else if(via == 1){
+                    if (mGoogleApiClient.isConnected()){
+                        Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+                        Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
+                                .setResultCallback(new ResultCallback<Status>() {
+                                    @Override
+                                    public void onResult(Status status) {
+                                        mGoogleApiClient.connect();
+
+                                        sp.edit().clear().commit();
+                                        //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
+                                        Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
+                                        System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
+                                        MainActivity.this.finish();
+                                        pDialog.dismiss();
+                                        MainActivity.this.startActivity(mainIntent);
+                                    }
+                                });
+                    }else{
+                        Log.d("debug: ","konek : "+mGoogleApiClient.isConnected());
+                        Toast.makeText(this,"Tidak bisa Log Out, periksa koneksi internet anda",Toast.LENGTH_SHORT).show();
+                    }
                 }
+
                 break;
         }
         if (fragment != null) {
@@ -288,8 +306,10 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     public void timerDelayRemoveDialog(long time, final ProgressDialog d){
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                d.dismiss();
-                Toast.makeText(MainActivity.this,"Tidak bisa Log Out, periksa koneksi internet anda",Toast.LENGTH_SHORT).show();
+                if (d.isShowing()) {
+                    d.dismiss();
+                    Toast.makeText(MainActivity.this, "Tidak bisa Log Out, periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
+                }
             }
         }, time);
     }
