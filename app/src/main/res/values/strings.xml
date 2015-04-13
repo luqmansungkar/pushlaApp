@@ -21,7 +21,7 @@
         <!--<item >Bantuan</item>-->
         <item >Logout</item>
     </string-array>
-
+    <string name="facebook_app_id">609163602553183</string>
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/icon_profile</item>
