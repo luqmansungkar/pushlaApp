@@ -368,7 +368,7 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-                ResourceManager.getCurrentDonation().startTimer(15000, donate);
+//                ResourceManager.getCurrentDonation().startTimer(15000, donate);
 
 
                 dialogLoading = new Dialog(context);
@@ -393,7 +393,7 @@ public class Donate extends ActionBarActivity{
                 int totalDonasi = ResourceManager.getCurrentDonation().getNominal();
                 if(totalDonasi%1000 != 0)
                 {
-                    totalDonasi = ((totalDonasi/1000)+1) * 1000;
+                    totalDonasi = ((totalDonasi/1000)) * 1000;
                 }
                 String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
                 startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
