@@ -22,11 +22,7 @@
             android:layout_weight="1"/>
 
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.85"
-            android:orientation="vertical">
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -46,58 +42,56 @@
                 android:textSize="@dimen/txt_login"
                 android:textColor="#ffffff"
                 />
-            </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="PULSA ANDA TERPOTONG SEBESAR"
             android:id="@+id/textView3"
-            android:layout_weight="1.08"
             android:textColor="#ffffff"
-            android:textSize="@dimen/txt_size_little2"/>
+            android:textSize="@dimen/txt_size_little2"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Rp 6000"
             android:id="@+id/potongan_pulsa"
             android:textSize="@dimen/txt_login"
             android:textColor="#004758"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_weight="0.98"/>
+            android:layout_alignParentStart="true"/>
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="PENERIMA"
             android:id="@+id/textView4"
-            android:layout_weight="1.07"
             android:textColor="#ffffff"
-            android:textSize="@dimen/txt_size_little2"/>
+            android:textSize="@dimen/txt_size_little2"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="#SaveMaster"
             android:id="@+id/nama_proyek"
-            android:layout_weight="1.07"
             android:textColor="#004758"
             android:textSize="@dimen/txt_size_normal2" />
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="oleh Ginanjar Ibnu Solikhin "
             android:id="@+id/author_proyek"
-            android:layout_weight="1"
             android:textColor="#004758"
             android:textSize="@dimen/txt_size_normal2"
             android:textStyle="italic" />

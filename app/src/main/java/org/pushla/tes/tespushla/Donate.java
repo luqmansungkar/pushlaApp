@@ -250,12 +250,12 @@ public class Donate extends ActionBarActivity{
                     }
 
 //                    if(button_cancel == null) {
-                        button_cancel = (Button)dialog.findViewById(R.id.button_cancel);
-                        button_cancel.setOnClickListener(new PopUpDonationButton(parent));
+                    button_cancel = (Button)dialog.findViewById(R.id.button_cancel);
+                    button_cancel.setOnClickListener(new PopUpDonationButton(parent));
 //                    }
 //                    if(button_donate_ok == null) {
-                        button_donate_ok = (Button) dialog.findViewById(R.id.button_donate_ok);
-                        button_donate_ok.setOnClickListener(new PopUpDonationButton(parent));
+                    button_donate_ok = (Button) dialog.findViewById(R.id.button_donate_ok);
+                    button_donate_ok.setOnClickListener(new PopUpDonationButton(parent));
 //                    }
                 } catch (Exception e) {
                     parent.displayMessage("Transfer pulsa gagal.\n");
@@ -268,7 +268,7 @@ public class Donate extends ActionBarActivity{
         {
             if(ResourceManager.getCurrentDonation().isXl()
                     && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
-                            Operator.readOperatorName(context).toLowerCase().contains("axis")))
+                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
             {
                 return false;
             }
@@ -368,7 +368,7 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-                ResourceManager.getCurrentDonation().startTimer(15000, donate);
+//                ResourceManager.getCurrentDonation().startTimer(15000, donate);
 
 
                 dialogLoading = new Dialog(context);
@@ -393,7 +393,7 @@ public class Donate extends ActionBarActivity{
                 int totalDonasi = ResourceManager.getCurrentDonation().getNominal();
                 if(totalDonasi%1000 != 0)
                 {
-                    totalDonasi = ((totalDonasi/1000)+1) * 1000;
+                    totalDonasi = ((totalDonasi/1000)) * 1000;
                 }
                 String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
                 startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
