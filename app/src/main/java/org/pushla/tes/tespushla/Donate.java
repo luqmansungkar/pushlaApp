@@ -250,12 +250,12 @@ public class Donate extends ActionBarActivity{
                     }
 
 //                    if(button_cancel == null) {
-                        button_cancel = (Button)dialog.findViewById(R.id.button_cancel);
-                        button_cancel.setOnClickListener(new PopUpDonationButton(parent));
+                    button_cancel = (Button)dialog.findViewById(R.id.button_cancel);
+                    button_cancel.setOnClickListener(new PopUpDonationButton(parent));
 //                    }
 //                    if(button_donate_ok == null) {
-                        button_donate_ok = (Button) dialog.findViewById(R.id.button_donate_ok);
-                        button_donate_ok.setOnClickListener(new PopUpDonationButton(parent));
+                    button_donate_ok = (Button) dialog.findViewById(R.id.button_donate_ok);
+                    button_donate_ok.setOnClickListener(new PopUpDonationButton(parent));
 //                    }
                 } catch (Exception e) {
                     parent.displayMessage("Transfer pulsa gagal.\n");
@@ -268,7 +268,7 @@ public class Donate extends ActionBarActivity{
         {
             if(ResourceManager.getCurrentDonation().isXl()
                     && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
-                            Operator.readOperatorName(context).toLowerCase().contains("axis")))
+                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
             {
                 return false;
             }

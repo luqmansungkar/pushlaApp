@@ -1,5 +1,18 @@
 package org.pushla.tes.tespushla;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -32,6 +45,7 @@ import org.json.JSONObject;
 import org.pushla.donateSender.Operator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,9 +69,18 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     private SharedPreferences sp;
     public static final String PREFS = "prefs";
 
+    LoginButton loginButton;
+    CallbackManager callbackManager;
+    AccessTokenTracker accessTokenTracker;
+    ProfileTracker profileTracker;
+    AccessToken accessToken;
+    public int via = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.signin);
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
@@ -79,6 +102,81 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Profile profile = Profile.getCurrentProfile();
+                accessToken = loginResult.getAccessToken();
+                //showProfile(profile, accessToken);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+
+            }
+        });
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+                accessToken = newAccessToken;
+            }
+        };
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                showProfile(currentProfile,accessToken);
+            }
+        };
+        accessTokenTracker.startTracking();
+        profileTracker.startTracking();
+    }
+
+    public void showProfile(final Profile profile, AccessToken accessToken){
+        if(profile != null) {
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken,
+                    new GraphRequest.GraphJSONObjectCallback(){
+
+                        @Override
+                        public void onCompleted(JSONObject object, GraphResponse response) {
+                            try {
+                                Log.d("hasil: ", "> " + object.getString("email"));
+                                email = object.getString("email");
+                                nama = profile.getName();
+                                String[] split = email.split("@");
+                                usernme = split[0];
+                                via = 2;
+                                new addUser().execute();
+                            } catch (JSONException e) {
+                                Toast.makeText(SignIn.this,"Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
+                                //e.printStackTrace();
+                            }
+                            //Toast.makeText(MainActivity.this,"email: "+response.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+            Bundle param = new Bundle();
+            param.putString("fields","email");
+            request.setParameters(param);
+            request.executeAsync();
+        }else{
+            Toast.makeText(this,"Koneksi internet bermasalah",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("debug: ","> on destroy");
+        accessTokenTracker.stopTracking();
+        profileTracker.stopTracking();
     }
 
     private void revoke(){
@@ -92,6 +190,22 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
                         }
                     });
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
     }
 
     protected void onStart(){
@@ -110,6 +224,8 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
     }
 
     protected void onActivityResult(int requestCode, int responseCode, Intent intent){
+        super.onActivityResult(requestCode, responseCode, intent);
+        callbackManager.onActivityResult(requestCode, responseCode, intent);
         Log.d("debug: ","on Activity Result");
         if (requestCode == RC_SIGN_IN){
             if (responseCode != RESULT_OK){
@@ -136,12 +252,13 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
         }
         mSignInClicked = false;
         Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
-        Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "User is connected!", Toast.LENGTH_SHORT).show();
 
         if (mGoogleApiClient.isConnected()) {
             Log.d("debug: ","on Connected masuk if");
             getProfileInformation();
             System.out.println("Connected nih bro :)");
+            via = 1;
             new addUser().execute();
         }else{
             Toast.makeText(SignIn.this,"Gagal sign in",Toast.LENGTH_SHORT).show();
@@ -185,16 +302,21 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
 
     private void resolveSignInError(){
         Log.d("debug: ","resolve sign in error");
-        if (mConnectionResult.hasResolution()){
-            try {
-                mIntentInProgress = true;
-                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+        if(mConnectionResult != null){
+            if (mConnectionResult.hasResolution()){
+                try {
+                    mIntentInProgress = true;
+                    mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
 
-            }catch (IntentSender.SendIntentException e){
-                mIntentInProgress = false;
-                mGoogleApiClient.connect();
+                }catch (IntentSender.SendIntentException e){
+                    mIntentInProgress = false;
+                    mGoogleApiClient.connect();
+                }
             }
+        }else{
+            Toast.makeText(this,"Koneksi bermasalah", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void getProfileInformation(){
@@ -209,7 +331,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
                 usernme = split[0];
 
             }else{
-                Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -276,6 +398,7 @@ public class SignIn extends Activity implements ConnectionCallbacks, OnConnectio
                     editor.putString("nama",nama);
                     editor.putString("email",email);
                     editor.putBoolean("loggedIn",true);
+                    editor.putInt("via",via);
                     editor.commit();
                     Intent mainIntent = new Intent(SignIn.this,MainActivity.class);
                     System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
