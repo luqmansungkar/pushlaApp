@@ -281,7 +281,7 @@ public class Donate extends ActionBarActivity{
         @Override
         public void onClick(View v) {
             System.out.println("Klik nominal button");
-            int nominal = 2500;
+            int nominal = 2000;
             if(mapId.containsKey(v.getId()))
             {
                 System.out.println("Key => " + mapId.get(v.getId()));
@@ -301,7 +301,7 @@ public class Donate extends ActionBarActivity{
             {
                 if(ResourceManager.getCurrentDonation().isXl())
                 {
-                    nominal = 2500;
+                    nominal = 2000;
                 }
                 else
                 {
@@ -325,7 +325,7 @@ public class Donate extends ActionBarActivity{
             {
                 if(ResourceManager.getCurrentDonation().isXl())
                 {
-                    nominal = 7500;
+                    nominal = 7000;
                 }
                 else
                 {
