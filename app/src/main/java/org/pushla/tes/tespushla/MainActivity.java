@@ -218,10 +218,10 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//            if(position ==0) {
-//                view.setClickable(false);
-//                return;
-//            }
+            if(position ==0) {
+                view.setClickable(false);
+                return;
+            }
             displayView(position);
         }
     }
@@ -231,9 +231,9 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         boolean not_fragment = false;
 
         switch (position) {
-//            case 0: // Masuk
-//                not_fragment = true;
-//                break;
+            case 0: // Profil
+                not_fragment = true;
+                break;
             case 1: // Home
                 fragment = new FragmentProyek();
                 setTitle(navMenuTitles[1]);
@@ -294,6 +294,8 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
 
+            drawerLayout.closeDrawer(mDrawerList);
+        } else {
             drawerLayout.closeDrawer(mDrawerList);
         }
     }
