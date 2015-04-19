@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:paddingRight="@dimen/paddingRight"
+    android:paddingLeft="@dimen/paddingLeft"
+    android:paddingBottom="@dimen/marginBottom"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="@dimen/paddingTop"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginLeft="@dimen/marginBottom"
+        android:layout_marginStart="@dimen/marginLeft"
+
+        android:text="Anda yakin untuk keluar?"
+
+        android:textSize="@dimen/txt_size_normal2"
+        android:textColor="@color/cool_black"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/marginRight"
+        android:paddingTop="@dimen/paddingTop"
+        android:layout_marginBottom="@dimen/marginBottom">
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.7"/>
+        <Button
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Tidak"
+            android:textStyle="bold"
+            android:background="#ffffff"
+            android:textColor="@color/cool_black"
+            android:textSize="@dimen/txt_size_little2"
+            android:id="@+id/button_cancel" />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Iya"
+            android:textStyle="bold"
+            android:background="#ffffff"
+            android:textColor="@color/bg_blue"
+            android:textSize="@dimen/txt_size_little2"
+            android:id="@+id/button_donate_ok" />
+    </LinearLayout>
+</LinearLayout>
