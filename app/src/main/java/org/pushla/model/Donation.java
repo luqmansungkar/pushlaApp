@@ -8,6 +8,7 @@ import android.view.Window;
 
 import org.pushla.tes.tespushla.Donate;
 import org.pushla.tes.tespushla.R;
+import org.pushla.tes.tespushla.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -18,9 +19,9 @@ import java.util.TimerTask;
  */
 public class Donation extends Proyek{
     private boolean xl;
-    private ArrayList<Integer> listNominal;
     private int pendukung;
     private boolean isRunning;
+    private int nominal = -1;
 
     private int receivedDonation = 0;
 
@@ -47,47 +48,19 @@ public class Donation extends Proyek{
         this.pendukung = pendukung;
     }
 
-    public ArrayList<Integer> getListNominal() {
-        return listNominal;
-    }
 
-    public void setListNominal(int nominal) {
-        this.listNominal = new ArrayList<>();
-        if(isXl())
-        {
-            listNominal.add(nominal);
-//            if(nominal == 2000)
-//            {
-//                listNominal.add(2000);
-//            }
-//            else if(nominal==5000)
-//            {
-//                listNominal.add(5000);
-//            }
-//            else if(nominal == 7500)
-//            {
-//                listNominal.add(5000);
-//                listNominal.add(2500);
-//            }
-//            else if(nominal == 10000)
-//            {
-//                listNominal.add(5000);
-//                listNominal.add(5000);
-//            }
-        }
-        else
-        {
-            listNominal.add(nominal);
-        }
+    public void setNominal(int nominal) {
+        this.nominal = nominal;
     }
 
     public int getNominal()
     {
-        int hasil = 0;
-        for (int i = 0; i < listNominal.size(); i++) {
-            hasil += listNominal.get(i);
-        }
-        return hasil;
+//        int hasil = 0;
+//        for (int i = 0; i < listNominal.size(); i++) {
+//            hasil += listNominal.get(i);
+//        }
+//        return hasil;
+        return nominal;
     }
 
     public int getReceivedDonation() {
@@ -96,7 +69,8 @@ public class Donation extends Proyek{
 
     public void addReceivedSonation()
     {
-        this.receivedDonation++;
+//        this.receivedDonation++;
+        this.receivedDonation = nominal;
     }
 
     public void resetReceivedDonation()
@@ -106,30 +80,31 @@ public class Donation extends Proyek{
 
     public boolean isReceivedCompletely()
     {
-        return this.receivedDonation == listNominal.size();
+//        return this.receivedDonation == listNominal.size();
+        return this.receivedDonation == this.nominal;
     }
 
-    public void startTimer(long time, final Donate donate)
-    {
-        isRunning = true;
-        final Handler h = new Handler(){
-            @Override
-            public void handleMessage(Message msg){
-                if(msg.what == 0){
-                    showFailedDialog(donate);
-                }else{
-//                    showErrorDialog();
-                }
-            }
-        };
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                resetReceivedDonation();
-                h.sendEmptyMessage(0);
-            }
-        }, time);
-    }
+//    public void startTimer(long time, final Donate donate)
+//    {
+//        isRunning = true;
+//        final Handler h = new Handler(){
+//            @Override
+//            public void handleMessage(Message msg){
+//                if(msg.what == 0){
+//                    showFailedDialog(donate);
+//                }else{
+////                    showErrorDialog();
+//                }
+//            }
+//        };
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                resetReceivedDonation();
+//                h.sendEmptyMessage(0);
+//            }
+//        }, time);
+//    }
 
     private void showFailedDialog(Donate donate)
     {
@@ -140,5 +115,15 @@ public class Donation extends Proyek{
     public void stopTimer()
     {
         isRunning = false;
+    }
+
+    public SuccessDonation toSuccessDonation()
+    {
+        SuccessDonation tmp = new SuccessDonation();
+        tmp.setWaktu(ResourceManager.getCurrentTime());
+        tmp.setId(Integer.parseInt(getId()));
+        tmp.setNominal(getNominal());
+        tmp.setJudul(getNamaProyek());
+        return tmp;
     }
 }

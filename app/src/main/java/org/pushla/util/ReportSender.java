@@ -41,6 +41,7 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
     private String key;
     private String idProyek;
     private Context context;
+    int statusCode = -1;
 
     public ReportSender(String nomorHP, String nominal, String idProyek, Context context)
     {
@@ -70,6 +71,7 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
+            statusCode = response.getStatusLine().getStatusCode();
             System.out.println(response.getStatusLine().getStatusCode());
 
         } catch (ClientProtocolException e) {
@@ -83,6 +85,9 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
+        if(statusCode != 200)
+            ResourceManager.addDonasiSukses(ResourceManager.getCurrentDonation().toSuccessDonation()
+                    , context);
         //TODO : panggil kalo udah donasi dengan sukses
         new GetProyek(context).execute();
     }

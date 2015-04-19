@@ -1,16 +1,20 @@
 package org.pushla.tes.tespushla;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import org.pushla.model.Donation;
+import org.pushla.model.SuccessDonation;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +24,7 @@ import java.util.Map;
 public class ResourceManager {
     private static final String PREFS = "pref";
     private static final String KEY_LIST_GAMBAR = "list gambar";
+    private static final String KEY_DONASI_SUKSES = "donasi_sukses";
     private static Donation currentDonation;
     private static Map<String, String> hashNamaProyek;
     public static final String PREFS_LOGIN = "prefs";
@@ -119,7 +124,7 @@ public class ResourceManager {
 
     public static void setCurrentNominalDonation(int nominal)
     {
-        currentDonation.setListNominal(nominal);
+        currentDonation.setNominal(nominal);
     }
     public static Donation getCurrentDonation() {
         return currentDonation;
@@ -135,5 +140,70 @@ public class ResourceManager {
     {
         if(hashNamaProyek == null) return null;
         return hashNamaProyek.get(id);
+    }
+
+    //menangani kalo pas donasi malah jadi offline
+    public static ArrayList<SuccessDonation> getListDonasiSukses(Context activity)
+    {
+        ArrayList<SuccessDonation> hasil = new ArrayList<>();
+        SharedPreferences sharedPref = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        String listDonasi = sharedPref.getString(KEY_DONASI_SUKSES, "");
+        String[]arrayDonasi = listDonasi.split("|");
+        for(int ii=0; ii<arrayDonasi.length; ii++)
+        {
+            String currentDonation = arrayDonasi[ii];
+            String[] tempDonation = currentDonation.split(",");
+            if(tempDonation.length >= 4)
+            {
+                SuccessDonation sd = new SuccessDonation();
+                sd.setNominal(Integer.parseInt(tempDonation[0]));
+                sd.setJudul(tempDonation[1]);
+                sd.setId(Integer.parseInt(tempDonation[2]));
+                sd.setWaktu(tempDonation[3]);
+                hasil.add(sd);
+            }
+        }
+        return hasil;
+    }
+
+    public static void addDonasiSukses(SuccessDonation sd, Context context)
+    {
+        ArrayList<SuccessDonation> listSuccess = getListDonasiSukses(context);
+        listSuccess.add(sd);
+        setListDonasiSukses(context, listSuccess);
+    }
+
+    public static void setListDonasiSukses(Context context, ArrayList<SuccessDonation> listSukses)
+    {
+        String hasil = "";
+        for(int ii=0; ii<listSukses.size(); ii++)
+        {
+            SuccessDonation sd = listSukses.get(ii);
+            if(sd!=null)
+            {
+                String tempDonation = "";
+                tempDonation += sd.getNominal() + ",";
+                tempDonation += sd.getJudul() + ",";
+                tempDonation += sd.getId() + ",";
+                tempDonation += sd.getWaktu();
+                hasil += tempDonation;
+                if(ii< listSukses.size()-1)
+                {
+                    hasil += "|";
+                }
+            }
+        }
+
+        SharedPreferences sharedPref = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(KEY_DONASI_SUKSES, hasil);
+        editor.commit();
+    }
+
+    public static String getCurrentTime()
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateandTime = sdf.format(new Date());
+        return currentDateandTime;
     }
 }

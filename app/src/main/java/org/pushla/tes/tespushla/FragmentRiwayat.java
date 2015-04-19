@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -21,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.pushla.model.RiwayatAdapter;
 import org.pushla.model.RiwayatDonasi;
+import org.pushla.model.SuccessDonation;
 import org.pushla.util.Converter;
 
 import java.util.ArrayList;
@@ -114,14 +114,21 @@ public class FragmentRiwayat extends Fragment {
         int totalDonasi = 0;
         for(int ii=0; ii<r.size(); ii++)
         {
-            totalDonasi += r.get(ii).getHarga();
+            totalDonasi += r.get(ii).getNominal();
         }
         return totalDonasi;
     }
 
     public void reload()
     {
-        fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentRiwayat()).commit();
+        try
+        {
+            fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentRiwayat()).commit();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
     private void refreshList()
@@ -131,8 +138,15 @@ public class FragmentRiwayat extends Fragment {
 
     public void cariProyek()
     {
-        fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
-        main.changeMenuToListProyek();
+        try
+        {
+            fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
+            main.changeMenuToListProyek();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
     class GetRiwayatDonasi extends AsyncTask<Void, Void, Void>
@@ -179,6 +193,13 @@ public class FragmentRiwayat extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if(listDonasi == null) listDonasi = new ArrayList<>();
+            ArrayList<SuccessDonation> tempSuccess = ResourceManager.getListDonasiSukses(context);
+            ArrayList<RiwayatDonasi> tempRiwayat = new ArrayList<>();
+            for(SuccessDonation sd : tempSuccess)
+            {
+                tempRiwayat.add(sd.toRiwayatDonasi());
+            }
+            listDonasi.addAll(tempRiwayat);
             new Handler().post(new Runnable() {
                 public void run() {
                     reload();

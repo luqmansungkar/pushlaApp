@@ -103,7 +103,14 @@ public class FragmentProyek extends Fragment {
 
     public void reload()
     {
-        fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
+        try
+        {
+            fragmentManager.beginTransaction().replace(R.id.frame_container, new FragmentProyek()).commit();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
     private class GetProyek extends AsyncTask<Void, Void, Void> {

@@ -31,7 +31,7 @@ public class RiwayatAdapter extends RecyclerView.Adapter<RiwayatAdapter.RiwayatV
 
     @Override
     public void onBindViewHolder(RiwayatViewHolder holder, int position) {
-        holder.harga.setText(listRiwayatDonasi.get(position).getHarga());
+        holder.harga.setText(listRiwayatDonasi.get(position).getNominal());
         holder.judul.setText(listRiwayatDonasi.get(position).getJudul());
         holder.waktu.setText(listRiwayatDonasi.get(position).getWaktu());
     }

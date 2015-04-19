@@ -63,14 +63,11 @@ public class Donate extends ActionBarActivity{
     private boolean isLoadingDonation = false;
     private Listener smsListener;
     public static Donate donate;
-    public static Bundle donateBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donate);
-
-        donateBundle = savedInstanceState;
 
 //        this.judul = getIntent().getStringExtra(EXTRA_JUDUL).trim();
 //        this.author = getIntent().getStringExtra(EXTRA_AUTHOR).trim();
@@ -190,7 +187,6 @@ public class Donate extends ActionBarActivity{
 
     public void showFailedMessage(boolean isTimeOut)
     {
-//            donate.onCreate(donateBundle);
         ResourceManager.getCurrentDonation().stopTimer();
         if(dialogGagal != null && dialogGagal.isShowing()) return;
         if(dialogLoading != null) dialogLoading.dismiss();
@@ -394,6 +390,7 @@ public class Donate extends ActionBarActivity{
                 if(totalDonasi%1000 != 0)
                 {
                     totalDonasi = ((totalDonasi/1000)) * 1000;
+                    ResourceManager.getCurrentDonation().setNominal(totalDonasi);
                 }
                 String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
                 startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
@@ -406,6 +403,7 @@ public class Donate extends ActionBarActivity{
     {
         @Override
         public void onReceive(Context context, Intent intent) {
+//            showFailedMessage();
 //            showFailedMessage();
             // TODO Auto-generated method stub
             System.out.println("Menerima pesan");

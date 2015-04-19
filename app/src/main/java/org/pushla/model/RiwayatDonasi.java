@@ -7,18 +7,18 @@ import org.pushla.tes.tespushla.ResourceManager;
  */
 public class RiwayatDonasi {
     private String judul, waktu;
-    private int harga;
+    private int nominal;
 
     public RiwayatDonasi(){}
-    public RiwayatDonasi(String id, String waktu, int harga)
+    public RiwayatDonasi(String id, String waktu, int nominal)
     {
-        this.harga = harga;
+        this.nominal = nominal;
         this.judul = ResourceManager.getNamaProyek(id);
         this.waktu = waktu;
     }
 
-    public int getHarga() {
-        return harga;
+    public int getNominal() {
+        return nominal;
     }
 
     public String getJudul() {
@@ -29,8 +29,8 @@ public class RiwayatDonasi {
         return waktu;
     }
 
-    public void setHarga(int harga) {
-        this.harga = harga;
+    public void setNominal(int nominal) {
+        this.nominal = nominal;
     }
 
     public void setJudul(String judul) {

@@ -56,11 +56,19 @@ public class NavDrawerListAdapter extends BaseAdapter {
 
         //TO-DO: Buat Profil
         if (position == 0) {
+//            convertView.setMinimumHeight(200);
             txt.setTypeface(null, Typeface.BOLD);
 //            imgIcon.getLayoutParams().height = 250;
         }
 
         return convertView;
+    }
+
+    public boolean isEnabled(int position) {
+        if(position == 0) {
+            return false;
+        }
+        return true;
     }
 
 }

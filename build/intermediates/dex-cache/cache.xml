@@ -2,6 +2,7 @@
 <items version="2" >
 
     <item
+<<<<<<< HEAD
         jar="D:\Pushla Project\client\pushlaApp\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -14,6 +15,20 @@
         revision="21.1.2"
         sha1="129874135e6081269ace2312092031558865de12">
         <dex dex="D:\Pushla Project\client\pushlaApp\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-3e452d6c7ddb26dcc99409c670f468816a3d44c7.jar" />
+=======
+        jar="D:\DEV\ANDROID\Pushla\pushlaApp\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
+        <dex dex="D:\DEV\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\classes-88fe2844f5eb7704b40852a1cd88a9109c22d62d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Laila L\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="D:\DEV\ANDROID\Pushla\pushlaApp\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-fc76c10c61862cb587fd7235abee571a250980c4.jar" />
+>>>>>>> abcc2332082c80c23ca6f031da3d1f2a57c36921
     </item>
 
 </items>

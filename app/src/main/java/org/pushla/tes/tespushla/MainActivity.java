@@ -79,6 +79,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private ConnectionResult mConnectionResult;
     private static final int RC_SIGN_IN = 0;
 
+    private boolean isMainFragment = true;
 
     public MainActivity() {
     }
@@ -218,10 +219,10 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//            if(position ==0) {
-//                view.setClickable(false);
-//                return;
-//            }
+            if(position ==0) {
+                view.setClickable(false);
+                return;
+            }
             displayView(position);
         }
     }
@@ -230,10 +231,13 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         Fragment fragment = null;
         boolean not_fragment = false;
 
+        if(position<=1) isMainFragment = true;
+        else isMainFragment = false;
+
         switch (position) {
-//            case 0: // Masuk
-//                not_fragment = true;
-//                break;
+            case 0: // Profil
+                not_fragment = true;
+                break;
             case 1: // Home
                 fragment = new FragmentProyek();
                 setTitle(navMenuTitles[1]);
@@ -295,6 +299,8 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
             mDrawerList.setSelection(position);
 
             drawerLayout.closeDrawer(mDrawerList);
+        } else {
+            drawerLayout.closeDrawer(mDrawerList);
         }
     }
 
@@ -305,6 +311,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
         drawerLayout.closeDrawer(mDrawerList);
         setTitle(navMenuTitles[1]);
+        isMainFragment = true;
     }
     public void timerDelayRemoveDialog(long time, final ProgressDialog d){
         new Handler().postDelayed(new Runnable() {
@@ -384,4 +391,11 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(isMainFragment)
+            super.onBackPressed();
+        else
+            displayView(1);
+    }
 }
