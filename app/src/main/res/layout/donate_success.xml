@@ -13,35 +13,25 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <Space
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="0.95"/>
 
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Donasi"
-                android:id="@+id/textView1"
-                android:textSize="@dimen/txt_login"
-                android:textColor="#ffffff"
-                />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Berhasil"
-                android:id="@+id/textView2"
-                android:textSize="@dimen/txt_login"
-                android:textColor="#ffffff"
-                />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Donasi Berhasil"
+            android:id="@+id/textView1"
+            android:textSize="@dimen/txt_login"
+            android:textColor="#ffffff"
+            />
 
         <TextView
             android:layout_width="fill_parent"
@@ -50,7 +40,7 @@
             android:text="PULSA ANDA TERPOTONG SEBESAR"
             android:id="@+id/textView3"
             android:textColor="#ffffff"
-            android:textSize="@dimen/txt_size_little2"
+            android:textSize="@dimen/txt_size_normal"
             android:layout_marginTop="10dp"/>
 
         <TextView
@@ -74,7 +64,7 @@
             android:text="PENERIMA"
             android:id="@+id/textView4"
             android:textColor="#ffffff"
-            android:textSize="@dimen/txt_size_little2"
+            android:textSize="@dimen/txt_size_normal"
             android:layout_marginBottom="5dp"/>
 
         <TextView
@@ -103,22 +93,26 @@
 
         <ImageButton
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/height_button_success"
             android:id="@+id/button_ok_sukses"
             android:src="@drawable/button_donate_success"
             android:scaleType="fitStart"
             android:background="@android:color/transparent"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"/>
+            android:layout_centerHorizontal="true"/>
 
         <Space
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="0.95"/>
 
 
-        </LinearLayout>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="7"/>
 
 
 
