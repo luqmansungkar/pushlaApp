@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
     private void resolveSignInError(){
         Log.d("debug: ","resolve sign in error");
-        if (mConnectionResult.hasResolution()){
+        if (mConnectionResult != null && mConnectionResult.hasResolution()){
             try {
                 mIntentInProgress = true;
                 mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
@@ -183,7 +183,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d("debug: ","on Connection Failed");
-        if (!connectionResult.hasResolution()){
+        if (mConnectionResult != null && !connectionResult.hasResolution()){
             GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
             return;
         }
@@ -261,8 +261,9 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                     //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
                     Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
                     System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                    MainActivity.this.finish();
                     pDialog.dismiss();
+                    MainActivity.this.finish();
+
                     MainActivity.this.startActivity(mainIntent);
                 }else if(via == 1){
                     if (mGoogleApiClient.isConnected()){
@@ -277,8 +278,9 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
                                         //Toast.makeText(MainActivity.this, "Logging Out...", Toast.LENGTH_SHORT).show();
                                         Intent mainIntent = new Intent(MainActivity.this, SignIn.class);
                                         System.out.println("Banyaknya proyek = " + SplashScreen.listProyek.size());
-                                        MainActivity.this.finish();
                                         pDialog.dismiss();
+                                        MainActivity.this.finish();
+
                                         MainActivity.this.startActivity(mainIntent);
                                     }
                                 });
