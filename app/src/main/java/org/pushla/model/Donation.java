@@ -55,24 +55,25 @@ public class Donation extends Proyek{
         this.listNominal = new ArrayList<>();
         if(isXl())
         {
-            if(nominal == 2500)
-            {
-                listNominal.add(2500);
-            }
-            else if(nominal==5000)
-            {
-                listNominal.add(5000);
-            }
-            else if(nominal == 7500)
-            {
-                listNominal.add(5000);
-                listNominal.add(2500);
-            }
-            else if(nominal == 10000)
-            {
-                listNominal.add(5000);
-                listNominal.add(5000);
-            }
+            listNominal.add(nominal);
+//            if(nominal == 2000)
+//            {
+//                listNominal.add(2000);
+//            }
+//            else if(nominal==5000)
+//            {
+//                listNominal.add(5000);
+//            }
+//            else if(nominal == 7500)
+//            {
+//                listNominal.add(5000);
+//                listNominal.add(2500);
+//            }
+//            else if(nominal == 10000)
+//            {
+//                listNominal.add(5000);
+//                listNominal.add(5000);
+//            }
         }
         else
         {

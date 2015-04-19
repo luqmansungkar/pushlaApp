@@ -355,7 +355,7 @@ public class Donate extends ActionBarActivity{
         public PopUpDonationButton(Donate parent) {
             this.smsManager = SmsManager.getDefault();
             this.parent = parent;
-            ResourceManager.setCurrentNominalDonation(2500);
+            ResourceManager.setCurrentNominalDonation(2000);
         }
         @Override
         public void onClick(View v) {
