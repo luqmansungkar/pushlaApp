@@ -11,7 +11,7 @@
 
     <!--font-->
     <dimen name="txt_title">48sp</dimen>
-    <dimen name="txt_title2">60sp</dimen>
+    <dimen name="txt_title2">52sp</dimen>
     <dimen name="txt_subtitle">28sp</dimen>
     <dimen name="txt_subtitle2">32sp</dimen>
     <dimen name="txt_size_bold">28sp</dimen>
@@ -30,6 +30,7 @@
     <dimen name="marginLeft">60dp</dimen>
     <dimen name="marginTop">30dp</dimen>
     <dimen name="marginRight">15dp</dimen>
+    <dimen name="marginTopHero">320dp</dimen>
 
     <dimen name="paddingTop">50dp</dimen>
     <dimen name="paddingBottom">0dp</dimen>
@@ -37,11 +38,12 @@
     <dimen name="paddingRight">40dp</dimen>
 
     <dimen name="cardHeight">400dp</dimen>
-    <dimen name="heroHeight">300dp</dimen>
+    <dimen name="heroHeight">400dp</dimen>
     <dimen name="heroButtonHeight">160dp</dimen>
     <dimen name="tinggiKeterangan">70dp</dimen>
     <dimen name="width_cs">200dp</dimen>
 
+    <dimen name="marginLeftDonate">80dp</dimen>
 
     <dimen name="height_button_success">90dp</dimen>
 </resources>

@@ -30,6 +30,7 @@
     <dimen name="marginLeft">30dp</dimen>
     <dimen name="marginTop">30dp</dimen>
     <dimen name="marginRight">15dp</dimen>
+    <dimen name="marginTopHero">320dp</dimen>
 
     <dimen name="paddingTop">40dp</dimen>
     <dimen name="paddingBottom">15dp</dimen>
@@ -37,11 +38,11 @@
     <dimen name="paddingRight">40dp</dimen>
 
     <dimen name="cardHeight">360dp</dimen>
-    <dimen name="heroHeight">300dp</dimen>
+    <dimen name="heroHeight">400dp</dimen>
     <dimen name="heroButtonHeight">160dp</dimen>
     <dimen name="tinggiKeterangan">70dp</dimen>
     <dimen name="width_cs">200dp</dimen>
 
-
+    <dimen name="marginLeftDonate">30dp</dimen>
     <dimen name="height_button_success">80dp</dimen>
 </resources>
