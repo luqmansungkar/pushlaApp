@@ -85,9 +85,9 @@ public class ReportSender extends AsyncTask<Void, Void, Void>
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        if(statusCode != 200)
-            ResourceManager.addDonasiSukses(ResourceManager.getCurrentDonation().toSuccessDonation()
-                    , context);
+//        if(statusCode != 200)
+//            ResourceManager.addDonasiSukses(ResourceManager.getCurrentDonation().toSuccessDonation()
+//                    , context);
         //TODO : panggil kalo udah donasi dengan sukses
         new GetProyek(context).execute();
     }

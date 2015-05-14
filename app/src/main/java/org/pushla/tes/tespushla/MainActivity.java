@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionCallbac
 
     private void resolveSignInError(){
         Log.d("debug: ","resolve sign in error");
-        if (mConnectionResult.hasResolution()){
+        if (mConnectionResult != null && mConnectionResult.hasResolution()){
             try {
                 mIntentInProgress = true;
                 mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);

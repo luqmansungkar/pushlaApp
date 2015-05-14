@@ -84,27 +84,27 @@ public class Donation extends Proyek{
         return this.receivedDonation == this.nominal;
     }
 
-//    public void startTimer(long time, final Donate donate)
-//    {
-//        isRunning = true;
-//        final Handler h = new Handler(){
-//            @Override
-//            public void handleMessage(Message msg){
-//                if(msg.what == 0){
-//                    showFailedDialog(donate);
-//                }else{
-////                    showErrorDialog();
-//                }
-//            }
-//        };
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
+    public void startFakeTimer(long time, final Donate donate)
+    {
+        isRunning = true;
+        final Handler h = new Handler(){
+            @Override
+            public void handleMessage(Message msg){
+                if(msg.what == 0){
+                    donate.showSuccessPage();
+                }else{
+//                    showErrorDialog();
+                }
+            }
+        };
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
 //                resetReceivedDonation();
-//                h.sendEmptyMessage(0);
-//            }
-//        }, time);
-//    }
+                h.sendEmptyMessage(0);
+            }
+        }, time);
+    }
 
     private void showFailedDialog(Donate donate)
     {

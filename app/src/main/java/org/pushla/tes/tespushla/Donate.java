@@ -262,12 +262,12 @@ public class Donate extends ActionBarActivity{
 
         private boolean isValidDonation(Context context)
         {
-            if(ResourceManager.getCurrentDonation().isXl()
-                    && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
-                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
-            {
-                return false;
-            }
+//            if(ResourceManager.getCurrentDonation().isXl()
+//                    && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
+//                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
+//            {
+//                return false;
+//            }
             return true;
         }
     }
@@ -301,7 +301,8 @@ public class Donate extends ActionBarActivity{
                 }
                 else
                 {
-                    nominal = 6000;
+//                    nominal = 6000;
+                    nominal = 2000;
                 }
                 ResourceManager.setCurrentNominalDonation(nominal);
             }
@@ -313,7 +314,8 @@ public class Donate extends ActionBarActivity{
                 }
                 else
                 {
-                    nominal = 10000;
+//                    nominal = 10000;
+                    nominal = 5000;
                 }
                 ResourceManager.setCurrentNominalDonation(nominal);
             }
@@ -325,7 +327,8 @@ public class Donate extends ActionBarActivity{
                 }
                 else
                 {
-                    nominal = 15000;
+//                    nominal = 15000;
+                    nominal = 7000;
                 }
                 ResourceManager.setCurrentNominalDonation(nominal);
             }
@@ -337,7 +340,8 @@ public class Donate extends ActionBarActivity{
                 }
                 else
                 {
-                    nominal = 20000;
+//                    nominal = 20000;
+                    nominal = 10000;
                 }
                 ResourceManager.setCurrentNominalDonation(nominal);
             }
@@ -364,7 +368,6 @@ public class Donate extends ActionBarActivity{
             {
                 dialog.dismiss();
                 ResourceManager.getCurrentDonation().resetReceivedDonation();
-//                ResourceManager.getCurrentDonation().startTimer(15000, donate);
 
 
                 dialogLoading = new Dialog(context);
@@ -376,27 +379,58 @@ public class Donate extends ActionBarActivity{
 //                parent.setContentView(R.layout.donation_loading);
                 isLoadingDonation = true;
 
-//                ArrayList<Integer> temp = ResourceManager.getCurrentDonation().getListNominal();
-//                for(int ii = 0; ii<temp.size(); ii++)
-//                {
-//                    String nomorTujuan = Operator.getDestinationNumber(parent);
-//                    int operatorCode = Operator.getDeviceOperator(parent.getApplicationContext());
-//                    String nominal = "" + Operator.getTotalDonasi(temp.get(ii), parent.getApplicationContext());
-//                    String operatorNumber = Operator.getOperatorNumber(operatorCode, nomorTujuan, nominal);
-//                    String smsContent = Operator.getSMSContent(operatorCode, nomorTujuan, nominal);
-//                    smsManager.sendTextMessage(operatorNumber, null, smsContent, null, null);
-//                }
                 int totalDonasi = ResourceManager.getCurrentDonation().getNominal();
                 if(totalDonasi%1000 != 0)
                 {
                     totalDonasi = ((totalDonasi/1000)) * 1000;
                     ResourceManager.getCurrentDonation().setNominal(totalDonasi);
                 }
-                String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
-                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
+//                new Listener().showSuccessPage();
+//                String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
+//                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
+                //nambah animasi boongan 10 detik
+                ResourceManager.getCurrentDonation().startFakeTimer(10000, parent);
             }
 
         }
+    }
+
+    public void showSuccessPage()
+    {
+        Toast.makeText(donate, "Transfer berhasil :)",
+                Toast.LENGTH_LONG).show();
+        //coba2 kirim report ke server
+        sendResponse(ResourceManager.getCurrentDonation(), donate);
+        ResourceManager.getCurrentDonation().stopTimer();
+        if(dialogGagal != null && dialogGagal.isShowing()) dialogGagal.dismiss();
+        if(dialogLoading != null) dialogLoading.dismiss();
+        donate.setContentView(R.layout.donate_success);
+        TextView potongan = (TextView) donate.findViewById(R.id.potongan_pulsa);
+        TextView namaProyek = (TextView) donate.findViewById(R.id.nama_proyek);
+        TextView authorProyek = (TextView) donate.findViewById(R.id.author_proyek);
+        ImageButton buttonOk = (ImageButton) donate.findViewById(R.id.button_ok_sukses);
+
+        potongan.setText("Rp " + Converter.getNominal(ResourceManager.getCurrentDonation().getNominal()));
+        namaProyek.setText(ResourceManager.getCurrentDonation().getNamaProyek());
+        authorProyek.setText("oleh " + ResourceManager.getCurrentDonation().getAuthor());
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                    donate.setContentView(R.layout.donate);
+                Intent mainIntent = new Intent(donate, MainActivity.class);
+                System.out.println("Banyaknya" +
+                        " proyek = " + SplashScreen.listProyek.size());
+                donate.finish();
+                donate.startActivity(mainIntent);
+            }
+        });
+    }
+
+    private void sendResponse(Donation d, Context context)
+    {
+        ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), d.getNominal()+"",
+                d.getId(), donate);
+        reportSender.execute();
     }
 
     public static class Listener extends BroadcastReceiver
@@ -448,10 +482,10 @@ public class Donate extends ActionBarActivity{
                     || body.toLowerCase().contains("terimakasih"))
             {
                 ResourceManager.getCurrentDonation().addReceivedSonation();
-                if(ResourceManager.getCurrentDonation().isReceivedCompletely())
-                {
-                    showSuccessPage();
-                }
+//                if(ResourceManager.getCurrentDonation().isReceivedCompletely())
+//                {
+                    donate.showSuccessPage();
+//                }
                 return;
             }
             SmsManager smsManager = SmsManager.getDefault();
@@ -507,12 +541,12 @@ public class Donate extends ActionBarActivity{
             smsManager.sendTextMessage(""+sender, null, response, null, null);
         }
 
-        private void sendResponse(Donation d, Context context)
-        {
-            ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), d.getNominal()+"",
-                    d.getId(), donate);
-            reportSender.execute();
-        }
+//        private void sendResponse(Donation d, Context context)
+//        {
+//            ReportSender reportSender = new ReportSender(ResourceManager.getEmail(context), d.getNominal()+"",
+//                    d.getId(), donate);
+//            reportSender.execute();
+//        }
 
         private int parseInt(String str)
         {
@@ -539,36 +573,36 @@ public class Donate extends ActionBarActivity{
 //            dialogGagal.show();
 //        }
 
-        private void showSuccessPage()
-        {
-            Toast.makeText(donate, "Transfer berhasil :)",
-                    Toast.LENGTH_LONG).show();
-            //coba2 kirim report ke server
-            sendResponse(ResourceManager.getCurrentDonation(), donate);
-            ResourceManager.getCurrentDonation().stopTimer();
-            if(dialogGagal != null && dialogGagal.isShowing()) dialogGagal.dismiss();
-            if(dialogLoading != null) dialogLoading.dismiss();
-            donate.setContentView(R.layout.donate_success);
-            TextView potongan = (TextView) donate.findViewById(R.id.potongan_pulsa);
-            TextView namaProyek = (TextView) donate.findViewById(R.id.nama_proyek);
-            TextView authorProyek = (TextView) donate.findViewById(R.id.author_proyek);
-            ImageButton buttonOk = (ImageButton) donate.findViewById(R.id.button_ok_sukses);
-
-            potongan.setText("Rp " + Converter.getNominal(ResourceManager.getCurrentDonation().getNominal()));
-            namaProyek.setText(ResourceManager.getCurrentDonation().getNamaProyek());
-            authorProyek.setText("oleh " + ResourceManager.getCurrentDonation().getAuthor());
-            buttonOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    donate.setContentView(R.layout.donate);
-                    Intent mainIntent = new Intent(donate, MainActivity.class);
-                    System.out.println("Banyaknya" +
-                            " proyek = " + SplashScreen.listProyek.size());
-                    donate.finish();
-                    donate.startActivity(mainIntent);
-                }
-            });
-        }
+//        public void showSuccessPage()
+//        {
+//            Toast.makeText(donate, "Transfer berhasil :)",
+//                    Toast.LENGTH_LONG).show();
+//            //coba2 kirim report ke server
+//            sendResponse(ResourceManager.getCurrentDonation(), donate);
+//            ResourceManager.getCurrentDonation().stopTimer();
+//            if(dialogGagal != null && dialogGagal.isShowing()) dialogGagal.dismiss();
+//            if(dialogLoading != null) dialogLoading.dismiss();
+//            donate.setContentView(R.layout.donate_success);
+//            TextView potongan = (TextView) donate.findViewById(R.id.potongan_pulsa);
+//            TextView namaProyek = (TextView) donate.findViewById(R.id.nama_proyek);
+//            TextView authorProyek = (TextView) donate.findViewById(R.id.author_proyek);
+//            ImageButton buttonOk = (ImageButton) donate.findViewById(R.id.button_ok_sukses);
+//
+//            potongan.setText("Rp " + Converter.getNominal(ResourceManager.getCurrentDonation().getNominal()));
+//            namaProyek.setText(ResourceManager.getCurrentDonation().getNamaProyek());
+//            authorProyek.setText("oleh " + ResourceManager.getCurrentDonation().getAuthor());
+//            buttonOk.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    donate.setContentView(R.layout.donate);
+//                    Intent mainIntent = new Intent(donate, MainActivity.class);
+//                    System.out.println("Banyaknya" +
+//                            " proyek = " + SplashScreen.listProyek.size());
+//                    donate.finish();
+//                    donate.startActivity(mainIntent);
+//                }
+//            });
+//        }
 
         private boolean isValidResponse(String from)
         {
@@ -578,6 +612,8 @@ public class Donate extends ActionBarActivity{
             listXL.add("250006");
             listXL.add("500006");
             listXL.add("BAGI-PULSA");
+            listXL.add("082146184404");
+            listXL.add("6282146184404");
             if(Operator.listOperatorNumber.contains(from)
                     || listXL.contains(from))
             {

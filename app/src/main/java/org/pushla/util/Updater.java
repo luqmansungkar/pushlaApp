@@ -76,41 +76,41 @@ public class Updater {
         protected Void doInBackground(Void... params) {
             System.out.println("Ngirim Report");
             // Create a new HttpClient and Post Header
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(url);
-
-            try {
-                // Add your data
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("kunci", key));
-                nameValuePairs.add(new BasicNameValuePair("nope", nomorHP));
-                nameValuePairs.add(new BasicNameValuePair("nominal", nominal));
-                nameValuePairs.add(new BasicNameValuePair("id_project", idProyek));
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                // Execute HTTP Post Request
-                HttpResponse response = httpclient.execute(httppost);
-                updateResponse = response.getStatusLine().getStatusCode();
-                System.out.println(response.getStatusLine().getStatusCode());
-
-            } catch (ClientProtocolException e) {
-                // TODO Auto-generated catch block
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-            }
+//            HttpClient httpclient = new DefaultHttpClient();
+//            HttpPost httppost = new HttpPost(url);
+//
+//            try {
+//                // Add your data
+//                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+//                nameValuePairs.add(new BasicNameValuePair("kunci", key));
+//                nameValuePairs.add(new BasicNameValuePair("nope", nomorHP));
+//                nameValuePairs.add(new BasicNameValuePair("nominal", nominal));
+//                nameValuePairs.add(new BasicNameValuePair("id_project", idProyek));
+//                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//
+//                // Execute HTTP Post Request
+//                HttpResponse response = httpclient.execute(httppost);
+//                updateResponse = response.getStatusLine().getStatusCode();
+//                System.out.println(response.getStatusLine().getStatusCode());
+//
+//            } catch (ClientProtocolException e) {
+//                // TODO Auto-generated catch block
+//            } catch (IOException e) {
+//                // TODO Auto-generated catch block
+//            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
-            if(updateResponse == 200)
-            {
-                removeDonation(index);
-            }
-
-            update(index+1);
+//
+//            if(updateResponse == 200)
+//            {
+//                removeDonation(index);
+//            }
+//
+//            update(index+1);
         }
     }
 }
