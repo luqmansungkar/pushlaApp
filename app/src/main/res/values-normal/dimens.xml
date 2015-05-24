@@ -44,5 +44,8 @@
     <dimen name="tinggiKeterangan">70dp</dimen>
     <dimen name="width_cs">120dp</dimen>
 
+
+    <dimen name="marginLeftDonate">15dp</dimen>
+
     <dimen name="height_button_success">55dp</dimen>
 </resources>
