@@ -5,7 +5,7 @@ import org.pushla.tes.tespushla.ResourceManager;
 /**
  * Created by Anjar_Ibnu on 31/03/2015.
  */
-public class RiwayatDonasi {
+public class RiwayatDonasi implements Comparable<RiwayatDonasi>{
     private String judul, waktu;
     private int nominal;
 
@@ -39,5 +39,10 @@ public class RiwayatDonasi {
 
     public void setWaktu(String waktu) {
         this.waktu = waktu;
+    }
+
+    @Override
+    public int compareTo(RiwayatDonasi another) {
+        return another.getWaktu().compareTo(this.getWaktu());
     }
 }

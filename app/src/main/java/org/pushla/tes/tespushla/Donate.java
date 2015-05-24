@@ -262,12 +262,12 @@ public class Donate extends ActionBarActivity{
 
         private boolean isValidDonation(Context context)
         {
-//            if(ResourceManager.getCurrentDonation().isXl()
-//                    && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
-//                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
-//            {
-//                return false;
-//            }
+            if(ResourceManager.getCurrentDonation().isXl()
+                    && !(Operator.readOperatorName(context).toLowerCase().contains("xl") ||
+                    Operator.readOperatorName(context).toLowerCase().contains("axis")))
+            {
+                return false;
+            }
             return true;
         }
     }
@@ -386,10 +386,10 @@ public class Donate extends ActionBarActivity{
                     ResourceManager.getCurrentDonation().setNominal(totalDonasi);
                 }
 //                new Listener().showSuccessPage();
-//                String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
-//                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
+                String ussdCode = "*123*8461*6*4*2*1*" + totalDonasi + Uri.encode("#");
+                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussdCode)));
                 //nambah animasi boongan 10 detik
-                ResourceManager.getCurrentDonation().startFakeTimer(10000, parent);
+//                ResourceManager.getCurrentDonation().startFakeTimer(10000, parent);
             }
 
         }
@@ -612,8 +612,8 @@ public class Donate extends ActionBarActivity{
             listXL.add("250006");
             listXL.add("500006");
             listXL.add("BAGI-PULSA");
-            listXL.add("082146184404");
-            listXL.add("6282146184404");
+//            listXL.add("082146184404");
+//            listXL.add("6282146184404");
             if(Operator.listOperatorNumber.contains(from)
                     || listXL.contains(from))
             {

@@ -24,6 +24,8 @@ import org.pushla.model.SuccessDonation;
 import org.pushla.util.Converter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by Anjar_Ibnu on 31/03/2015.
@@ -200,6 +202,7 @@ public class FragmentRiwayat extends Fragment {
                 tempRiwayat.add(sd.toRiwayatDonasi());
             }
             listDonasi.addAll(tempRiwayat);
+            Collections.sort(listDonasi);
             new Handler().post(new Runnable() {
                 public void run() {
                     reload();
